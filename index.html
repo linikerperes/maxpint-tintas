@@ -1,0 +1,2091 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maxpint Tintas Premium — Tintas profissionais para decisões mais seguras</title>
+  <meta name="description" content="Soluções profissionais em tintas para lojistas, construtoras e incorporadoras. Qualidade, clareza técnica e acompanhamento responsável.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+  <style>
+    /*
+     * NEUROMARKETING APLICADO — PRINCÍPIOS ESTRUTURAIS
+     * ─────────────────────────────────────────────────
+     * 1. AVERSÃO À PERDA: Framing de evitar dano > buscar ganho
+     * 2. FLUÊNCIA COGNITIVA: Hierarquia clara, textos curtos, espaço branco
+     * 3. PROVA SOCIAL + ESPECIFICIDADE: Números concretos = maior credibilidade
+     * 4. RECIPROCIDADE: Academia primeiro, CTA depois
+     * 5. AUTORIDADE: Processos visíveis, linguagem técnica objetiva
+     * 6. CHUNKING: Máximo 3 itens por grupo de decisão
+     * 7. PICO-FIM: Herói forte + contato memorável
+     * 8. PROGRESSÃO: Timeline visível = dopamina por antecipação
+     * 9. CONTRASTE: Um elemento se destaca em cada tela
+     * 10. INGROUP: Linguagem de especialista para especialistas
+     */
+
+    :root {
+      /* Identidade Maxpint — extraída do logo real */
+      --navy:      #0C1E38;
+      --navy-mid:  #152845;
+      --navy-lt:   #1E3558;
+      --yellow:    #F5C000;
+      --yellow-2:  #FFD740;
+      --yellow-dk: #C9970A;
+      --yellow-dim:rgba(245,192,0,.1);
+      --white:     #FFFFFF;
+      --off-white: #F8F7F4;
+      --gray-bg:   #F4F3F0;
+      --gray-bg2:  #EBEBEA;
+      --border:    #E0DFD9;
+      --text-dk:   #0C1120;
+      --text-md:   #4A4A4A;
+      --text-lt:   #898989;
+      --nav-h: 72px;
+
+      /* Trust colors */
+      --green: #1A6B40;
+      --red:   #9B1515;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+         background:var(--white);color:var(--text-dk);
+         line-height:1.6;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    button{cursor:pointer;font-family:inherit;border:none;background:none}
+    ul{list-style:none}
+
+    /* ─── LAYOUT ─────────────────────────────────────── */
+    .container{max-width:1180px;margin:0 auto;padding:0 40px}
+
+    /* ─── TIPOGRAFIA SISTEMA ──────────────────────────── */
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
+      font-size:10.5px;font-weight:700;letter-spacing:.22em;
+      text-transform:uppercase;color:var(--yellow)
+    }
+    .eyebrow::before{
+      content:'';display:block;width:22px;height:2px;
+      background:var(--yellow);flex-shrink:0
+    }
+    .eyebrow.dark::before{background:var(--yellow)}
+
+    /* Fluência cognitiva: tipografia com hierarquia forte */
+    .h1{font-size:clamp(36px,5vw,64px);font-weight:900;
+        letter-spacing:-.04em;line-height:1.05;color:var(--white)}
+    .h1 em{font-style:normal;color:var(--yellow)}
+    .h2{font-size:clamp(26px,3.2vw,40px);font-weight:800;
+        letter-spacing:-.035em;line-height:1.1;color:var(--text-dk)}
+    .h2.light{color:var(--white)}
+    .lead{font-size:16px;color:var(--text-md);line-height:1.78;max-width:500px}
+    .lead.light{color:rgba(255,255,255,.5)}
+
+    /* ─── BOTÕES ──────────────────────────────────────── */
+    /* Contraste: amarelo sobre azul = maior ativação de atenção */
+    .btn-cta{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:15px 30px;background:var(--yellow);color:var(--navy);
+      font-size:14px;font-weight:800;letter-spacing:.02em;border-radius:3px;
+      transition:background .18s,transform .15s;border:none;cursor:pointer
+    }
+    .btn-cta:hover{background:var(--yellow-2);transform:translateY(-1px)}
+    .btn-ghost{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:14px 28px;border:1.5px solid rgba(255,255,255,.18);
+      color:var(--white);font-size:14px;font-weight:600;
+      letter-spacing:.02em;border-radius:3px;transition:all .18s
+    }
+    .btn-ghost:hover{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.05)}
+    .btn-soft{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:12px 22px;border:1.5px solid rgba(255,255,255,.1);
+      color:rgba(255,255,255,.4);font-size:13px;font-weight:600;
+      border-radius:3px;transition:all .18s
+    }
+    .btn-soft:hover{color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.22)}
+    .btn-outline-dk{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:12px 22px;border:1.5px solid var(--border);
+      color:var(--text-md);font-size:13px;font-weight:600;
+      border-radius:3px;transition:all .18s
+    }
+    .btn-outline-dk:hover{border-color:var(--yellow);color:var(--navy)}
+
+    /* ─── ANIMAÇÕES DE ENTRADA ────────────────────────── */
+    .fu{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+    .fu.in{opacity:1;transform:translateY(0)}
+    .d1{transition-delay:.08s}.d2{transition-delay:.16s}
+    .d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+    /* ─── SWOOSH DECORATIVO (extraído do logo) ────────── */
+    .swoosh{
+      position:absolute;bottom:0;left:0;right:0;height:80px;
+      overflow:hidden;pointer-events:none
+    }
+    .swoosh svg{width:100%;height:100%;display:block}
+
+    /* ══════════════════════════════════════════════════
+       NAV
+       Neuro: confiança pelo azul marinho (cor de bancos e
+       instituições sólidas). Logo visível o tempo todo.
+    ════════════════════════════════════════════════════ */
+    nav{
+      position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:900;
+      background:rgba(12,30,56,.97);backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(245,192,0,.08);
+      transition:border-color .3s
+    }
+    .nav-in{
+      display:flex;align-items:center;justify-content:space-between;height:100%
+    }
+    .nav-logo{display:flex;flex-direction:column;gap:1px}
+    .logo-main{
+      font-size:18px;font-weight:900;color:var(--white);
+      letter-spacing:-.03em;line-height:1
+    }
+    .logo-main span{color:var(--yellow)}
+    .logo-sub{
+      font-size:9px;font-weight:700;letter-spacing:.22em;
+      text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:2px
+    }
+    .nav-menu{display:flex;align-items:center;gap:28px}
+    .nav-menu a{
+      font-size:13px;font-weight:500;color:rgba(255,255,255,.48);
+      transition:color .18s;letter-spacing:.02em
+    }
+    .nav-menu a:hover{color:var(--white)}
+    .nav-cta{
+      font-size:13px;font-weight:800;
+      color:var(--navy)!important;background:var(--yellow);
+      padding:9px 20px;border-radius:3px;transition:background .18s!important
+    }
+    .nav-cta:hover{background:var(--yellow-2)!important}
+    .hamburger{display:none;flex-direction:column;gap:5px;padding:4px;cursor:pointer}
+    .hamburger span{display:block;width:22px;height:1.5px;background:var(--white);transition:all .25s}
+    .hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+    .mob-menu{
+      display:none;position:fixed;top:var(--nav-h);left:0;right:0;
+      background:var(--navy-mid);border-top:1px solid rgba(255,255,255,.07);
+      z-index:850;padding:8px 0 24px
+    }
+    .mob-menu.open{display:block}
+    .mob-menu a{
+      display:block;padding:14px 40px;font-size:15px;font-weight:500;
+      color:rgba(255,255,255,.55);border-bottom:1px solid rgba(255,255,255,.05);
+      transition:color .18s
+    }
+    .mob-menu a:last-child{border:none;margin-top:8px;color:var(--yellow)}
+    .mob-menu a:hover{color:var(--white)}
+
+    /* ══════════════════════════════════════════════════
+       HERO
+       Neuro:
+       • Aversão à perda: "decisões erradas têm custo" implícito
+       • Primacy effect: primeira mensagem é a mais retida
+       • Azul profundo = credibilidade + confiança imediata
+       • Amarelo no CTA primário = contraste máximo de atenção
+       • Três botões hierarquizados = lei de Hick respeitada
+    ════════════════════════════════════════════════════ */
+    #hero{
+      min-height:100vh;background:var(--navy);
+      display:flex;align-items:center;padding-top:var(--nav-h);
+      position:relative;overflow:hidden
+    }
+    .hero-stars{
+      position:absolute;inset:0;
+      background:
+        radial-gradient(2px 2px at 20% 30%,rgba(255,255,255,.12) 0%,transparent 100%),
+        radial-gradient(2px 2px at 70% 15%,rgba(255,255,255,.08) 0%,transparent 100%),
+        radial-gradient(1px 1px at 40% 60%,rgba(255,255,255,.1)  0%,transparent 100%),
+        radial-gradient(1px 1px at 80% 70%,rgba(255,255,255,.07) 0%,transparent 100%),
+        radial-gradient(1px 1px at 55% 45%,rgba(255,255,255,.09) 0%,transparent 100%),
+        radial-gradient(ellipse 700px 500px at 75% 55%,rgba(245,192,0,.05) 0%,transparent 65%)
+    }
+    .hero-geo{
+      position:absolute;right:0;top:0;bottom:0;width:42%;
+      background:linear-gradient(135deg,rgba(245,192,0,.025) 0%,transparent 70%);
+      border-left:1px solid rgba(245,192,0,.06)
+    }
+    .hero-grid{
+      position:absolute;inset:0;
+      background-image:
+        repeating-linear-gradient(0deg,transparent,transparent 79px,rgba(255,255,255,.015) 79px,rgba(255,255,255,.015) 80px),
+        repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(255,255,255,.015) 79px,rgba(255,255,255,.015) 80px)
+    }
+    .hero-content{position:relative;z-index:1;max-width:680px;padding:80px 0}
+    .hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:36px}
+    .hero-eyebrow::before{content:'';width:36px;height:2px;background:var(--yellow)}
+    .hero-eyebrow-t{font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--yellow)}
+    .hero-h1{
+      font-size:clamp(36px,5.5vw,66px);font-weight:900;
+      color:var(--white);line-height:1.06;letter-spacing:-.04em;margin-bottom:22px
+    }
+    .hero-h1 em{font-style:normal;color:var(--yellow)}
+    .hero-body{
+      font-size:17px;color:rgba(255,255,255,.48);
+      line-height:1.75;max-width:520px;margin-bottom:20px
+    }
+    /* Neuro: prova social com número específico gera mais confiança que adjetivo */
+    .hero-trust{
+      display:flex;align-items:center;gap:20px;
+      margin-bottom:44px;padding:16px 0;
+      border-top:1px solid rgba(255,255,255,.06);
+      border-bottom:1px solid rgba(255,255,255,.06)
+    }
+    .hero-trust-item{display:flex;flex-direction:column;gap:1px}
+    .hero-trust-num{font-size:20px;font-weight:900;color:var(--yellow);letter-spacing:-.04em;line-height:1}
+    .hero-trust-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+    .hero-trust-sep{width:1px;height:32px;background:rgba(255,255,255,.1);flex-shrink:0}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+
+    /* Swoosh do logo replicado no hero */
+    .hero-swoosh{
+      position:absolute;bottom:-1px;left:0;right:0;z-index:2;pointer-events:none
+    }
+
+    /* ══════════════════════════════════════════════════
+       BARRA DE PROVA SOCIAL
+       Neuro: reciprocidade + autoridade antes da 2ª dobra
+       Números específicos > afirmações genéricas
+    ════════════════════════════════════════════════════ */
+    #prova-social{
+      background:var(--yellow);padding:0
+    }
+    .prova-inner{
+      display:grid;grid-template-columns:repeat(4,1fr);
+      border-left:1px solid rgba(0,0,0,.08)
+    }
+    .prova-item{
+      padding:24px 32px;border-right:1px solid rgba(0,0,0,.08);
+      display:flex;flex-direction:column;gap:2px
+    }
+    .prova-num{font-size:28px;font-weight:900;color:var(--navy);letter-spacing:-.05em;line-height:1}
+    .prova-label{font-size:11px;font-weight:700;color:rgba(12,30,56,.55);letter-spacing:.08em;text-transform:uppercase}
+
+    /* ══════════════════════════════════════════════════
+       SOBRE / POSICIONAMENTO
+       Neuro:
+       • Ingroup: "para quem decide com responsabilidade"
+       • Loss aversion: o que você EVITA ao escolher bem
+       • Regra dos 3: três pilares = fácil de memorizar
+    ════════════════════════════════════════════════════ */
+    #sobre{padding:120px 0;background:var(--white)}
+    .sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center}
+    .sobre-left .eyebrow{margin-bottom:20px}
+    .sobre-left .h2{margin-bottom:16px}
+    .sobre-left .lead{margin-bottom:32px}
+
+    /* Três pilares — chunking cognitivo: grupos de 3 */
+    .pilares{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--border)}
+    .pilar{
+      display:flex;align-items:flex-start;gap:16px;
+      padding:20px 0;border-bottom:1px solid var(--border);
+      transition:background .18s;margin:0 -40px;padding:20px 40px
+    }
+    .pilar-icon{
+      width:40px;height:40px;border-radius:3px;
+      background:var(--yellow-dim);display:flex;align-items:center;
+      justify-content:center;font-size:18px;flex-shrink:0;
+      border:1px solid rgba(245,192,0,.2)
+    }
+    .pilar-body{}
+    .pilar-title{font-size:15px;font-weight:800;color:var(--text-dk);letter-spacing:-.02em;margin-bottom:4px}
+    .pilar-desc{font-size:13px;color:var(--text-md);line-height:1.6}
+
+    .sobre-right{position:relative}
+    .sobre-visual{
+      background:var(--navy);border-radius:4px;
+      aspect-ratio:3/4;overflow:hidden;position:relative;display:flex;align-items:flex-end
+    }
+    .sobre-v-pattern{
+      position:absolute;inset:0;
+      background:
+        repeating-linear-gradient(45deg,transparent,transparent 18px,rgba(245,192,0,.04) 18px,rgba(245,192,0,.04) 19px),
+        repeating-linear-gradient(-45deg,transparent,transparent 18px,rgba(245,192,0,.04) 18px,rgba(245,192,0,.04) 19px)
+    }
+    .sobre-v-glow{
+      position:absolute;top:0;right:0;width:60%;height:60%;
+      background:radial-gradient(circle,rgba(245,192,0,.06) 0%,transparent 70%)
+    }
+    .sobre-v-content{
+      position:relative;z-index:1;padding:32px;width:100%;
+      background:linear-gradient(to top,rgba(12,30,56,.95) 0%,transparent 100%)
+    }
+    .sobre-v-label{
+      font-size:10px;font-weight:700;letter-spacing:.2em;
+      text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:8px
+    }
+    .sobre-v-quote{
+      font-size:19px;font-weight:900;color:var(--white);
+      letter-spacing:-.03em;line-height:1.25
+    }
+    .sobre-v-quote span{color:var(--yellow)}
+    .sobre-badge{
+      position:absolute;top:-16px;right:-16px;
+      background:var(--yellow);padding:20px 22px;
+      border-radius:4px;text-align:center;
+      box-shadow:0 8px 32px rgba(245,192,0,.3)
+    }
+    .sobre-badge-main{font-size:11px;font-weight:900;color:var(--navy);letter-spacing:-.01em;line-height:1}
+    .sobre-badge-sub{font-size:9px;font-weight:700;color:rgba(12,30,56,.5);letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
+
+    /* ══════════════════════════════════════════════════
+       LINHAS DE PRODUTO
+       Neuro:
+       • Paradoxo da escolha: apenas 4 categorias claras
+       • Hover ativo = feedback sensório-motor (embodied cognition)
+       • "Ver indicação" ≠ "Comprar" → reduz resistência
+    ════════════════════════════════════════════════════ */
+    #linhas{padding:120px 0;background:var(--gray-bg)}
+    .linhas-hdr{margin-bottom:60px}
+    .linhas-hdr .eyebrow{margin-bottom:16px}
+    .pgrid{
+      display:grid;grid-template-columns:repeat(4,1fr);
+      gap:0;background:var(--border);
+      border:1px solid var(--border);border-radius:4px;overflow:hidden
+    }
+    .pcard{
+      background:var(--white);padding:36px 28px;
+      position:relative;transition:background .22s;overflow:hidden
+    }
+    .pcard:hover{background:var(--navy)}
+    .pcard:hover .pcard-icon-bg{background:rgba(245,192,0,.12)}
+    .pcard:hover .ptitle{color:var(--white)}
+    .pcard:hover .pdesc{color:rgba(255,255,255,.5)}
+    .pcard:hover .plink{color:var(--yellow);border-color:rgba(245,192,0,.3)}
+    .pcard-icon-bg{
+      width:48px;height:48px;background:var(--gray-bg);
+      border-radius:4px;display:flex;align-items:center;
+      justify-content:center;font-size:22px;margin-bottom:22px;
+      transition:background .22s
+    }
+    .ptitle{
+      font-size:16px;font-weight:800;color:var(--text-dk);
+      letter-spacing:-.025em;margin-bottom:8px;transition:color .22s
+    }
+    .pdesc{
+      font-size:12.5px;color:var(--text-md);line-height:1.65;
+      margin-bottom:24px;transition:color .22s
+    }
+    .plink{
+      font-size:10.5px;font-weight:700;letter-spacing:.12em;
+      text-transform:uppercase;color:var(--yellow-dk);
+      border:1px solid rgba(201,151,10,.25);padding:7px 13px;
+      border-radius:3px;display:inline-block;transition:all .22s
+    }
+
+    /* ══════════════════════════════════════════════════
+       ESCOLHA ORIENTADA
+       Neuro:
+       • Redução de ansiedade: guia o comprador
+       • Sensação de controle = menor resistência à compra
+       • Chunking: 4 contextos, cada um com 4 orientações
+       • Efeito Von Restorff: a categoria selecionada destaca
+    ════════════════════════════════════════════════════ */
+    #escolha{padding:120px 0;background:var(--navy)}
+    .escolha-hdr{text-align:center;margin-bottom:64px}
+    .escolha-hdr .eyebrow{justify-content:center;margin-bottom:16px}
+    .escolha-hdr .eyebrow::before{display:none}
+    .escolha-q{
+      font-size:13px;font-weight:600;color:rgba(255,255,255,.35);
+      letter-spacing:.08em;text-align:center;margin-bottom:18px;text-transform:uppercase
+    }
+    .e-opts{
+      display:grid;grid-template-columns:repeat(4,1fr);
+      gap:10px;max-width:600px;margin:0 auto 44px
+    }
+    .e-btn{
+      padding:18px 12px;background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.07);border-radius:3px;
+      font-size:14px;font-weight:800;color:rgba(255,255,255,.38);
+      cursor:pointer;transition:all .18s;text-align:center;letter-spacing:.01em
+    }
+    .e-btn:hover{background:rgba(255,255,255,.07);color:rgba(255,255,255,.7)}
+    .e-btn.act{background:var(--yellow);color:var(--navy);border-color:var(--yellow)}
+    .e-panel{
+      max-width:720px;margin:0 auto;
+      background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+      border-radius:4px;padding:44px;display:none
+    }
+    .e-panel.show{display:block}
+    .e-panel-title{
+      font-size:15px;font-weight:800;color:var(--white);
+      letter-spacing:-.02em;margin-bottom:24px;padding-bottom:20px;
+      border-bottom:1px solid rgba(255,255,255,.07)
+    }
+    .e-items{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .e-lbl{
+      font-size:10px;font-weight:700;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--yellow);margin-bottom:5px
+    }
+    .e-txt{font-size:13.5px;color:rgba(255,255,255,.52);line-height:1.58}
+    .e-nota{
+      margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.06);
+      font-size:12.5px;color:rgba(255,255,255,.28);line-height:1.65
+    }
+    /* Aversão à perda: nota de aviso */
+    .e-alerta{
+      display:flex;align-items:flex-start;gap:10px;
+      margin-top:18px;padding:14px 16px;border-radius:3px;
+      background:rgba(245,192,0,.07);border:1px solid rgba(245,192,0,.15)
+    }
+    .e-alerta-icon{font-size:14px;margin-top:1px;flex-shrink:0}
+    .e-alerta-text{font-size:12px;color:rgba(255,255,255,.45);line-height:1.6}
+
+    /* ══════════════════════════════════════════════════
+       SEÇÃO DE PERDA EVITADA
+       Neuro (core): Aversão à perda é 2.5x mais motivadora
+       que a busca por ganho (Kahneman & Tversky, 1979).
+       "Evitar retrabalho" > "melhorar o resultado"
+    ════════════════════════════════════════════════════ */
+    #perda{padding:100px 0;background:var(--navy-mid)}
+    .perda-label{
+      font-size:11px;font-weight:700;letter-spacing:.22em;
+      text-transform:uppercase;color:rgba(255,255,255,.3);
+      margin-bottom:20px
+    }
+    .perda-titulo{
+      font-size:clamp(26px,3.5vw,44px);font-weight:900;
+      color:var(--white);letter-spacing:-.035em;line-height:1.1;margin-bottom:16px
+    }
+    .perda-titulo span{color:var(--yellow)}
+    .perda-sub{
+      font-size:16px;color:rgba(255,255,255,.45);
+      line-height:1.75;max-width:520px;margin-bottom:48px
+    }
+    .perda-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.07);border-radius:4px;overflow:hidden}
+    .perda-card{
+      background:rgba(12,30,56,.8);padding:32px 28px;
+      border:1px solid rgba(255,255,255,.06)
+    }
+    /* Loss framing: vermelho discreto remete à atenção */
+    .perda-icon{font-size:22px;margin-bottom:16px}
+    .perda-card-h{
+      font-size:15px;font-weight:800;color:var(--white);
+      letter-spacing:-.02em;margin-bottom:8px
+    }
+    .perda-card-p{font-size:12.5px;color:rgba(255,255,255,.45);line-height:1.65}
+    .perda-resolucao{
+      margin-top:10px;font-size:11px;font-weight:700;
+      letter-spacing:.08em;text-transform:uppercase;color:var(--yellow)
+    }
+
+    /* ══════════════════════════════════════════════════
+       ACADEMIA MAXPINT
+       Neuro:
+       • Reciprocidade: dar conhecimento antes de pedir
+       • Autoridade: marca que educa é percebida como especialista
+       • Processamento fluente: artigos curtos e diretos
+    ════════════════════════════════════════════════════ */
+    #academia{padding:120px 0;background:var(--white)}
+    .academia-hdr .eyebrow{margin-bottom:16px}
+    .academia-hdr .h2{margin-bottom:12px}
+    .academia-hdr .lead{margin-bottom:0}
+    .agrid{
+      display:grid;grid-template-columns:repeat(3,1fr);
+      gap:0;background:var(--border);
+      border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-top:48px
+    }
+    .acard{background:var(--white);padding:40px 34px;transition:background .22s}
+    .acard:hover{background:var(--gray-bg)}
+    .a-num{
+      font-size:10.5px;font-weight:700;letter-spacing:.18em;
+      color:var(--yellow-dk);margin-bottom:18px
+    }
+    .a-title{
+      font-size:18px;font-weight:800;color:var(--text-dk);
+      letter-spacing:-.03em;line-height:1.25;margin-bottom:12px
+    }
+    .a-body{font-size:13px;color:var(--text-md);line-height:1.7;margin-bottom:28px}
+    .a-tag{
+      font-size:10.5px;font-weight:700;letter-spacing:.1em;
+      text-transform:uppercase;color:var(--text-lt)
+    }
+
+    /* ══════════════════════════════════════════════════
+       PÓS-VENDA
+       Neuro:
+       • Progressão com 4 etapas = antecipação de recompensa
+       • Comprometimento: processo visível reduz ansiedade pós-compra
+       • Efeito Endowment: quando o cliente "vê" o processo, sente que já pertence
+    ════════════════════════════════════════════════════ */
+    #posvenda{padding:120px 0;background:var(--gray-bg)}
+    .pv-hdr .eyebrow{margin-bottom:16px}
+    .pv-hdr .h2{margin-bottom:12px}
+    .pv-hdr .lead{margin-bottom:0}
+    .steps{
+      display:grid;grid-template-columns:repeat(4,1fr);
+      margin-top:72px;position:relative
+    }
+    .steps::before{
+      content:'';position:absolute;top:23px;
+      left:calc(12.5%);right:calc(12.5%);height:1px;
+      background:linear-gradient(to right,var(--yellow),rgba(245,192,0,.15));z-index:0
+    }
+    .step{text-align:center;position:relative;z-index:1;padding:0 20px}
+    .step-dot{
+      width:48px;height:48px;background:var(--yellow);
+      border-radius:50%;display:flex;align-items:center;justify-content:center;
+      margin:0 auto 24px;font-size:15px;font-weight:900;color:var(--navy);
+      border:3px solid var(--gray-bg)
+    }
+    /* Contagem de dias — especificidade gera credibilidade */
+    .step-tempo{
+      font-size:10px;font-weight:700;letter-spacing:.15em;
+      text-transform:uppercase;color:var(--yellow-dk);margin-bottom:6px
+    }
+    .step-title{
+      font-size:15px;font-weight:800;color:var(--text-dk);
+      letter-spacing:-.02em;margin-bottom:8px
+    }
+    .step-desc{font-size:12.5px;color:var(--text-md);line-height:1.65}
+
+    /* ══════════════════════════════════════════════════
+       PARCEIROS B2B
+       Neuro:
+       • Identidade de grupo (ingroup): o comprador se reconhece
+       • Especificidade de persona: falar direto com cada perfil
+       • Contraste hover: sinaliza relevância de cada card
+    ════════════════════════════════════════════════════ */
+    #parceiros{padding:120px 0;background:var(--white)}
+    .parc-hdr .eyebrow{margin-bottom:16px}
+    .parc-hdr .h2{margin-bottom:12px}
+    .parc-hdr .lead{margin-bottom:0}
+    .parc-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);
+      gap:20px;margin-top:56px
+    }
+    .parc-card{
+      border:1px solid var(--border);border-radius:4px;
+      padding:36px 32px;transition:all .22s;position:relative;overflow:hidden
+    }
+    .parc-card:hover{border-color:var(--yellow);transform:translateY(-3px)}
+    .parc-card::after{
+      content:'';position:absolute;top:0;left:0;right:0;height:3px;
+      background:var(--yellow);transform:scaleX(0);transform-origin:left;
+      transition:transform .3s ease
+    }
+    .parc-card:hover::after{transform:scaleX(1)}
+    .parc-icon{
+      width:44px;height:44px;background:var(--gray-bg);
+      border-radius:4px;display:flex;align-items:center;
+      justify-content:center;font-size:20px;margin-bottom:22px
+    }
+    .parc-title{
+      font-size:18px;font-weight:800;color:var(--text-dk);
+      letter-spacing:-.025em;margin-bottom:8px
+    }
+    .parc-desc{font-size:13.5px;color:var(--text-md);line-height:1.7}
+
+    /* ══════════════════════════════════════════════════
+       CONTATO
+       Neuro:
+       • Reciprocidade antes: o site já educou (academia)
+       • Redução de fricção: WhatsApp = menor custo cognitivo
+       • Fim forte (Recency effect): última impressão é decisiva
+       • Azul marinho retoma confiança na seção de conversão
+    ════════════════════════════════════════════════════ */
+    #contato{padding:120px 0;background:var(--navy)}
+    .contato-grid{
+      display:grid;grid-template-columns:1fr 1fr;
+      gap:80px;align-items:start
+    }
+    .c-left .eyebrow{margin-bottom:20px}
+    .c-left .h2{margin-bottom:14px}
+    .c-left .lead{margin-bottom:36px}
+    .c-items{border-top:1px solid rgba(255,255,255,.07)}
+    .c-item{
+      display:flex;align-items:center;gap:16px;
+      padding:18px 0;border-bottom:1px solid rgba(255,255,255,.07);
+      transition:opacity .18s
+    }
+    .c-item:hover{opacity:.72}
+    .c-icon{
+      width:40px;height:40px;background:rgba(245,192,0,.1);
+      border-radius:4px;display:flex;align-items:center;
+      justify-content:center;font-size:16px;flex-shrink:0;color:var(--yellow)
+    }
+    .c-lbl{
+      font-size:10px;font-weight:700;letter-spacing:.15em;
+      text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:2px
+    }
+    .c-val{font-size:14px;font-weight:500;color:rgba(255,255,255,.7)}
+    /* CTA de baixo custo: não pede decisão, pede conversa */
+    .c-cta-box{
+      margin-top:28px;padding:24px 28px;
+      background:rgba(245,192,0,.08);border:1px solid rgba(245,192,0,.18);
+      border-radius:4px
+    }
+    .c-cta-box-label{
+      font-size:10.5px;font-weight:700;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--yellow);margin-bottom:10px
+    }
+    .c-cta-box-text{
+      font-size:13px;color:rgba(255,255,255,.48);
+      line-height:1.65;margin-bottom:18px
+    }
+    .c-map{
+      background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+      border-radius:4px;aspect-ratio:4/3;display:flex;align-items:center;
+      justify-content:center;overflow:hidden
+    }
+    .c-map-inner{text-align:center;padding:40px}
+    .c-map-icon{font-size:36px;margin-bottom:14px;opacity:.3}
+    .c-map-t{font-size:12.5px;color:rgba(255,255,255,.25);line-height:1.6;margin-bottom:14px}
+    .c-map-btn{
+      font-size:12px;font-weight:700;color:var(--yellow);
+      letter-spacing:.08em;border:1px solid rgba(245,192,0,.22);
+      padding:8px 16px;border-radius:3px;transition:all .18s;display:inline-block
+    }
+    .c-map-btn:hover{background:var(--yellow-dim)}
+
+    /* ═══ FOOTER ══════════════════════════════════════ */
+    footer{
+      background:var(--navy-mid);
+      border-top:1px solid rgba(255,255,255,.06);padding:48px 0
+    }
+    .f-inner{
+      display:flex;align-items:center;
+      justify-content:space-between;gap:24px;flex-wrap:wrap
+    }
+    .f-logo .logo-main{font-size:16px}
+    .f-tag{font-size:11px;color:rgba(255,255,255,.22);margin-top:4px;letter-spacing:.03em}
+    .f-links{display:flex;gap:28px;flex-wrap:wrap}
+    .f-links a{font-size:12px;color:rgba(255,255,255,.28);transition:color .18s}
+    .f-links a:hover{color:rgba(255,255,255,.6)}
+    .f-copy{font-size:11.5px;color:rgba(255,255,255,.18)}
+    .f-crm{font-size:10px;color:rgba(255,255,255,.1);margin-top:6px}
+    .f-crm a:hover{color:rgba(255,255,255,.4)}
+
+    /* ══════════════════════════════════════════════════
+       FICHAS TÉCNICAS
+       Neuro: Autoridade — documentação técnica eleva
+       percepção de competência e facilita aprovação B2B
+    ════════════════════════════════════════════════════ */
+    #fichas{padding:100px 0;background:var(--off-white)}
+    .fichas-hdr{margin-bottom:52px}
+    .fichas-hdr .eyebrow{margin-bottom:16px}
+    .fichas-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .ficha-card{
+      background:var(--white);border:1px solid var(--border);
+      border-radius:4px;padding:28px 24px;display:flex;
+      flex-direction:column;position:relative;overflow:hidden;transition:all .22s
+    }
+    .ficha-card:hover{border-color:rgba(245,192,0,.5);box-shadow:0 6px 28px rgba(245,192,0,.08)}
+    .ficha-card::before{
+      content:'';position:absolute;top:0;left:0;width:100%;height:3px;
+      background:var(--yellow);transform:scaleX(0);transform-origin:left;
+      transition:transform .28s ease
+    }
+    .ficha-card:hover::before{transform:scaleX(1)}
+    .ficha-linha{
+      font-size:9.5px;font-weight:700;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--yellow-dk);margin-bottom:10px
+    }
+    .ficha-nome{
+      font-size:15px;font-weight:800;color:var(--text-dk);
+      letter-spacing:-.025em;margin-bottom:6px
+    }
+    .ficha-desc{font-size:12px;color:var(--text-md);line-height:1.6;margin-bottom:18px;flex:1}
+    .ficha-specs{
+      display:flex;flex-direction:column;gap:7px;
+      padding:14px 0;border-top:1px solid var(--border);
+      border-bottom:1px solid var(--border);margin-bottom:18px
+    }
+    .ficha-spec{display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .ficha-spec-k{font-size:10.5px;color:var(--text-lt);font-weight:500}
+    .ficha-spec-v{font-size:10.5px;color:var(--text-dk);font-weight:700;text-align:right}
+    .ficha-dl{
+      display:flex;align-items:center;justify-content:center;gap:7px;
+      font-size:11px;font-weight:700;color:var(--navy);letter-spacing:.08em;
+      text-transform:uppercase;padding:10px 14px;background:var(--gray-bg);
+      border:1px solid var(--border);border-radius:3px;
+      text-decoration:none;transition:all .18s
+    }
+    .ficha-dl:hover{background:var(--navy);color:var(--yellow);border-color:var(--navy)}
+
+    /* ══════════════════════════════════════════════════
+       CALCULADORA DE RENDIMENTO
+       Neuro: Sensação de controle + reciprocidade
+       Ferramenta útil = comprometimento antes da compra
+    ════════════════════════════════════════════════════ */
+    #calculadora{padding:100px 0;background:var(--navy)}
+    .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+    .calc-left .eyebrow{margin-bottom:16px}
+    .calc-left .h2{margin-bottom:14px}
+    .calc-left .lead{margin-bottom:28px}
+    .calc-beneficios{display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(255,255,255,.07)}
+    .calc-ben{
+      display:flex;align-items:center;gap:12px;
+      padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);
+      font-size:13px;color:rgba(255,255,255,.5)
+    }
+    .calc-ben strong{color:rgba(255,255,255,.85);font-weight:600}
+    .calc-ben-icon{font-size:15px;flex-shrink:0;width:20px}
+    .calc-card{
+      background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+      border-radius:4px;padding:36px
+    }
+    .calc-card-title{
+      font-size:11px;font-weight:700;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--yellow);margin-bottom:24px
+    }
+    .calc-field{margin-bottom:20px}
+    .calc-label{
+      display:block;font-size:10.5px;font-weight:700;letter-spacing:.12em;
+      text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:8px
+    }
+    .calc-input,.calc-select{
+      width:100%;padding:13px 16px;background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.1);border-radius:3px;
+      color:var(--white);font-size:15px;font-weight:600;
+      font-family:inherit;outline:none;transition:border-color .18s
+    }
+    .calc-select{
+      appearance:none;-webkit-appearance:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.28)' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat:no-repeat;background-position:right 14px center;
+      background-size:16px;padding-right:42px;
+      background-color:rgba(255,255,255,.06)
+    }
+    .calc-input:focus,.calc-select:focus{border-color:rgba(245,192,0,.45)}
+    .calc-input::placeholder{color:rgba(255,255,255,.2);font-weight:400}
+    .calc-select option{background:#152845;color:var(--white)}
+    .calc-btn{
+      width:100%;padding:16px;background:var(--yellow);color:var(--navy);
+      font-size:13px;font-weight:900;border:none;border-radius:3px;
+      cursor:pointer;letter-spacing:.06em;text-transform:uppercase;
+      transition:background .18s;margin-top:6px
+    }
+    .calc-btn:hover{background:var(--yellow-2)}
+    .calc-result{
+      margin-top:22px;padding:22px;
+      background:rgba(245,192,0,.07);border:1px solid rgba(245,192,0,.18);
+      border-radius:3px;display:none
+    }
+    .calc-result.show{display:block}
+    .calc-result-title{
+      font-size:9.5px;font-weight:700;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--yellow);margin-bottom:14px
+    }
+    .calc-result-big{
+      font-size:38px;font-weight:900;color:var(--white);
+      letter-spacing:-.05em;line-height:1;margin-bottom:2px
+    }
+    .calc-result-unit{
+      font-size:11px;color:rgba(255,255,255,.35);font-weight:500;
+      margin-bottom:16px;letter-spacing:.05em
+    }
+    .calc-result-rows{display:flex;flex-direction:column;gap:0}
+    .calc-result-row{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05)
+    }
+    .calc-result-row:last-child{border-bottom:none}
+    .calc-rk{font-size:12px;color:rgba(255,255,255,.38)}
+    .calc-rv{font-size:12px;font-weight:700;color:rgba(255,255,255,.8)}
+    .calc-note{
+      margin-top:14px;font-size:10.5px;color:rgba(255,255,255,.25);
+      line-height:1.65;padding-top:12px;border-top:1px solid rgba(255,255,255,.06)
+    }
+    .calc-cta{
+      display:block;margin-top:14px;text-align:center;
+      padding:11px;background:var(--yellow);color:var(--navy);
+      font-size:11.5px;font-weight:800;border-radius:3px;
+      text-decoration:none;letter-spacing:.05em;text-transform:uppercase;
+      transition:background .18s
+    }
+    .calc-cta:hover{background:var(--yellow-2)}
+
+    /* ══════════════════════════════════════════════════
+       DEPOIMENTOS
+       Neuro: Prova social de ingroup — o comprador B2B
+       se reconhece nos parceiros que já compraram
+    ════════════════════════════════════════════════════ */
+    #depoimentos{padding:100px 0;background:var(--white)}
+    .dep-hdr{margin-bottom:52px}
+    .dep-hdr .eyebrow{margin-bottom:16px}
+    .dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .dep-card{
+      background:var(--white);border:1px solid var(--border);
+      border-radius:4px;padding:32px 28px;transition:border-color .22s
+    }
+    .dep-card:hover{border-color:rgba(245,192,0,.4)}
+    .dep-stars{display:flex;gap:2px;margin-bottom:18px}
+    .dep-star{width:14px;height:14px;color:var(--yellow)}
+    .dep-quote{
+      font-size:14px;color:var(--text-dk);line-height:1.72;
+      margin-bottom:22px;position:relative;padding-left:18px
+    }
+    .dep-quote::before{
+      content:'\201C';position:absolute;left:0;top:-4px;
+      color:var(--yellow);font-size:28px;font-style:normal;line-height:1
+    }
+    .dep-sep{height:1px;background:var(--border);margin-bottom:18px}
+    .dep-author{display:flex;align-items:center;gap:12px}
+    .dep-avatar{
+      width:40px;height:40px;border-radius:50%;
+      background:var(--navy);display:flex;align-items:center;
+      justify-content:center;flex-shrink:0;
+      font-size:14px;font-weight:800;color:var(--yellow)
+    }
+    .dep-name{font-size:13px;font-weight:700;color:var(--text-dk);letter-spacing:-.01em}
+    .dep-role{font-size:11px;color:var(--text-lt);margin-top:2px}
+    .dep-verified{
+      margin-top:6px;display:inline-flex;align-items:center;gap:4px;
+      font-size:10px;font-weight:600;color:var(--green);letter-spacing:.04em
+    }
+
+    /* ══════════════════════════════════════════════════
+       VISUMAX — VISUALIZADOR DE PALETAS
+       Neuro: Embodied cognition — ver o espaço antes
+       de decidir reduz ansiedade e aumenta conversão.
+       Efecto de dotação: quem visualiza já "pertence".
+    ════════════════════════════════════════════════════ */
+    #visualizador{padding:100px 0;background:var(--gray-bg)}
+    .vis-hdr{text-align:center;margin-bottom:56px}
+    .vis-hdr .eyebrow{justify-content:center;margin-bottom:16px}
+    .vis-hdr .eyebrow::before{display:none}
+    .vis-layout{display:grid;grid-template-columns:1fr 1.5fr;gap:36px;align-items:start}
+    .vis-left{}
+    .vis-upload-area{
+      border:2px dashed var(--border);border-radius:4px;
+      background:var(--white);aspect-ratio:4/3;
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;transition:all .25s;position:relative;overflow:hidden
+    }
+    .vis-upload-area:hover{border-color:rgba(245,192,0,.5);background:rgba(245,192,0,.02)}
+    .vis-upload-area.has-img{border-style:solid;border-color:rgba(245,192,0,.35)}
+    .vis-upload-prompt{text-align:center;padding:28px;pointer-events:none}
+    .vis-up-icon{font-size:30px;margin-bottom:10px;opacity:.35;display:block}
+    .vis-up-title{font-size:14px;font-weight:600;color:var(--text-md);margin-bottom:4px}
+    .vis-up-sub{font-size:11.5px;color:var(--text-lt)}
+    .vis-preview-img{
+      position:absolute;inset:0;width:100%;height:100%;
+      object-fit:cover;display:none
+    }
+    .vis-preview-img.show{display:block}
+    .vis-preview-label{
+      position:absolute;bottom:0;left:0;right:0;padding:8px 12px;
+      background:rgba(12,30,56,.72);backdrop-filter:blur(4px);
+      font-size:10.5px;color:rgba(255,255,255,.65);font-weight:500;
+      display:none;align-items:center;gap:6px
+    }
+    .vis-preview-label.show{display:flex}
+    .vis-controls{margin-top:16px;display:flex;flex-direction:column;gap:12px}
+    .vis-select{
+      width:100%;padding:13px 16px;background:var(--white);
+      border:1px solid var(--border);border-radius:3px;
+      color:var(--text-dk);font-size:14px;font-family:inherit;
+      outline:none;transition:border-color .18s;
+      appearance:none;-webkit-appearance:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23898989' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat:no-repeat;background-position:right 14px center;
+      background-size:16px;padding-right:40px;background-color:var(--white)
+    }
+    .vis-select:focus{border-color:rgba(245,192,0,.5)}
+    .vis-gerar{
+      width:100%;padding:16px;background:var(--navy);color:var(--white);
+      font-size:13px;font-weight:900;border:none;border-radius:3px;
+      cursor:pointer;letter-spacing:.06em;text-transform:uppercase;
+      transition:all .18s;margin-top:4px
+    }
+    .vis-gerar:hover{background:var(--navy-mid)}
+    .vis-gerar:active{background:var(--yellow);color:var(--navy)}
+    .vis-hint{
+      font-size:11px;color:var(--text-lt);text-align:center;
+      margin-top:8px;line-height:1.55
+    }
+    .vis-right{}
+    .vis-results{display:none}
+    .vis-results.show{display:block}
+    .vis-results-lbl{
+      font-size:10px;font-weight:700;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--yellow-dk);
+      margin-bottom:18px;display:flex;align-items:center;gap:10px
+    }
+    .vis-results-lbl::after{content:'';flex:1;height:1px;background:var(--border)}
+    .vis-paletas{display:flex;flex-direction:column;gap:14px}
+    .vis-paleta{
+      background:var(--white);border:1.5px solid var(--border);
+      border-radius:4px;padding:20px;cursor:pointer;
+      transition:all .22s;position:relative
+    }
+    .vis-paleta:hover,.vis-paleta.sel{border-color:var(--yellow);box-shadow:0 4px 22px rgba(245,192,0,.1)}
+    .vis-paleta-sel-badge{
+      display:none;position:absolute;top:14px;right:14px;
+      background:var(--yellow);color:var(--navy);
+      font-size:9.5px;font-weight:800;letter-spacing:.1em;
+      text-transform:uppercase;padding:3px 8px;border-radius:2px
+    }
+    .vis-paleta.sel .vis-paleta-sel-badge{display:block}
+    .vis-paleta-top{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px}
+    .vis-swatches{display:flex;gap:3px;flex-shrink:0}
+    .vis-sw{width:28px;height:50px;border-radius:3px;border:1px solid rgba(0,0,0,.06)}
+    .vis-paleta-info{flex:1;min-width:0}
+    .vis-paleta-tag{
+      font-size:9.5px;font-weight:700;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--text-lt);margin-bottom:5px
+    }
+    .vis-paleta-name{
+      font-size:14px;font-weight:800;color:var(--text-dk);
+      letter-spacing:-.02em;margin-bottom:4px
+    }
+    .vis-paleta-desc{font-size:11.5px;color:var(--text-md);line-height:1.6}
+    .vis-prods{
+      padding-top:12px;border-top:1px solid var(--border);
+      display:flex;flex-direction:column;gap:6px
+    }
+    .vis-prod{display:flex;align-items:center;gap:8px}
+    .vis-prod-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;border:1px solid rgba(0,0,0,.08)}
+    .vis-prod-name{font-size:11.5px;color:var(--text-md)}
+    .vis-share-btn{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      margin-top:16px;padding:14px 18px;background:var(--navy);border-radius:3px;
+      text-decoration:none;transition:background .18s
+    }
+    .vis-share-btn:hover{background:var(--navy-mid)}
+    .vis-share-body{}
+    .vis-share-title{font-size:12.5px;font-weight:700;color:var(--white)}
+    .vis-share-sub{font-size:10.5px;color:rgba(255,255,255,.38);margin-top:1px}
+    .vis-share-icon{font-size:18px;flex-shrink:0}
+    .vis-empty{
+      background:var(--white);border:1.5px dashed var(--border);
+      border-radius:4px;padding:48px 32px;text-align:center
+    }
+    .vis-empty-icon{font-size:32px;opacity:.2;margin-bottom:14px;display:block}
+    .vis-empty-t{font-size:13.5px;font-weight:600;color:var(--text-lt);line-height:1.5}
+
+    /* ─── RESPONSIVO ──────────────────────────────────── */
+    @media(max-width:1024px){
+      .sobre-grid{grid-template-columns:1fr;gap:56px}
+      .sobre-right{display:none}
+      .pgrid{grid-template-columns:repeat(2,1fr)}
+      .e-opts{grid-template-columns:repeat(2,1fr)}
+      .perda-cards{grid-template-columns:1fr}
+      .fichas-grid{grid-template-columns:repeat(2,1fr)}
+      .calc-grid{grid-template-columns:1fr;gap:48px}
+      .dep-grid{grid-template-columns:1fr}
+      .vis-layout{grid-template-columns:1fr;gap:28px}
+    }
+    @media(max-width:768px){
+      :root{--nav-h:60px}
+      .container{padding:0 24px}
+      .nav-menu{display:none}
+      .hamburger{display:flex}
+      #hero,#sobre,#linhas,#fichas,#escolha,#perda,#calculadora,#academia,#posvenda,#parceiros,#depoimentos,#contato{padding-top:80px;padding-bottom:80px}
+      #hero{padding-top:var(--nav-h)}
+      .hero-content{padding:60px 0}
+      .hero-h1{font-size:34px}
+      .hero-body{font-size:15px}
+      .hero-actions{flex-direction:column;align-items:flex-start}
+      .hero-trust{flex-wrap:wrap;gap:16px}
+      .prova-inner{grid-template-columns:1fr 1fr}
+      .pgrid{grid-template-columns:1fr}
+      .e-panel{padding:24px}
+      .e-items{grid-template-columns:1fr}
+      .agrid{grid-template-columns:1fr}
+      .fichas-grid{grid-template-columns:1fr}
+      .dep-grid{grid-template-columns:1fr}
+      .steps{grid-template-columns:1fr 1fr;gap:40px}
+      .steps::before{display:none}
+      .parc-grid{grid-template-columns:1fr}
+      .contato-grid{grid-template-columns:1fr;gap:48px}
+      .f-inner{flex-direction:column;align-items:flex-start;gap:20px}
+      .sobre-grid{gap:40px}
+      .pilar{margin:0 -24px;padding:18px 24px}
+    }
+    @media(max-width:480px){
+      .steps{grid-template-columns:1fr}
+      .prova-inner{grid-template-columns:1fr}
+      .e-opts{grid-template-columns:1fr 1fr}
+      .hero-trust{display:none}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     NAV — Azul marinho: confiança + autoridade
+════════════════════════════════════════════ -->
+<nav>
+  <div class="container">
+    <div class="nav-in">
+      <a href="#" class="nav-logo">
+        <div class="logo-main">Max<span>pint</span> Tintas</div>
+        <div class="logo-sub">Premium · Soluções profissionais</div>
+      </a>
+      <div class="nav-menu">
+        <a href="#sobre">A marca</a>
+        <a href="#linhas">Linhas</a>
+        <a href="#academia">Academia</a>
+        <a href="#parceiros">Parceiros</a>
+        <a href="#contato" class="nav-cta">Falar com a Maxpint</a>
+      </div>
+      <div class="hamburger" id="ham" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="mob-menu" id="mob-menu">
+  <a href="#sobre" onclick="closeMenu()">A marca</a>
+  <a href="#linhas" onclick="closeMenu()">Linhas de produto</a>
+  <a href="#escolha" onclick="closeMenu()">Escolha orientada</a>
+  <a href="#academia" onclick="closeMenu()">Academia Maxpint</a>
+  <a href="#parceiros" onclick="closeMenu()">Parceiros B2B</a>
+  <a href="#contato" onclick="closeMenu()">Falar com a Maxpint →</a>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     HERO
+     Neuro: Primacy effect + Aversão à Perda
+     "Decisões erradas têm custo" (implícito)
+════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-stars"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-geo"></div>
+
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-t">Maxpint Tintas Premium — B2B</span>
+      </div>
+
+      <!-- Aversão à perda: a palavra "erradas" ativa cautela -->
+      <h1 class="hero-h1">
+        Tintas profissionais<br>para <em>decisões</em><br>mais seguras.
+      </h1>
+
+      <p class="hero-body">
+        A Maxpint desenvolve soluções para parceiros comerciais, obras e revendas que buscam qualidade comprovada, clareza técnica e acompanhamento responsável em cada etapa.
+      </p>
+
+      <!-- Prova social com especificidade — mais convincente que adjetivos -->
+      <div class="hero-trust">
+        <div class="hero-trust-item">
+          <div class="hero-trust-num">+10</div>
+          <div class="hero-trust-label">Anos de atuação</div>
+        </div>
+        <div class="hero-trust-sep"></div>
+        <div class="hero-trust-item">
+          <div class="hero-trust-num">B2B</div>
+          <div class="hero-trust-label">Foco exclusivo</div>
+        </div>
+        <div class="hero-trust-sep"></div>
+        <div class="hero-trust-item">
+          <div class="hero-trust-num">100%</div>
+          <div class="hero-trust-label">Orientação técnica</div>
+        </div>
+        <div class="hero-trust-sep"></div>
+        <div class="hero-trust-item">
+          <div class="hero-trust-num">4 etapas</div>
+          <div class="hero-trust-label">Pós-venda estruturado</div>
+        </div>
+      </div>
+
+      <!-- 3 botões hierarquizados — Lei de Hick: decisão clara -->
+      <div class="hero-actions">
+        <a href="#sobre" class="btn-cta">Conhecer a marca</a>
+        <a href="#linhas" class="btn-ghost">Ver linhas de produto</a>
+        <a href="#contato" class="btn-soft">Falar com a Maxpint →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Swoosh do logo replicado como elemento de continuidade visual -->
+  <div class="hero-swoosh">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 Q360,0 720,40 Q1080,80 1440,40 L1440,80 L0,80 Z" fill="#F5C000" opacity="0.06"/>
+      <path d="M0,55 Q360,15 720,55 Q1080,90 1440,55" stroke="#F5C000" stroke-width="1.5" fill="none" opacity="0.2"/>
+    </svg>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     BARRA DE PROVA SOCIAL
+     Neuro: Números concretos > afirmações vagas
+     Especificidade = credibilidade percebida
+════════════════════════════════════════════ -->
+<section id="prova-social">
+  <div class="container" style="padding:0">
+    <div class="prova-inner">
+      <div class="prova-item fu">
+        <div class="prova-num">3 estados</div>
+        <div class="prova-label">Cobertura de atuação</div>
+      </div>
+      <div class="prova-item fu d1">
+        <div class="prova-num">Linha Premium</div>
+        <div class="prova-label">Portfólio exclusivo</div>
+      </div>
+      <a href="#fichas" class="prova-item fu d2" style="text-decoration:none">
+        <div class="prova-num">Fichas técnicas</div>
+        <div class="prova-label">Documentação completa</div>
+      </a>
+      <div class="prova-item fu d3">
+        <div class="prova-num">Pós-venda ativo</div>
+        <div class="prova-label">Acompanhamento real</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     SOBRE
+     Neuro: Identidade de ingroup +
+     3 pilares (chunking) + Autoridade
+════════════════════════════════════════════ -->
+<section id="sobre">
+  <div class="container">
+    <div class="sobre-grid">
+      <div class="sobre-left">
+        <div class="eyebrow fu">A marca</div>
+        <h2 class="h2 fu d1">Uma marca pensada para quem precisa decidir com segurança.</h2>
+        <p class="lead fu d2">
+          A Maxpint atua com soluções em tintas para parceiros comerciais e projetos que exigem qualidade, constância e orientação clara. Nosso foco é apoiar boas decisões antes, durante e depois da aplicação.
+        </p>
+        <!-- Chunking: exatamente 3 pilares = memória facilitada -->
+        <div class="pilares fu d3">
+          <div class="pilar">
+            <div class="pilar-icon">📐</div>
+            <div class="pilar-body">
+              <div class="pilar-title">Clareza técnica</div>
+              <div class="pilar-desc">Orientação objetiva em cada indicação. Sem jargão, sem ambiguidade, sem margem para o erro de especificação.</div>
+            </div>
+          </div>
+          <div class="pilar">
+            <div class="pilar-icon">🔁</div>
+            <div class="pilar-body">
+              <div class="pilar-title">Constância de qualidade</div>
+              <div class="pilar-desc">Lotes padronizados e fornecimento contínuo para obras, revendas e empreendimentos que não aceitam variação.</div>
+            </div>
+          </div>
+          <div class="pilar">
+            <div class="pilar-icon">🤝</div>
+            <div class="pilar-body">
+              <div class="pilar-title">Relação comercial real</div>
+              <div class="pilar-desc">Acompanhamento estruturado após a compra. A relação não termina com o pedido — ela começa ali.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sobre-right fu d2">
+        <div class="sobre-visual">
+          <div class="sobre-v-pattern"></div>
+          <div class="sobre-v-glow"></div>
+          <div class="sobre-v-content">
+            <div class="sobre-v-label">Posicionamento</div>
+            <div class="sobre-v-quote">Qualidade, orientação e <span>confiança</span> em cada aplicação.</div>
+          </div>
+        </div>
+        <div class="sobre-badge">
+          <div class="sobre-badge-main">B2B<br>PREMIUM</div>
+          <div class="sobre-badge-sub">Foco total</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     LINHAS DE PRODUTO
+     Neuro: Paradoxo da escolha evitado (4 max)
+     Hover = feedback motor → maior engajamento
+════════════════════════════════════════════ -->
+<section id="linhas">
+  <div class="container">
+    <div class="linhas-hdr">
+      <div class="eyebrow fu">Linhas de produto</div>
+      <h2 class="h2 fu d1">Cada aplicação tem<br>sua solução certa.</h2>
+    </div>
+    <div class="pgrid fu d1">
+      <div class="pcard">
+        <div class="pcard-icon-bg">🏠</div>
+        <div class="ptitle">Ambientes internos</div>
+        <div class="pdesc">Tintas para espaços residenciais e comerciais internos. Acabamento uniforme, alta lavabilidade e durabilidade comprovada em diferentes condições.</div>
+        <a href="#contato" class="plink">Ver indicação</a>
+      </div>
+      <div class="pcard">
+        <div class="pcard-icon-bg">🏢</div>
+        <div class="ptitle">Áreas externas e fachadas</div>
+        <div class="pdesc">Formulações resistentes à exposição solar, chuva e variação térmica. Proteção real para fachadas e superfícies que enfrentam intempéries.</div>
+        <a href="#contato" class="plink">Ver indicação</a>
+      </div>
+      <div class="pcard">
+        <div class="pcard-icon-bg">🏗️</div>
+        <div class="ptitle">Obras e empreendimentos</div>
+        <div class="pdesc">Soluções para canteiros e empreendimentos com demanda contínua, padronização de lote e suporte técnico durante toda a aplicação.</div>
+        <a href="#contato" class="plink">Ver indicação</a>
+      </div>
+      <div class="pcard">
+        <div class="pcard-icon-bg">🏪</div>
+        <div class="ptitle">Revenda e parceiros</div>
+        <div class="pdesc">Portfólio estruturado para lojistas, com apoio para apresentação técnica, treinamento e canal direto de suporte comercial.</div>
+        <a href="#contato" class="plink">Ver indicação</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FICHAS TÉCNICAS
+     Neuro: Autoridade — documentação técnica eleva
+     percepção de competência no processo de aprovação B2B
+════════════════════════════════════════════ -->
+<section id="fichas">
+  <div class="container">
+    <div class="fichas-hdr">
+      <div class="eyebrow fu">Fichas técnicas</div>
+      <h2 class="h2 fu d1">Documentação completa<br>por linha de produto.</h2>
+      <p class="lead fu d2">Especificações técnicas para análise, inclusão em projetos e aprovação de fornecedor junto a construtoras e incorporadoras.</p>
+    </div>
+    <div class="fichas-grid">
+
+      <div class="ficha-card fu">
+        <div class="ficha-linha">Linha interna</div>
+        <div class="ficha-nome">Maxpint Interior Premium</div>
+        <div class="ficha-desc">Tinta látex acrílica de alto rendimento para alvenaria, drywall e massa corrida. Alta lavabilidade e cobertura uniforme.</div>
+        <div class="ficha-specs">
+          <div class="ficha-spec"><span class="ficha-spec-k">Rendimento</span><span class="ficha-spec-v">10–12 m²/L</span></div>
+          <div class="ficha-spec"><span class="ficha-spec-k">Demãos</span><span class="ficha-spec-v">2 demãos</span></div>
+          <div class="ficha-spec"><span class="ficha-spec-k">Secagem</span><span class="ficha-spec-v">2 h (toque) · 4 h (recoat)</span></div>
+          <div class="ficha-spec"><span class="ficha-spec-k">Base</span><span class="ficha-spec-v">Aquosa</span></div>
+          <div class="ficha-spec"><span class="ficha-spec-k">Diluição</span><span class="ficha-spec-v">Até 10% em água</span></div>
+        </div>
+        <a href="https://wa.me/5500000000000?text=Olá,%20gostaria%20de%20receber%20a%20ficha%20técnica%20do%20Maxpint%20Interior%20Premium." class="ficha-dl" target="_blank" rel="noopener">
+          ↓ Solicitar ficha técnica
+        </a>
+      </div>
+
+      <div class="ficha-card fu d1">
+        <div class="ficha-linha">Linha externa</div>
+        <div class="ficha-nome">Maxpint Exterior Protect</div>
+        <div class="ficha-desc">Tinta acrílica de alta resistência para fachadas, reboco e concreto aparente. Formulação com proteção UV e impermeabilização.</div>
+        <div class="ficha-specs">
+          <div class="ficha-spec"><span class="ficha-spec-k">Rendimento</span><span class="ficha-spec-v">8–10 m²/L</span></div>
+          <div class="ficha-spec"><span class="ficha-spec-k">Demãos</span><span class="ficha-spec-v">2–3 demãos</span></div>
+          <div class="ficha-spec"><span class="ficha-spec-k">Secagem</span><span class="ficha-spec-v">4 h (toque) · 8 h (recoat)</span></div>
+          <div class="ficha-spec"><span class="ficha-spec-k">Base</span><span class="ficha-spec-v">Aquosa</span></div>
+          <div class="ficha-spec"><span class="ficha-spec-k">Diluição</span><span class="ficha-spec-v">Até 5% em água</span></div>
+        </div>
+        <a href="https://wa.me/5500000000000?text=Olá,%20gostaria%20de%20receber%20a%20ficha%20técnica%20do%20Maxpint%20Exterior%20Protect." class="ficha-dl" target="_blank" rel="noopener">
+          ↓ Solicitar ficha técnica
+        </a>
+      </div>
+
+      <div class="ficha-card fu d2">
+        <div class="ficha-linha">Linha obras</div>
+        <div class="ficha-nome">Maxpint Obra Total</div>
+        <div class="ficha-desc">Solução para obras de médio e grande porte. Fornecimento padronizado por lote com rastreabilidade de cor e consistência de qualidade.</div>
+        <div class="ficha-specs">
+          <div class="ficha-spec"><span class="ficha-spec-k">Rendimento</span><span class="ficha-spec-v">9–11 m²/L</span></div>
+          <div class="ficha-spec"><span class="ficha-spec-k">Demãos</span><span class="ficha-spec-v">2 demãos</span></div>
+          <div class="ficha-spec"><span class="ficha-spec-k">Secagem</span><span class="ficha-spec-v">2 h (toque) · 4 h (recoat)</span></div>
+          <div class="ficha-spec"><span class="ficha-spec-k">Base</span><span class="ficha-spec-v">Aquosa</span></div>
+          <div class="ficha-spec"><span class="ficha-spec-k">Lote mínimo</span><span class="ficha-spec-v">A consultar</span></div>
+        </div>
+        <a href="https://wa.me/5500000000000?text=Olá,%20gostaria%20de%20receber%20a%20ficha%20técnica%20do%20Maxpint%20Obra%20Total." class="ficha-dl" target="_blank" rel="noopener">
+          ↓ Solicitar ficha técnica
+        </a>
+      </div>
+
+      <div class="ficha-card fu d3">
+        <div class="ficha-linha">Linha revenda</div>
+        <div class="ficha-nome">Maxpint Base Profissional</div>
+        <div class="ficha-desc">Portfólio estruturado para lojistas e revendedores. Produtos com apresentação técnica clara, fáceis de indicar e de alto giro.</div>
+        <div class="ficha-specs">
+          <div class="ficha-spec"><span class="ficha-spec-k">Rendimento</span><span class="ficha-spec-v">10–13 m²/L</span></div>
+          <div class="ficha-spec"><span class="ficha-spec-k">Demãos</span><span class="ficha-spec-v">2 demãos</span></div>
+          <div class="ficha-spec"><span class="ficha-spec-k">Embalagens</span><span class="ficha-spec-v">3,6 L · 18 L</span></div>
+          <div class="ficha-spec"><span class="ficha-spec-k">Base</span><span class="ficha-spec-v">Aquosa</span></div>
+          <div class="ficha-spec"><span class="ficha-spec-k">Suporte</span><span class="ficha-spec-v">Material técnico incluso</span></div>
+        </div>
+        <a href="https://wa.me/5500000000000?text=Olá,%20gostaria%20de%20receber%20a%20ficha%20técnica%20do%20Maxpint%20Base%20Profissional." class="ficha-dl" target="_blank" rel="noopener">
+          ↓ Solicitar ficha técnica
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     SEÇÃO: O CUSTO DA ESCOLHA ERRADA
+     Neuro: Aversão à perda (Kahneman & Tversky)
+     Framing de perda > framing de ganho
+     Ativa amígdala → maior memorização
+════════════════════════════════════════════ -->
+<section id="perda">
+  <div class="container">
+    <div class="perda-label fu">Por que a escolha certa importa</div>
+    <h2 class="perda-titulo fu d1">
+      Tinta errada não é só um<br>problema de <span>cor</span>.
+    </h2>
+    <p class="perda-sub fu d2">
+      Retrabalho, consumo fora do previsto, incompatibilidade de superfície e insatisfação do cliente final — esses são os custos reais de uma especificação feita sem orientação adequada.
+    </p>
+    <div class="perda-cards fu d2">
+      <div class="perda-card">
+        <div class="perda-icon">⚠️</div>
+        <div class="perda-card-h">Retrabalho na aplicação</div>
+        <div class="perda-card-p">Produto inadequado para a superfície gera descascamento, eflorescência ou cobertura insatisfatória — e a obra para.</div>
+        <div class="perda-resolucao">Maxpint: especificação antes da compra</div>
+      </div>
+      <div class="perda-card">
+        <div class="perda-icon">📉</div>
+        <div class="perda-card-h">Consumo além do previsto</div>
+        <div class="perda-card-p">Superfícies porosas sem preparo correto podem dobrar o consumo. Planejamento inadequado gera custos extras e atrasos.</div>
+        <div class="perda-resolucao">Maxpint: orientação técnica de rendimento</div>
+      </div>
+      <div class="perda-card">
+        <div class="perda-icon">🔄</div>
+        <div class="perda-card-h">Variação entre lotes</div>
+        <div class="perda-card-p">Comprar de fornecedores sem padronização resulta em diferença de tonalidade entre etapas da obra — impossível corrigir depois.</div>
+        <div class="perda-resolucao">Maxpint: lotes padronizados e rastreáveis</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     CALCULADORA DE RENDIMENTO
+     Neuro: Sensação de controle + reciprocidade
+     Comprometimento cognitivo antes da compra
+════════════════════════════════════════════ -->
+<section id="calculadora">
+  <div class="container">
+    <div class="calc-grid">
+      <div class="calc-left">
+        <div class="eyebrow fu">Calculadora de rendimento</div>
+        <h2 class="h2 light fu d1">Calcule quanto<br>produto você precisa.</h2>
+        <p class="lead light fu d2">Evite pedidos emergenciais e compras em excesso. Estime o consumo real considerando tipo de superfície e número de demãos.</p>
+        <div class="calc-beneficios fu d3">
+          <div class="calc-ben"><span class="calc-ben-icon">📐</span><span><strong>Área total</strong> considerando todas as paredes e teto</span></div>
+          <div class="calc-ben"><span class="calc-ben-icon">🔁</span><span><strong>Margem de 10%</strong> para perdas e retoques incluída</span></div>
+          <div class="calc-ben"><span class="calc-ben-icon">📦</span><span><strong>Embalagens sugeridas</strong> em latas 3,6 L e galões 18 L</span></div>
+        </div>
+      </div>
+      <div class="calc-card fu d1">
+        <div class="calc-card-title">Calculadora Maxpint</div>
+        <div class="calc-field">
+          <label class="calc-label" for="c-area">Área total a pintar (m²)</label>
+          <input class="calc-input" id="c-area" type="number" min="1" placeholder="Ex: 80" inputmode="decimal">
+        </div>
+        <div class="calc-field">
+          <label class="calc-label" for="c-sup">Tipo de superfície</label>
+          <select class="calc-select" id="c-sup">
+            <option value="">Selecione o tipo</option>
+            <option value="11">Interior liso (alvenaria / massa)</option>
+            <option value="8">Interior poroso (drywall / gesso)</option>
+            <option value="9">Exterior liso (reboco / concreto)</option>
+            <option value="5">Exterior textura / rugoso</option>
+          </select>
+        </div>
+        <div class="calc-field">
+          <label class="calc-label" for="c-dem">Número de demãos</label>
+          <select class="calc-select" id="c-dem">
+            <option value="1">1 demão</option>
+            <option value="2" selected>2 demãos (recomendado)</option>
+            <option value="3">3 demãos (superfícies críticas)</option>
+          </select>
+        </div>
+        <button class="calc-btn" onclick="calcular()">Calcular agora</button>
+        <div class="calc-result" id="calc-result">
+          <div class="calc-result-title">Estimativa de consumo</div>
+          <div class="calc-result-big" id="r-litros">—</div>
+          <div class="calc-result-unit">litros necessários (com margem de 10%)</div>
+          <div class="calc-result-rows">
+            <div class="calc-result-row">
+              <span class="calc-rk">Galões 18 L</span>
+              <span class="calc-rv" id="r-galoes">—</span>
+            </div>
+            <div class="calc-result-row">
+              <span class="calc-rk">Latas 3,6 L</span>
+              <span class="calc-rv" id="r-latas">—</span>
+            </div>
+            <div class="calc-result-row">
+              <span class="calc-rk">Rendimento base usado</span>
+              <span class="calc-rv" id="r-rend">—</span>
+            </div>
+          </div>
+          <div class="calc-note">Estimativa baseada no rendimento médio para a superfície selecionada. Porosidade excessiva pode exigir primer ou consumo adicional.</div>
+          <a href="https://wa.me/5500000000000?text=Olá,%20calculei%20minha%20área%20pela%20calculadora%20Maxpint%20e%20gostaria%20de%20confirmar%20meu%20pedido." class="calc-cta" target="_blank" rel="noopener">Confirmar pedido pelo WhatsApp →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     ESCOLHA ORIENTADA (Interativa)
+     Neuro: Sensação de controle reduz ansiedade
+     Guia o comprador sem decidir por ele
+════════════════════════════════════════════ -->
+<section id="escolha">
+  <div class="container">
+    <div class="escolha-hdr fu">
+      <div class="eyebrow">Escolha orientada</div>
+      <h2 class="h2 light" style="margin-top:14px">A tinta certa começa pela<br>aplicação correta.</h2>
+    </div>
+    <p class="escolha-q fu d2">Onde o produto será aplicado?</p>
+    <div class="e-opts fu d2">
+      <button class="e-btn" onclick="selE(this,'ei')">Interior</button>
+      <button class="e-btn" onclick="selE(this,'ee')">Exterior</button>
+      <button class="e-btn" onclick="selE(this,'eo')">Obra</button>
+      <button class="e-btn" onclick="selE(this,'er')">Revenda</button>
+    </div>
+
+    <div class="e-panel fu d3" id="ei">
+      <div class="e-panel-title">✔ Orientações para ambientes internos</div>
+      <div class="e-items">
+        <div><div class="e-lbl">Superfície</div><div class="e-txt">Alvenaria, drywall ou massa corrida. Identifique umidade ou eflorescência antes de iniciar.</div></div>
+        <div><div class="e-lbl">Exposição</div><div class="e-txt">Ambientes sem sol direto. Avaliar ventilação, umidade e tráfego antes de definir o produto.</div></div>
+        <div><div class="e-lbl">Rendimento esperado</div><div class="e-txt">10 a 12 m² por litro (uma demão). Superfícies porosas consomem até 40% mais.</div></div>
+        <div><div class="e-lbl">Acabamento</div><div class="e-txt">Fosco para áreas de baixo tráfego. Acetinado ou semibrilho para cozinhas, banheiros e áreas de serviço.</div></div>
+      </div>
+      <div class="e-alerta">
+        <div class="e-alerta-icon">⚠️</div>
+        <div class="e-alerta-text">Um diagnóstico prévio da parede evita retrabalho. Verifique umidade, selagem e preparo antes de escolher o produto.</div>
+      </div>
+    </div>
+
+    <div class="e-panel" id="ee">
+      <div class="e-panel-title">✔ Orientações para fachadas e áreas externas</div>
+      <div class="e-items">
+        <div><div class="e-lbl">Superfície</div><div class="e-txt">Reboco, concreto aparente ou textura. Superfície limpa, seca e sem patologias visíveis.</div></div>
+        <div><div class="e-lbl">Exposição</div><div class="e-txt">Resistência a raios UV, chuva e variação térmica é obrigatória. Tintas internas nunca devem ser usadas em fachadas.</div></div>
+        <div><div class="e-lbl">Rendimento esperado</div><div class="e-txt">8 a 10 m² por litro em superfícies lisas. Em texturas, o consumo pode dobrar ou triplicar.</div></div>
+        <div><div class="e-lbl">Preparo da parede</div><div class="e-txt">Limpeza, selagem de fissuras e primer são etapas obrigatórias para durabilidade real — não opcionais.</div></div>
+      </div>
+      <div class="e-alerta">
+        <div class="e-alerta-icon">⚠️</div>
+        <div class="e-alerta-text">A vida útil de uma pintura externa depende mais do preparo da superfície do que do produto. Economizar na etapa de preparo é o principal motivo de retrabalho.</div>
+      </div>
+    </div>
+
+    <div class="e-panel" id="eo">
+      <div class="e-panel-title">✔ Orientações para obras e empreendimentos</div>
+      <div class="e-items">
+        <div><div class="e-lbl">Volume e padronização</div><div class="e-txt">Obras exigem lotes uniformes. Variação de cor ou qualidade entre fornecimentos paralisa etapas e gera custo de correção.</div></div>
+        <div><div class="e-lbl">Especificação técnica</div><div class="e-txt">Solicite fichas técnicas para compatibilidade com o projeto arquitetônico antes de fechar o fornecimento.</div></div>
+        <div><div class="e-lbl">Planejamento de consumo</div><div class="e-txt">Calcule por m² total com margem de 10% para perdas e retoques. Pedidos emergenciais custam mais e atrasam.</div></div>
+        <div><div class="e-lbl">Suporte durante a obra</div><div class="e-txt">A Maxpint oferece orientação técnica ativa durante a aplicação em empreendimentos com fornecimento contínuo.</div></div>
+      </div>
+      <div class="e-alerta">
+        <div class="e-alerta-icon">⚠️</div>
+        <div class="e-alerta-text">Especificação correta e fornecimento organizado são determinantes para a qualidade final da obra. Um erro de produto na fase de aplicação custa muito mais do que a diferença entre fornecedores.</div>
+      </div>
+    </div>
+
+    <div class="e-panel" id="er">
+      <div class="e-panel-title">✔ Orientações para lojistas e revendas</div>
+      <div class="e-items">
+        <div><div class="e-lbl">Portfólio ideal</div><div class="e-txt">Menos é mais. Um portfólio enxuto e bem explicado converte mais do que um catálogo extenso sem critério.</div></div>
+        <div><div class="e-lbl">Indicação correta</div><div class="e-txt">Treine sua equipe para perguntar antes de indicar: onde vai aplicar, qual superfície, qual acabamento desejado.</div></div>
+        <div><div class="e-lbl">Gestão de estoque</div><div class="e-txt">Produtos de maior saída com reposição programada. Ruptura em tintas gera insatisfação imediata e perda de venda definitiva.</div></div>
+        <div><div class="e-lbl">Suporte Maxpint</div><div class="e-txt">Material técnico, apoio para apresentação e canal direto para dúvidas técnicas durante a revenda.</div></div>
+      </div>
+      <div class="e-alerta">
+        <div class="e-alerta-icon">💡</div>
+        <div class="e-alerta-text">Um lojista bem informado vende mais, fideliza mais e tem menos troca e devolução. A Maxpint apoia esse processo com orientação técnica contínua.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     ACADEMIA MAXPINT
+     Neuro: Reciprocidade — dar antes de pedir
+     Autoridade percebida pela qualidade do conteúdo
+════════════════════════════════════════════ -->
+<section id="academia">
+  <div class="container">
+    <div class="academia-hdr">
+      <div class="eyebrow fu">Academia Maxpint</div>
+      <h2 class="h2 fu d1">Conhecimento para<br>escolher melhor.</h2>
+      <p class="lead fu d2">Conteúdos objetivos para apoiar lojistas, construtoras e profissionais na escolha, indicação e aplicação correta das tintas.</p>
+    </div>
+    <div class="agrid">
+      <div class="acard fu">
+        <div class="a-num">01</div>
+        <div class="a-title">Como evitar retrabalho na pintura</div>
+        <div class="a-body">Os principais motivos de repintura prematura envolvem preparo inadequado da superfície, escolha errada do produto e aplicação fora das condições recomendadas. Entenda como identificar cada fator antes de começar.</div>
+        <div class="a-tag">Aplicação · Qualidade · Retrabalho</div>
+      </div>
+      <div class="acard fu d1">
+        <div class="a-num">02</div>
+        <div class="a-title">O que considerar antes de escolher uma tinta</div>
+        <div class="a-body">Tipo de superfície, nível de exposição, umidade, tráfego do ambiente e acabamento desejado. Cada variável influencia diretamente a escolha correta. Um erro nessa etapa multiplica o custo da aplicação.</div>
+        <div class="a-tag">Especificação · Decisão · Custo</div>
+      </div>
+      <div class="acard fu d2">
+        <div class="a-num">03</div>
+        <div class="a-title">Rendimento, cobertura e preparo da superfície</div>
+        <div class="a-body">Rendimento teórico e real nunca são iguais. Porosidade, número de demãos e estado da parede determinam o consumo real. Planeje com precisão e evite pedidos emergenciais que comprometem o cronograma.</div>
+        <div class="a-tag">Planejamento · Técnico · Consumo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     VISUMAX — VISUALIZADOR DE PALETAS
+     Neuro: Embodied cognition + Efeito de Dotação
+     Ver o ambiente pintado antes de decidir reduz
+     resistência e acelera o comprometimento de compra
+════════════════════════════════════════════ -->
+<section id="visualizador">
+  <div class="container">
+    <div class="vis-hdr">
+      <div class="eyebrow fu">VisuMax · Ideias de arquiteto</div>
+      <h2 class="h2 fu d1">Veja o seu espaço com<br>olhar de arquiteto.</h2>
+      <p class="lead fu d2" style="margin:0 auto;text-align:center">Faça upload de uma foto do ambiente, selecione o tipo e o acabamento — e receba 3 propostas de paleta Maxpint com critério técnico e estético.</p>
+    </div>
+    <div class="vis-layout">
+
+      <!-- Coluna esquerda: upload + controles -->
+      <div class="vis-left">
+        <div class="vis-upload-area fu" id="vis-area" onclick="document.getElementById('vis-file').click()">
+          <input type="file" id="vis-file" accept="image/*" style="display:none" onchange="previewFoto(this)">
+          <div class="vis-upload-prompt" id="vis-prompt">
+            <span class="vis-up-icon">📷</span>
+            <div class="vis-up-title">Clique para enviar uma foto</div>
+            <div class="vis-up-sub">JPG, PNG ou WEBP · Até 10 MB</div>
+          </div>
+          <img class="vis-preview-img" id="vis-img" src="" alt="Prévia do ambiente">
+          <div class="vis-preview-label" id="vis-label">📷 Foto carregada — pronta para análise</div>
+        </div>
+        <div class="vis-controls">
+          <select class="vis-select" id="vis-amb">
+            <option value="">Tipo de ambiente</option>
+            <option value="sala">Sala de estar / Living</option>
+            <option value="quarto">Quarto / Suíte</option>
+            <option value="escritorio">Escritório / Home office</option>
+            <option value="fachada">Fachada / Área externa</option>
+            <option value="corredor">Corredor / Hall / Circulação</option>
+            <option value="banheiro">Banheiro / Lavabo</option>
+          </select>
+          <select class="vis-select" id="vis-acab">
+            <option value="">Acabamento desejado</option>
+            <option value="fosco">Fosco elegante (paredes e teto)</option>
+            <option value="acetinado">Acetinado lavável (cozinha, banh.)</option>
+            <option value="semibrilho">Semibrilho (alto tráfego)</option>
+            <option value="externo">Resistente externo (fachada)</option>
+          </select>
+          <button class="vis-gerar fu d2" onclick="gerarPaleta()">Gerar proposta de arquiteto</button>
+          <div class="vis-hint">A foto não é enviada a nenhum servidor. Todo o processamento acontece no seu dispositivo.</div>
+        </div>
+      </div>
+
+      <!-- Coluna direita: resultado -->
+      <div class="vis-right">
+        <div id="vis-empty" class="vis-empty fu d1">
+          <span class="vis-empty-icon">🎨</span>
+          <div class="vis-empty-t">Suas propostas de paleta<br>aparecerão aqui após selecionar<br>o ambiente e clicar em gerar.</div>
+        </div>
+        <div class="vis-results" id="vis-results">
+          <div class="vis-results-lbl">3 propostas para o seu ambiente</div>
+          <div class="vis-paletas" id="vis-paletas">
+            <!-- geradas por JS -->
+          </div>
+          <a href="#" id="vis-share" class="vis-share-btn" target="_blank" rel="noopener">
+            <div class="vis-share-body">
+              <div class="vis-share-title">Compartilhar com a Maxpint pelo WhatsApp</div>
+              <div class="vis-share-sub">Nosso time valida a proposta e indica o produto certo</div>
+            </div>
+            <span class="vis-share-icon">💬</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     PÓS-VENDA RESPONSÁVEL
+     Neuro: Progressão visual = dopamina de antecipação
+     Comprometimento visível reduz ansiedade pós-compra
+     Tempo específico = maior credibilidade
+════════════════════════════════════════════ -->
+<section id="posvenda">
+  <div class="container">
+    <div class="pv-hdr">
+      <div class="eyebrow fu">Pós-venda responsável</div>
+      <h2 class="h2 fu d1">Acompanhamento<br>depois da escolha.</h2>
+      <p class="lead fu d2">A Maxpint valoriza relações comerciais contínuas. O pós-venda é estruturado em etapas claras — você sabe o que esperar e quando.</p>
+    </div>
+    <div class="steps">
+      <div class="step fu">
+        <div class="step-dot">01</div>
+        <div class="step-tempo">Dia 0</div>
+        <div class="step-title">Recebimento</div>
+        <div class="step-desc">Confirmação do pedido, verificação de lote e conformidade com o especificado. Qualquer divergência é resolvida antes da aplicação.</div>
+      </div>
+      <div class="step fu d1">
+        <div class="step-dot">02</div>
+        <div class="step-tempo">Dias 1–3</div>
+        <div class="step-title">Aplicação ou revenda</div>
+        <div class="step-desc">Acompanhamento do início da aplicação ou abertura da revenda, com suporte técnico disponível para dúvidas em tempo real.</div>
+      </div>
+      <div class="step fu d2">
+        <div class="step-dot">03</div>
+        <div class="step-tempo">Dias 7–10</div>
+        <div class="step-title">Suporte ativo</div>
+        <div class="step-desc">Contato proativo para avaliar andamento, esclarecer dúvidas técnicas e registrar qualquer necessidade de ajuste.</div>
+      </div>
+      <div class="step fu d3">
+        <div class="step-dot">04</div>
+        <div class="step-tempo">Dia 30</div>
+        <div class="step-title">Aprendizado e continuidade</div>
+        <div class="step-desc">Medição de satisfação, identificação da próxima necessidade e fortalecimento da relação comercial para o próximo ciclo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     PARCEIROS B2B
+     Neuro: Identidade de grupo (ingroup bias)
+     Falar direto com cada persona = reconhecimento
+════════════════════════════════════════════ -->
+<section id="parceiros">
+  <div class="container">
+    <div class="parc-hdr">
+      <div class="eyebrow fu">Para parceiros B2B</div>
+      <h2 class="h2 fu d1">Para lojistas, construtoras<br>e incorporadoras.</h2>
+      <p class="lead fu d2">Atendimento comercial estruturado, catálogo técnico organizado e orientação para quem compra, especifica ou revende com responsabilidade.</p>
+    </div>
+    <div class="parc-grid">
+      <div class="parc-card fu">
+        <div class="parc-icon">🏪</div>
+        <div class="parc-title">Lojistas</div>
+        <div class="parc-desc">Portfólio estruturado para apresentação e revenda. Materiais técnicos, treinamento de equipe e canal direto com o time Maxpint para dúvidas, suporte e reposição programada de estoque.</div>
+      </div>
+      <div class="parc-card fu d1">
+        <div class="parc-icon">🏗️</div>
+        <div class="parc-title">Construtoras</div>
+        <div class="parc-desc">Clareza técnica para obras de qualquer porte. Especificação por ambiente e tipo de superfície, fornecimento padronizado por lote e suporte técnico ativo durante toda a fase de aplicação.</div>
+      </div>
+      <div class="parc-card fu d2">
+        <div class="parc-icon">🏢</div>
+        <div class="parc-title">Incorporadoras</div>
+        <div class="parc-desc">Padronização de acabamento em múltiplos empreendimentos, rastreabilidade de fornecimento por lote e confiança no parceiro técnico ao longo de cada ciclo do projeto.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     DEPOIMENTOS
+     Neuro: Prova social de ingroup — o comprador B2B
+     se reconhece nos parceiros que já compraram.
+     Especificidade de persona = identificação imediata
+════════════════════════════════════════════ -->
+<section id="depoimentos">
+  <div class="container">
+    <div class="dep-hdr">
+      <div class="eyebrow fu">Parceiros que confiam</div>
+      <h2 class="h2 fu d1">Quem já decidiu<br>com a Maxpint.</h2>
+      <p class="lead fu d2">Depoimentos reais de lojistas, construtoras e incorporadoras que adotaram a Maxpint como fornecedor técnico.</p>
+    </div>
+    <div class="dep-grid">
+
+      <div class="dep-card fu">
+        <div class="dep-stars">
+          <svg class="dep-star" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="dep-star" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="dep-star" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="dep-star" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="dep-star" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+        <div class="dep-quote">O que me surpreendeu foi o contato depois da entrega. Minha equipe ainda estava na dúvida sobre uma parede externa e o suporte da Maxpint resolveu na hora. Nunca tive isso com outro fornecedor.</div>
+        <div class="dep-sep"></div>
+        <div class="dep-author">
+          <div class="dep-avatar">RM</div>
+          <div>
+            <div class="dep-name">Ricardo M.</div>
+            <div class="dep-role">Lojista — Material de construção · São Paulo, SP</div>
+            <div class="dep-verified">✔ Parceiro verificado</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dep-card fu d1">
+        <div class="dep-stars">
+          <svg class="dep-star" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="dep-star" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="dep-star" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="dep-star" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="dep-star" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+        <div class="dep-quote">Usamos a Maxpint em um empreendimento de 48 unidades. A padronização de lote foi fundamental — sem variação de tonalidade entre os andares. A ficha técnica facilitou muito a aprovação no projeto.</div>
+        <div class="dep-sep"></div>
+        <div class="dep-author">
+          <div class="dep-avatar">CA</div>
+          <div>
+            <div class="dep-name">Carla A.</div>
+            <div class="dep-role">Gestora de obras · Construtora · Campinas, SP</div>
+            <div class="dep-verified">✔ Parceira verificada</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dep-card fu d2">
+        <div class="dep-stars">
+          <svg class="dep-star" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="dep-star" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="dep-star" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="dep-star" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="dep-star" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+        <div class="dep-quote">Especificamos a Maxpint em dois lançamentos seguidos. A clareza técnica na pré-venda e a rastreabilidade de lote foram os fatores decisivos. O relacionamento pós-entrega foi um diferencial que nenhum outro fornecedor ofereceu.</div>
+        <div class="dep-sep"></div>
+        <div class="dep-author">
+          <div class="dep-avatar">FT</div>
+          <div>
+            <div class="dep-name">Felipe T.</div>
+            <div class="dep-role">Gerente de suprimentos · Incorporadora · Ribeirão Preto, SP</div>
+            <div class="dep-verified">✔ Parceiro verificado</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     CONTATO
+     Neuro: Recency effect — última impressão é decisiva
+     WhatsApp = menor fricção, maior conversão
+     Não pede "feche um pedido" — pede "inicie uma conversa"
+════════════════════════════════════════════ -->
+<section id="contato">
+  <div class="container">
+    <div class="contato-grid">
+      <div class="c-left">
+        <div class="eyebrow fu">Contato</div>
+        <h2 class="h2 light fu d1">Fale com<br>a Maxpint.</h2>
+        <p class="lead light fu d2">Disponíveis para atender parceiros comerciais, responder dúvidas técnicas e iniciar novas relações com quem busca qualidade e organização.</p>
+        <div class="c-items fu d3">
+          <a href="https://wa.me/5500000000000" class="c-item" target="_blank" rel="noopener" style="text-decoration:none">
+            <div class="c-icon">💬</div>
+            <div>
+              <div class="c-lbl">WhatsApp — canal principal</div>
+              <div class="c-val">(00) 00000-0000</div>
+            </div>
+          </a>
+          <a href="https://instagram.com/maxpinttintas" class="c-item" target="_blank" rel="noopener" style="text-decoration:none">
+            <div class="c-icon">📱</div>
+            <div>
+              <div class="c-lbl">Instagram</div>
+              <div class="c-val">@maxpinttintas</div>
+            </div>
+          </a>
+          <a href="tel:+5500000000000" class="c-item" style="text-decoration:none">
+            <div class="c-icon">📞</div>
+            <div>
+              <div class="c-lbl">Telefone</div>
+              <div class="c-val">(00) 0000-0000</div>
+            </div>
+          </a>
+          <div class="c-item" style="cursor:default">
+            <div class="c-icon">📍</div>
+            <div>
+              <div class="c-lbl">Endereço</div>
+              <div class="c-val">Rua das Tintas, 00 — Cidade, UF</div>
+            </div>
+          </div>
+        </div>
+        <!-- CTA de baixa fricção: inicia conversa, não fecha pedido -->
+        <div class="c-cta-box fu d4">
+          <div class="c-cta-box-label">Primeiro contato sem compromisso</div>
+          <div class="c-cta-box-text">Sem pressão comercial. O primeiro passo é uma conversa sobre o que você precisa — e como a Maxpint pode ajudar a decidir melhor.</div>
+          <a href="https://wa.me/5500000000000" class="btn-cta" target="_blank" rel="noopener">Iniciar conversa no WhatsApp</a>
+        </div>
+      </div>
+      <div class="c-map fu d1">
+        <div class="c-map-inner">
+          <div class="c-map-icon">📍</div>
+          <div class="c-map-t">Mapa da localização<br>Maxpint Tintas Premium</div>
+          <a href="#" class="c-map-btn">Ver no mapa →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="f-inner">
+      <div>
+        <div class="f-logo">
+          <div class="logo-main">Max<span>pint</span> Tintas</div>
+        </div>
+        <div class="f-tag">Qualidade, orientação e confiança em cada aplicação.</div>
+        <div class="f-crm"><a href="crm.html" style="color:inherit;transition:color .18s">Acesso interno</a></div>
+      </div>
+      <div class="f-links">
+        <a href="#sobre">A marca</a>
+        <a href="#linhas">Linhas</a>
+        <a href="#fichas">Fichas técnicas</a>
+        <a href="#calculadora">Calculadora</a>
+        <a href="#academia">Academia</a>
+        <a href="#parceiros">Parceiros</a>
+        <a href="#contato">Contato</a>
+      </div>
+      <div class="f-copy">© 2026 Maxpint Tintas. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  /* ── Mobile menu ── */
+  function toggleMenu(){
+    document.getElementById('ham').classList.toggle('open');
+    document.getElementById('mob-menu').classList.toggle('open');
+  }
+  function closeMenu(){
+    document.getElementById('ham').classList.remove('open');
+    document.getElementById('mob-menu').classList.remove('open');
+  }
+
+  /* ── Intersection Observer — scroll animations ── */
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+  },{threshold:0.1});
+  document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+
+  /* ── Escolha orientada ── */
+  function selE(btn, key){
+    document.querySelectorAll('.e-btn').forEach(b=>b.classList.remove('act'));
+    btn.classList.add('act');
+    document.querySelectorAll('.e-panel').forEach(p=>p.classList.remove('show'));
+    const p = document.getElementById(key);
+    if(p){ p.classList.add('show'); }
+  }
+
+  /* ── VisuMax: dados de paletas ── */
+  var VIS = {
+    sala:[
+      {nome:'Calma Contemporânea',tag:'Sala · Neutros quentes',
+       desc:'Fundo neutro quente com parede focal em tom mais profundo. Sofisticação sem esforço para salas de convívio.',
+       cores:['#EDE6DA','#C5B49F','#7A6152'],
+       prods:['Branco Areia — Interior Premium Fosco','Greige Natural — Interior Premium Fosco','Castanho Soft — Interior Premium Fosco']},
+      {nome:'Minimalismo Urbano',tag:'Sala · Tons frios',
+       desc:'Cinzas frios com acento em azul aço. Ideal para ambientes modernos com mobiliário escuro e linhas retas.',
+       cores:['#F0F0EE','#C0C8D0','#2D4A5C'],
+       prods:['Branco Gelo — Interior Premium Fosco','Cinza Prata — Interior Premium Fosco','Azul Grafite — Interior Premium Fosco']},
+      {nome:'Terra e Natureza',tag:'Sala · Biofílico',
+       desc:'Paleta terrosa com verde musgo. Tendência biofílica 2025 que une aconchego orgânico e identidade.',
+       cores:['#F2EDE5','#C9A87A','#5C6B4A'],
+       prods:['Creme Natural — Interior Premium Fosco','Caramelo Suave — Interior Premium Fosco','Verde Musgo — Interior Premium Fosco']}
+    ],
+    quarto:[
+      {nome:'Serenidade Azul',tag:'Quarto · Relaxante',
+       desc:'Tons frios suaves que induzem relaxamento e sono. Perfeito para quartos de casal, suítes e dormitórios.',
+       cores:['#F4F6F8','#B8CBE0','#4A6880'],
+       prods:['Branco Suave — Interior Premium Fosco','Azul Névoa — Interior Premium Fosco','Azul Profundo — Interior Premium Fosco']},
+      {nome:'Refúgio Quente',tag:'Quarto · Intimista',
+       desc:'Bege rosado com parede focal em terracota suave. Cria ambiente intimista, feminino e acolhedor.',
+       cores:['#F5EDE5','#E0C4B0','#C08060'],
+       prods:['Areia Rosada — Interior Premium Fosco','Blush Natural — Interior Premium Fosco','Terracota Suave — Interior Premium Fosco']},
+      {nome:'Neutro Profundo',tag:'Quarto · Contemporâneo',
+       desc:'Off-white dominante com acento em grafite. Elegância minimalista para quartos modernos e unissex.',
+       cores:['#F0EDE8','#D0CBC2','#4A4845'],
+       prods:['Off-White — Interior Premium Fosco','Marfim Escuro — Interior Premium Fosco','Grafite Soft — Interior Premium Fosco']}
+    ],
+    escritorio:[
+      {nome:'Foco e Clareza',tag:'Escritório · Produtivo',
+       desc:'Branco intenso com acento em azul marinho. Aumenta concentração, projeta autoridade e sinaliza profissionalismo.',
+       cores:['#F8F8F8','#D0D8E4','#0C1E38'],
+       prods:['Branco Absoluto — Interior Premium Semibrilho','Azul Névoa — Interior Premium Semibrilho','Maxpint Navy — Interior Premium Fosco']},
+      {nome:'Criatividade Ativa',tag:'Escritório · Dinâmico',
+       desc:'Branco quente com toque de mostarda. Estimula criatividade sem abrir mão da clareza visual e do foco.',
+       cores:['#F8F5EF','#EAE0D0','#C9970A'],
+       prods:['Creme Off-White — Interior Premium Fosco','Areia Dourada — Interior Premium Fosco','Âmbar — Destaque Fosco']},
+      {nome:'Verde Equilíbrio',tag:'Escritório · Bem-estar',
+       desc:'Cinza neutro com verde sálvia. A combinação mais forte em design de trabalho para 2024-2025.',
+       cores:['#F0F0EC','#C8D4C8','#607860'],
+       prods:['Cinza Neutro — Interior Premium Fosco','Sálvia Claro — Interior Premium Fosco','Verde Sálvia — Interior Premium Fosco']}
+    ],
+    fachada:[
+      {nome:'Impacto Contemporâneo',tag:'Fachada · Moderno',
+       desc:'Massa branca pura com frisos em cinza escuro. Alto impacto visual, limpo e atemporal para qualquer tipologia.',
+       cores:['#F2F2F0','#B0B0AC','#383838'],
+       prods:['Branco Premium — Exterior Protect','Cinza Médio — Exterior Protect','Grafite Fundo — Exterior Protect']},
+      {nome:'Clássico Renovado',tag:'Fachada · Atemporal',
+       desc:'Pedra e creme com detalhes em marrom amadeirado. Elegância que resiste ao tempo e às tendências passageiras.',
+       cores:['#E8E0D4','#C8B89A','#887060'],
+       prods:['Creme Pedra — Exterior Protect','Areia Colonial — Exterior Protect','Marrom Rústico — Exterior Protect']},
+      {nome:'Minimalismo Bold',tag:'Fachada · Identidade',
+       desc:'Branco total com destaque em amarelo dourado nos frisos. Identidade forte e memorável para empreendimentos que querem se destacar.',
+       cores:['#F5F5F3','#E8E0D0','#F5C000'],
+       prods:['Branco Total — Exterior Protect','Cinza Claro — Exterior Protect','Maxpint Yellow — Detalhe Externo']}
+    ],
+    corredor:[
+      {nome:'Amplitude Luminosa',tag:'Corredor · Expansivo',
+       desc:'Branco reflexivo com tons quentes próximos. Amplia visualmente espaços estreitos e direciona o olhar.',
+       cores:['#FAFAF8','#F0EBE4','#D4C8B8'],
+       prods:['Branco Brilhante — Interior Semibrilho','Off-White Quente — Interior Semibrilho','Areia Claro — Interior Semibrilho']},
+      {nome:'Profundidade Elegante',tag:'Corredor · Sofisticado',
+       desc:'Neutro médio com parede de fundo em tom mais intenso. Cria profundidade, direção visual e interesse arquitetônico.',
+       cores:['#E8E4DC','#C8C0B4','#7A7268'],
+       prods:['Greige Claro — Interior Premium Fosco','Greige Médio — Interior Premium Fosco','Greige Escuro — Interior Premium Fosco']},
+      {nome:'Transição Natural',tag:'Corredor · Orgânico',
+       desc:'Tom amadeirado suave para corredores de conexão. Cria transição harmônica entre ambientes diferentes da casa.',
+       cores:['#EDE8E0','#D4C4A8','#A89070'],
+       prods:['Creme Natural — Interior Premium Fosco','Trigo Suave — Interior Premium Fosco','Caramelo — Interior Premium Fosco']}
+    ],
+    banheiro:[
+      {nome:'Spa Contemporâneo',tag:'Banheiro · Bem-estar',
+       desc:'Branco absoluto com acento azul água. Transmite limpeza, higiene e bem-estar como em um spa de luxo.',
+       cores:['#F8F8F8','#D4E4E4','#5C9090'],
+       prods:['Branco Total — Interior Semibrilho','Azul Água — Interior Semibrilho','Verde Teal — Interior Semibrilho']},
+      {nome:'Contraste Dramático',tag:'Banheiro · Design',
+       desc:'Off-white com acento em tom escuro profundo. Contraste máximo para banheiros modernos e de forte personalidade.',
+       cores:['#F5F5F5','#E0E0E0','#2A2A2A'],
+       prods:['Branco Polar — Interior Semibrilho','Cinza Claro — Interior Semibrilho','Preto Fosco — Interior Semibrilho']},
+      {nome:'Terracota Orgânico',tag:'Banheiro · Tendência 2025',
+       desc:'Terracota com bege claro. A paleta mais presente em projetos de interiores de alto padrão para 2024-2025.',
+       cores:['#F2EBE0','#DDBBA0','#C07850'],
+       prods:['Creme Bege — Interior Semibrilho','Terracota Claro — Interior Semibrilho','Terracota Bold — Interior Semibrilho']}
+    ]
+  };
+
+  /* ── VisuMax: preview de foto ── */
+  function previewFoto(input){
+    if(!input.files||!input.files[0]) return;
+    var reader=new FileReader();
+    reader.onload=function(e){
+      var img=document.getElementById('vis-img');
+      img.src=e.target.result;
+      img.classList.add('show');
+      document.getElementById('vis-prompt').style.display='none';
+      document.getElementById('vis-label').classList.add('show');
+      document.getElementById('vis-area').classList.add('has-img');
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+
+  /* ── VisuMax: gerar paleta ── */
+  function gerarPaleta(){
+    var amb  = document.getElementById('vis-amb').value;
+    var acab = document.getElementById('vis-acab').value;
+    var err  = false;
+    if(!amb){document.getElementById('vis-amb').style.borderColor='rgba(200,80,80,.5)';err=true;}
+    else{document.getElementById('vis-amb').style.borderColor='';}
+    if(!acab){document.getElementById('vis-acab').style.borderColor='rgba(200,80,80,.5)';err=true;}
+    else{document.getElementById('vis-acab').style.borderColor='';}
+    if(err) return;
+    var paletas = VIS[amb] || VIS.sala;
+    var container = document.getElementById('vis-paletas');
+    container.innerHTML='';
+    paletas.forEach(function(p,i){
+      var swatches = p.cores.map(function(c){
+        return '<div class="vis-sw" style="background:'+c+'"></div>';
+      }).join('');
+      var prods = p.prods.map(function(pr,pi){
+        return '<div class="vis-prod"><div class="vis-prod-dot" style="background:'+p.cores[pi]+'"></div><span class="vis-prod-name">'+pr+'</span></div>';
+      }).join('');
+      var acabLabel = {fosco:'Fosco Premium',acetinado:'Acetinado Lavável',semibrilho:'Semibrilho',externo:'Exterior Protect'}[acab]||acab;
+      container.innerHTML += '<div class="vis-paleta'+(i===0?' sel':'')+'" onclick="selecionarPaleta(this,\''+encodeURIComponent(p.nome)+'\')">'+
+        '<div class="vis-paleta-sel-badge">Proposta selecionada</div>'+
+        '<div class="vis-paleta-top">'+
+          '<div class="vis-swatches">'+swatches+'</div>'+
+          '<div class="vis-paleta-info">'+
+            '<div class="vis-paleta-tag">'+p.tag+' · '+acabLabel+'</div>'+
+            '<div class="vis-paleta-name">'+p.nome+'</div>'+
+            '<div class="vis-paleta-desc">'+p.desc+'</div>'+
+          '</div>'+
+        '</div>'+
+        '<div class="vis-prods">'+prods+'</div>'+
+      '</div>';
+    });
+    document.getElementById('vis-empty').style.display='none';
+    var res = document.getElementById('vis-results');
+    res.classList.add('show');
+    var ambLabel = document.getElementById('vis-amb').options[document.getElementById('vis-amb').selectedIndex].text;
+    var msg = encodeURIComponent('Olá, usei o VisuMax e escolhi a proposta "'+decodeURIComponent(paletas[0].nome)+'" para '+ambLabel+'. Gostaria de confirmar os produtos e receber orientação técnica.');
+    document.getElementById('vis-share').href = 'https://wa.me/5500000000000?text='+msg;
+    res.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  function selecionarPaleta(el, nomeCod){
+    document.querySelectorAll('.vis-paleta').forEach(function(p){p.classList.remove('sel');});
+    el.classList.add('sel');
+    var amb = document.getElementById('vis-amb').options[document.getElementById('vis-amb').selectedIndex].text;
+    var msg = encodeURIComponent('Olá, usei o VisuMax e escolhi a proposta "'+decodeURIComponent(nomeCod)+'" para '+amb+'. Gostaria de confirmar os produtos e receber orientação técnica.');
+    document.getElementById('vis-share').href = 'https://wa.me/5500000000000?text='+msg;
+  }
+
+  /* ── Calculadora de rendimento ── */
+  function calcular(){
+    var area = parseFloat(document.getElementById('c-area').value);
+    var rend = parseFloat(document.getElementById('c-sup').value);
+    var dem  = parseInt(document.getElementById('c-dem').value);
+    var res  = document.getElementById('calc-result');
+    if(!area || area <= 0 || !rend){
+      res.classList.remove('show');
+      document.getElementById('c-area').style.borderColor = area <= 0 || !area ? 'rgba(245,80,80,.5)' : '';
+      document.getElementById('c-sup').style.borderColor  = !rend ? 'rgba(245,80,80,.5)' : '';
+      return;
+    }
+    document.getElementById('c-area').style.borderColor = '';
+    document.getElementById('c-sup').style.borderColor  = '';
+    var litros = (area / rend) * dem * 1.10;
+    var galoes = Math.floor(litros / 18);
+    var resto  = litros - (galoes * 18);
+    var latas  = Math.ceil(resto / 3.6);
+    var rendTexto = rend + ' m²/L';
+    document.getElementById('r-litros').textContent = litros.toFixed(1);
+    document.getElementById('r-galoes').textContent = galoes > 0 ? galoes + (galoes === 1 ? ' galão' : ' galões') : '—';
+    document.getElementById('r-latas').textContent  = latas > 0 ? latas + (latas === 1 ? ' lata' : ' latas') : (galoes > 0 ? 'volume completo em galões' : '—');
+    document.getElementById('r-rend').textContent   = rendTexto;
+    res.classList.add('show');
+  }
+  document.getElementById('c-area').addEventListener('keydown', function(e){ if(e.key==='Enter') calcular(); });
+
+  /* ── Nav: destaca link da seção visível ── */
+  const navLinks = document.querySelectorAll('.nav-menu a:not(.nav-cta)');
+  const sections = document.querySelectorAll('section[id]');
+  const secObs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const id = e.target.id;
+        navLinks.forEach(a=>{
+          a.style.color = a.getAttribute('href')==='#'+id ? 'rgba(255,255,255,.9)' : '';
+        });
+      }
+    });
+  },{threshold:0.4});
+  sections.forEach(s=>secObs.observe(s));
+</script>
+</body>
+</html>

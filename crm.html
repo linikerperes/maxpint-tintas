@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRM Interno — Maxpint Tintas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --yellow:       #F2B400;
+      --yellow-hover: #F7C840;
+      --yellow-dim:   rgba(242,180,0,0.12);
+      --dark:         #111111;
+      --graphite:     #1A1A1A;
+      --gray-dk:      #383838;
+      --gray-mid:     #6A6A6A;
+      --gray-lt:      #A4A4A4;
+      --gray-bg:      #F5F5F3;
+      --gray-bg2:     #EEEEEC;
+      --white:        #FFFFFF;
+      --border:       #E2E2DE;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{font-size:15px}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--gray-bg);color:var(--dark);-webkit-font-smoothing:antialiased;min-height:100vh}
+    a{text-decoration:none;color:inherit}
+    button{cursor:pointer;font-family:inherit;border:none;background:none}
+
+    /* ─── HEADER ─── */
+    .crm-header{background:var(--dark);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:0;z-index:100}
+    .crm-logo-wrap{display:flex;align-items:center;gap:14px}
+    .crm-logo{font-size:15px;font-weight:800;color:var(--white);letter-spacing:-.03em}
+    .crm-logo span{color:var(--yellow)}
+    .crm-badge{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--yellow-dim);color:var(--yellow);padding:3px 10px;border-radius:20px;border:1px solid rgba(242,180,0,.2)}
+    .crm-header-right{display:flex;align-items:center;gap:16px}
+    .crm-date{font-size:12px;color:rgba(255,255,255,.3)}
+    .btn-back{font-size:12px;font-weight:600;color:rgba(255,255,255,.35);padding:7px 14px;border:1px solid rgba(255,255,255,.1);border-radius:3px;transition:all .18s}
+    .btn-back:hover{color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.25)}
+
+    /* ─── MAIN ─── */
+    .crm-main{max-width:1360px;margin:0 auto;padding:32px 40px 60px}
+
+    /* ─── TOOLBAR ─── */
+    .toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:16px}
+    .toolbar-left h1{font-size:22px;font-weight:800;color:var(--dark);letter-spacing:-.03em}
+    .toolbar-left p{font-size:13px;color:var(--gray-mid);margin-top:3px}
+    .toolbar-right{display:flex;gap:10px;align-items:center}
+    .btn-add{padding:10px 18px;background:var(--yellow);color:var(--dark);font-size:13px;font-weight:700;border-radius:3px;transition:background .18s;display:flex;align-items:center;gap:6px}
+    .btn-add:hover{background:var(--yellow-hover)}
+    .search-box{padding:9px 14px;background:var(--white);border:1px solid var(--border);border-radius:3px;font-size:13px;color:var(--dark);font-family:inherit;width:220px;transition:border-color .18s}
+    .search-box:focus{outline:none;border-color:var(--yellow)}
+    .filter-select{padding:9px 14px;background:var(--white);border:1px solid var(--border);border-radius:3px;font-size:13px;color:var(--dark);font-family:inherit;cursor:pointer;appearance:none;padding-right:32px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='%236A6A6A' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;transition:border-color .18s}
+    .filter-select:focus{outline:none;border-color:var(--yellow)}
+
+    /* ─── STATS ─── */
+    .stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px}
+    .stat-card{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:18px 20px}
+    .stat-value{font-size:26px;font-weight:800;color:var(--dark);letter-spacing:-.04em;line-height:1}
+    .stat-label{font-size:11px;color:var(--gray-mid);font-weight:500;margin-top:5px;letter-spacing:.02em}
+    .stat-card.highlight{border-color:var(--yellow);background:rgba(242,180,0,.04)}
+    .stat-card.highlight .stat-value{color:var(--yellow)}
+
+    /* ─── ROTINA STRIP ─── */
+    .rotina-strip{background:rgba(242,180,0,.07);border:1px solid rgba(242,180,0,.2);border-radius:4px;padding:14px 20px;margin-bottom:20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+    .rotina-title{font-size:12px;font-weight:700;color:var(--yellow);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+    .rotina-items{display:flex;gap:20px;flex-wrap:wrap;flex:1}
+    .rotina-item{font-size:12px;color:var(--gray-mid)}
+    .rotina-item strong{color:var(--dark)}
+
+    /* ─── TABLE ─── */
+    .table-wrap{background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:auto}
+    table{width:100%;border-collapse:collapse;font-size:13px;min-width:1100px}
+    thead th{padding:12px 14px;text-align:left;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-lt);border-bottom:1px solid var(--border);white-space:nowrap;background:var(--gray-bg)}
+    tbody td{padding:13px 14px;border-bottom:1px solid var(--border);color:var(--gray-dk);vertical-align:middle}
+    tbody tr:last-child td{border-bottom:none}
+    tbody tr:hover td{background:var(--gray-bg)}
+    .td-name{font-weight:600;color:var(--dark)}
+    .td-phone a{color:var(--yellow);font-weight:600}
+    .td-phone a:hover{text-decoration:underline}
+
+    /* Status badges */
+    .badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.04em;white-space:nowrap}
+    .badge::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0}
+    .s-new     {background:rgba(59,130,246,.1); color:#3B82F6}
+    .s-talk    {background:rgba(249,115,22,.1);  color:#F97316}
+    .s-order   {background:rgba(16,185,129,.12); color:#059669}
+    .s-delivery{background:rgba(139,92,246,.1);  color:#7C3AED}
+    .s-posvenda{background:rgba(242,180,0,.12);  color:#B38600}
+    .s-support {background:rgba(239,68,68,.1);   color:#DC2626}
+    .s-ok      {background:rgba(34,197,94,.1);   color:#15803D}
+    .s-recompra{background:rgba(6,182,212,.1);   color:#0E7490}
+
+    /* Satisfaction */
+    .sat{font-size:16px}
+
+    /* Action buttons */
+    .act-btn{padding:5px 10px;border:1px solid var(--border);border-radius:3px;font-size:11px;font-weight:600;color:var(--gray-mid);transition:all .15s;background:var(--white)}
+    .act-btn:hover{background:var(--yellow);color:var(--dark);border-color:var(--yellow)}
+    .act-btn.del:hover{background:#EF4444;color:var(--white);border-color:#EF4444}
+    .act-group{display:flex;gap:6px}
+
+    /* Empty state */
+    .empty-state{text-align:center;padding:64px 20px;color:var(--gray-lt)}
+    .empty-state-icon{font-size:40px;margin-bottom:16px;opacity:.5}
+    .empty-state-text{font-size:14px;line-height:1.6}
+
+    /* ─── MODAL ─── */
+    .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:center;justify-content:center;padding:20px}
+    .overlay.open{display:flex}
+    .modal{background:var(--white);border-radius:6px;width:100%;max-width:720px;max-height:92vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.25)}
+    .modal-header{padding:26px 32px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--white);z-index:1}
+    .modal-title{font-size:17px;font-weight:800;color:var(--dark);letter-spacing:-.025em}
+    .modal-close{width:30px;height:30px;border-radius:4px;background:var(--gray-bg);font-size:16px;color:var(--gray-mid);display:flex;align-items:center;justify-content:center;transition:background .15s;cursor:pointer;border:none}
+    .modal-close:hover{background:var(--border)}
+    .modal-body{padding:28px 32px}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .form-group{display:flex;flex-direction:column;gap:5px}
+    .form-group.full{grid-column:1/-1}
+    .form-label{font-size:11px;font-weight:700;color:var(--gray-mid);letter-spacing:.08em;text-transform:uppercase}
+    .form-input,.form-select,.form-textarea{padding:9px 13px;background:var(--gray-bg);border:1.5px solid var(--border);border-radius:3px;font-size:14px;color:var(--dark);font-family:inherit;transition:border-color .18s}
+    .form-input:focus,.form-select:focus,.form-textarea:focus{outline:none;border-color:var(--yellow);background:var(--white)}
+    .form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='%236A6A6A' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;cursor:pointer;padding-right:32px}
+    .form-textarea{resize:vertical;min-height:72px}
+    .sat-group{display:flex;gap:8px}
+    .sat-opt{flex:1;padding:10px 6px;border:1.5px solid var(--border);border-radius:3px;background:var(--gray-bg);font-size:18px;text-align:center;cursor:pointer;transition:all .15s}
+    .sat-opt:hover{border-color:var(--gray-lt)}
+    .sat-opt.active{border-color:var(--yellow);background:rgba(242,180,0,.1)}
+    .modal-footer{padding:18px 32px 26px;display:flex;gap:10px;justify-content:flex-end;border-top:1px solid var(--border)}
+    .btn-cancel{padding:9px 18px;background:var(--gray-bg);border:1px solid var(--border);border-radius:3px;font-size:13px;font-weight:600;color:var(--gray-mid);transition:background .15s}
+    .btn-cancel:hover{background:var(--border)}
+    .btn-save{padding:9px 22px;background:var(--yellow);border:none;border-radius:3px;font-size:13px;font-weight:700;color:var(--dark);transition:background .15s}
+    .btn-save:hover{background:var(--yellow-hover)}
+
+    /* ─── VIEW MODAL ─── */
+    .view-section{margin-bottom:20px}
+    .view-section-title{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gray-lt);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+    .view-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .view-item{}
+    .view-item.full{grid-column:1/-1}
+    .view-key{font-size:11px;font-weight:600;color:var(--gray-lt);margin-bottom:3px;letter-spacing:.05em}
+    .view-val{font-size:14px;color:var(--dark);font-weight:500}
+    .view-val a{color:var(--yellow)}
+
+    /* ─── RESPONSIVE ─── */
+    @media(max-width:900px){
+      .crm-main{padding:20px 20px 60px}
+      .crm-header{padding:0 20px}
+      .stats-grid{grid-template-columns:repeat(3,1fr)}
+      .toolbar{flex-direction:column;align-items:flex-start}
+      .toolbar-right{width:100%;flex-wrap:wrap}
+      .search-box{flex:1;min-width:150px}
+    }
+    @media(max-width:600px){
+      .stats-grid{grid-template-columns:1fr 1fr}
+      .form-grid{grid-template-columns:1fr}
+      .form-group.full{grid-column:auto}
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="crm-header">
+  <div class="crm-logo-wrap">
+    <div class="crm-logo">Max<span>pint</span> Tintas</div>
+    <div class="crm-badge">CRM Interno</div>
+  </div>
+  <div class="crm-header-right">
+    <span class="crm-date" id="hdr-date"></span>
+    <a href="index.html" class="btn-back">← Voltar ao site</a>
+  </div>
+</header>
+
+<!-- MAIN -->
+<div class="crm-main">
+
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <h1>Clientes e Pós-venda</h1>
+      <p>Acompanhe cada relação comercial com organização e clareza.</p>
+    </div>
+    <div class="toolbar-right">
+      <input class="search-box" type="text" id="search-input" placeholder="Buscar cliente, cidade…" oninput="renderTable()">
+      <select class="filter-select" id="filter-status" onchange="renderTable()">
+        <option value="">Todos os status</option>
+        <option value="Novo contato">Novo contato</option>
+        <option value="Em conversa">Em conversa</option>
+        <option value="Pedido realizado">Pedido realizado</option>
+        <option value="Recebimento confirmado">Recebimento confirmado</option>
+        <option value="Pós-venda em andamento">Pós-venda em andamento</option>
+        <option value="Suporte necessário">Suporte necessário</option>
+        <option value="Cliente acompanhado">Cliente acompanhado</option>
+        <option value="Possível recompra">Possível recompra</option>
+      </select>
+      <button class="btn-add" onclick="openAdd()">+ Novo cliente</button>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-grid" id="stats-grid"></div>
+
+  <!-- ROTINA -->
+  <div class="rotina-strip">
+    <div class="rotina-title">Rotina de pós-venda</div>
+    <div class="rotina-items">
+      <div class="rotina-item"><strong>Após a venda:</strong> registrar cliente e produto</div>
+      <div class="rotina-item"><strong>Após entrega:</strong> confirmar recebimento</div>
+      <div class="rotina-item"><strong>7–10 dias:</strong> acompanhar aplicação ou revenda</div>
+      <div class="rotina-item"><strong>30 dias:</strong> medir satisfação e próxima necessidade</div>
+    </div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-wrap">
+    <table id="crm-table">
+      <thead>
+        <tr>
+          <th>Cliente</th>
+          <th>Tipo</th>
+          <th>Cidade / UF</th>
+          <th>WhatsApp</th>
+          <th>Produto</th>
+          <th>Data compra</th>
+          <th>Vendedor</th>
+          <th>Próx. contato</th>
+          <th>Status</th>
+          <th>Satisfação</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="crm-tbody"></tbody>
+    </table>
+    <div class="empty-state" id="empty-state" style="display:none">
+      <div class="empty-state-icon">📋</div>
+      <div class="empty-state-text">Nenhum cliente registrado ainda.<br>Clique em <strong>+ Novo cliente</strong> para começar.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════ MODAL FORM (add/edit) ══════ -->
+<div class="overlay" id="form-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title">Novo cliente</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="f-id">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Cliente / Empresa *</label>
+          <input class="form-input" id="f-nome" placeholder="Nome ou razão social" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Responsável</label>
+          <input class="form-input" id="f-responsavel" placeholder="Nome do contato">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tipo de cliente</label>
+          <select class="form-select form-input" id="f-tipo">
+            <option value="">Selecionar…</option>
+            <option>Lojista</option>
+            <option>Construtora</option>
+            <option>Incorporadora</option>
+            <option>Profissional autônomo</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Cidade / UF</label>
+          <input class="form-input" id="f-cidade" placeholder="Ex: São Paulo / SP">
+        </div>
+        <div class="form-group">
+          <label class="form-label">WhatsApp</label>
+          <input class="form-input" id="f-whatsapp" placeholder="(00) 00000-0000" type="tel">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Produto</label>
+          <input class="form-input" id="f-produto" placeholder="Ex: Linha Externa Premium 18L">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Data da compra</label>
+          <input class="form-input" id="f-data-compra" type="date">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Vendedor</label>
+          <input class="form-input" id="f-vendedor" placeholder="Nome do vendedor">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Próximo contato</label>
+          <input class="form-input" id="f-proximo" type="date">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select class="form-select form-input" id="f-status">
+            <option>Novo contato</option>
+            <option>Em conversa</option>
+            <option>Pedido realizado</option>
+            <option>Recebimento confirmado</option>
+            <option>Pós-venda em andamento</option>
+            <option>Suporte necessário</option>
+            <option>Cliente acompanhado</option>
+            <option>Possível recompra</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Satisfação</label>
+          <div class="sat-group" id="sat-group">
+            <div class="sat-opt" data-val="😞" onclick="setSat(this)">😞</div>
+            <div class="sat-opt" data-val="😐" onclick="setSat(this)">😐</div>
+            <div class="sat-opt" data-val="🙂" onclick="setSat(this)">🙂</div>
+            <div class="sat-opt" data-val="😊" onclick="setSat(this)">😊</div>
+            <div class="sat-opt" data-val="🤩" onclick="setSat(this)">🤩</div>
+          </div>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Observações</label>
+          <textarea class="form-textarea form-input" id="f-obs" placeholder="Anotações, contexto, histórico…"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="btn-save" onclick="saveClient()">Salvar cliente</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════ MODAL VIEW ══════ -->
+<div class="overlay" id="view-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="view-title">Ficha do cliente</div>
+      <button class="modal-close" onclick="closeView()">✕</button>
+    </div>
+    <div class="modal-body" id="view-body"></div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeView()">Fechar</button>
+      <button class="btn-save" id="view-edit-btn">Editar</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+// ── Data layer (localStorage) ──────────────────────────────────────────────
+const KEY = 'maxpint_crm_v2';
+function load(){ try{ return JSON.parse(localStorage.getItem(KEY)) || []; }catch(e){ return []; } }
+function save(data){ localStorage.setItem(KEY, JSON.stringify(data)); }
+
+let clients = load();
+let editingId = null;
+let viewingId = null;
+let selectedSat = '';
+
+// ── Status helpers ──────────────────────────────────────────────────────────
+const STATUS_CLASS = {
+  'Novo contato':'s-new',
+  'Em conversa':'s-talk',
+  'Pedido realizado':'s-order',
+  'Recebimento confirmado':'s-delivery',
+  'Pós-venda em andamento':'s-posvenda',
+  'Suporte necessário':'s-support',
+  'Cliente acompanhado':'s-ok',
+  'Possível recompra':'s-recompra'
+};
+
+function badge(status){
+  const cls = STATUS_CLASS[status] || 's-new';
+  return `<span class="badge ${cls}">${status}</span>`;
+}
+
+// ── Stats ───────────────────────────────────────────────────────────────────
+function renderStats(){
+  const total = clients.length;
+  const suporte = clients.filter(c=>c.status==='Suporte necessário').length;
+  const recompra = clients.filter(c=>c.status==='Possível recompra').length;
+  const hoje = new Date().toISOString().split('T')[0];
+  const proximos = clients.filter(c=>c.proximo && c.proximo<=hoje).length;
+  const acompanhados = clients.filter(c=>c.status==='Cliente acompanhado').length;
+
+  document.getElementById('stats-grid').innerHTML = `
+    <div class="stat-card"><div class="stat-value">${total}</div><div class="stat-label">Clientes cadastrados</div></div>
+    <div class="stat-card"><div class="stat-value">${proximos}</div><div class="stat-label">Contatos para hoje</div></div>
+    <div class="stat-card"><div class="stat-value">${acompanhados}</div><div class="stat-label">Clientes acompanhados</div></div>
+    <div class="stat-card ${recompra?'highlight':''}"><div class="stat-value">${recompra}</div><div class="stat-label">Possíveis recompras</div></div>
+    <div class="stat-card ${suporte?'highlight':''}"><div class="stat-value">${suporte}</div><div class="stat-label">Aguardando suporte</div></div>
+  `;
+}
+
+// ── Table ───────────────────────────────────────────────────────────────────
+function renderTable(){
+  const q = (document.getElementById('search-input').value||'').toLowerCase();
+  const sf = document.getElementById('filter-status').value;
+  const filtered = clients.filter(c=>{
+    const text = `${c.nome} ${c.cidade} ${c.responsavel} ${c.produto}`.toLowerCase();
+    return (!q || text.includes(q)) && (!sf || c.status===sf);
+  });
+
+  const tbody = document.getElementById('crm-tbody');
+  const empty = document.getElementById('empty-state');
+
+  if(!filtered.length){
+    tbody.innerHTML='';
+    empty.style.display='block';
+  } else {
+    empty.style.display='none';
+    tbody.innerHTML = filtered.map(c=>`
+      <tr>
+        <td class="td-name">${esc(c.nome)}</td>
+        <td>${esc(c.tipo||'—')}</td>
+        <td>${esc(c.cidade||'—')}</td>
+        <td class="td-phone">${c.whatsapp?`<a href="https://wa.me/55${c.whatsapp.replace(/\D/g,'')}" target="_blank" rel="noopener">${esc(c.whatsapp)}</a>`:'—'}</td>
+        <td>${esc(c.produto||'—')}</td>
+        <td>${fmt(c.dataCompra)}</td>
+        <td>${esc(c.vendedor||'—')}</td>
+        <td style="${c.proximo&&c.proximo<=new Date().toISOString().split('T')[0]?'color:#DC2626;font-weight:600':''}">
+          ${fmt(c.proximo)}
+        </td>
+        <td>${badge(c.status)}</td>
+        <td class="sat">${c.satisfacao||'—'}</td>
+        <td>
+          <div class="act-group">
+            <button class="act-btn" onclick="openView('${c.id}')">Ver</button>
+            <button class="act-btn" onclick="openEdit('${c.id}')">Editar</button>
+            <button class="act-btn del" onclick="deleteClient('${c.id}')">✕</button>
+          </div>
+        </td>
+      </tr>
+    `).join('');
+  }
+  renderStats();
+}
+
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function fmt(d){ if(!d) return '—'; const [y,m,dd]=d.split('-'); return `${dd}/${m}/${y}`; }
+
+// ── Satisfaction selector ────────────────────────────────────────────────────
+function setSat(el){
+  document.querySelectorAll('.sat-opt').forEach(x=>x.classList.remove('active'));
+  el.classList.add('active');
+  selectedSat = el.dataset.val;
+}
+function clearSat(){
+  document.querySelectorAll('.sat-opt').forEach(x=>x.classList.remove('active'));
+  selectedSat='';
+}
+function restoreSat(val){
+  clearSat();
+  if(val){
+    const el = document.querySelector(`.sat-opt[data-val="${val}"]`);
+    if(el){ el.classList.add('active'); selectedSat=val; }
+  }
+}
+
+// ── Modal open/close ─────────────────────────────────────────────────────────
+function openAdd(){
+  editingId = null;
+  document.getElementById('modal-title').textContent = 'Novo cliente';
+  clearForm();
+  document.getElementById('form-overlay').classList.add('open');
+}
+function openEdit(id){
+  editingId = id;
+  const c = clients.find(x=>x.id===id);
+  if(!c) return;
+  document.getElementById('modal-title').textContent = 'Editar cliente';
+  document.getElementById('f-id').value = id;
+  document.getElementById('f-nome').value = c.nome||'';
+  document.getElementById('f-responsavel').value = c.responsavel||'';
+  document.getElementById('f-tipo').value = c.tipo||'';
+  document.getElementById('f-cidade').value = c.cidade||'';
+  document.getElementById('f-whatsapp').value = c.whatsapp||'';
+  document.getElementById('f-produto').value = c.produto||'';
+  document.getElementById('f-data-compra').value = c.dataCompra||'';
+  document.getElementById('f-vendedor').value = c.vendedor||'';
+  document.getElementById('f-proximo').value = c.proximo||'';
+  document.getElementById('f-status').value = c.status||'Novo contato';
+  document.getElementById('f-obs').value = c.obs||'';
+  restoreSat(c.satisfacao);
+  document.getElementById('form-overlay').classList.add('open');
+}
+function closeModal(){
+  document.getElementById('form-overlay').classList.remove('open');
+  clearForm();
+}
+function clearForm(){
+  ['f-nome','f-responsavel','f-cidade','f-whatsapp','f-produto','f-vendedor','f-obs'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('f-tipo').value='';
+  document.getElementById('f-status').value='Novo contato';
+  document.getElementById('f-data-compra').value='';
+  document.getElementById('f-proximo').value='';
+  clearSat();
+  editingId = null;
+}
+
+// ── Save ─────────────────────────────────────────────────────────────────────
+function saveClient(){
+  const nome = document.getElementById('f-nome').value.trim();
+  if(!nome){ alert('Informe o nome do cliente.'); return; }
+  const obj = {
+    id: editingId || 'c'+Date.now(),
+    nome,
+    responsavel: document.getElementById('f-responsavel').value.trim(),
+    tipo:        document.getElementById('f-tipo').value,
+    cidade:      document.getElementById('f-cidade').value.trim(),
+    whatsapp:    document.getElementById('f-whatsapp').value.trim(),
+    produto:     document.getElementById('f-produto').value.trim(),
+    dataCompra:  document.getElementById('f-data-compra').value,
+    vendedor:    document.getElementById('f-vendedor').value.trim(),
+    proximo:     document.getElementById('f-proximo').value,
+    status:      document.getElementById('f-status').value,
+    satisfacao:  selectedSat,
+    obs:         document.getElementById('f-obs').value.trim(),
+    updatedAt:   new Date().toISOString()
+  };
+  if(editingId){
+    const idx = clients.findIndex(c=>c.id===editingId);
+    if(idx>-1) clients[idx]=obj;
+  } else {
+    obj.createdAt = new Date().toISOString();
+    clients.unshift(obj);
+  }
+  save(clients);
+  closeModal();
+  renderTable();
+}
+
+// ── Delete ───────────────────────────────────────────────────────────────────
+function deleteClient(id){
+  const c = clients.find(x=>x.id===id);
+  if(!c) return;
+  if(!confirm(`Remover "${c.nome}" do CRM?\nEssa ação não pode ser desfeita.`)) return;
+  clients = clients.filter(x=>x.id!==id);
+  save(clients);
+  renderTable();
+}
+
+// ── View modal ───────────────────────────────────────────────────────────────
+function openView(id){
+  viewingId = id;
+  const c = clients.find(x=>x.id===id);
+  if(!c) return;
+  document.getElementById('view-title').textContent = c.nome;
+  document.getElementById('view-body').innerHTML = `
+    <div class="view-section">
+      <div class="view-section-title">Identificação</div>
+      <div class="view-grid">
+        <div class="view-item"><div class="view-key">Tipo</div><div class="view-val">${esc(c.tipo||'—')}</div></div>
+        <div class="view-item"><div class="view-key">Responsável</div><div class="view-val">${esc(c.responsavel||'—')}</div></div>
+        <div class="view-item"><div class="view-key">Cidade</div><div class="view-val">${esc(c.cidade||'—')}</div></div>
+        <div class="view-item"><div class="view-key">WhatsApp</div><div class="view-val">${c.whatsapp?`<a href="https://wa.me/55${c.whatsapp.replace(/\D/g,'')}" target="_blank">${esc(c.whatsapp)}</a>`:'—'}</div></div>
+      </div>
+    </div>
+    <div class="view-section">
+      <div class="view-section-title">Compra</div>
+      <div class="view-grid">
+        <div class="view-item"><div class="view-key">Produto</div><div class="view-val">${esc(c.produto||'—')}</div></div>
+        <div class="view-item"><div class="view-key">Data da compra</div><div class="view-val">${fmt(c.dataCompra)}</div></div>
+        <div class="view-item"><div class="view-key">Vendedor</div><div class="view-val">${esc(c.vendedor||'—')}</div></div>
+        <div class="view-item"><div class="view-key">Próximo contato</div><div class="view-val" style="${c.proximo&&c.proximo<=new Date().toISOString().split('T')[0]?'color:#DC2626;font-weight:700':''}">${fmt(c.proximo)}</div></div>
+      </div>
+    </div>
+    <div class="view-section">
+      <div class="view-section-title">Relacionamento</div>
+      <div class="view-grid">
+        <div class="view-item"><div class="view-key">Status</div><div class="view-val">${badge(c.status)}</div></div>
+        <div class="view-item"><div class="view-key">Satisfação</div><div class="view-val" style="font-size:20px">${c.satisfacao||'—'}</div></div>
+        <div class="view-item full"><div class="view-key">Observações</div><div class="view-val" style="white-space:pre-wrap">${esc(c.obs||'—')}</div></div>
+      </div>
+    </div>
+  `;
+  document.getElementById('view-edit-btn').onclick = ()=>{ closeView(); openEdit(id); };
+  document.getElementById('view-overlay').classList.add('open');
+}
+function closeView(){
+  document.getElementById('view-overlay').classList.remove('open');
+  viewingId = null;
+}
+
+// ── Keyboard close ────────────────────────────────────────────────────────────
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape'){
+    closeModal();
+    closeView();
+  }
+});
+
+// ── Date header ───────────────────────────────────────────────────────────────
+(function(){
+  const d = new Date();
+  const opts = { weekday:'long', year:'numeric', month:'long', day:'numeric' };
+  document.getElementById('hdr-date').textContent = d.toLocaleDateString('pt-BR', opts);
+})();
+
+// ── Init with demo data ───────────────────────────────────────────────────────
+if(!clients.length){
+  clients = [
+    {id:'demo1',nome:'Materiais Centro Ltda',responsavel:'Carlos Souza',tipo:'Lojista',cidade:'São Paulo / SP',whatsapp:'(11) 98765-0001',produto:'Linha Interna Fosca 18L',dataCompra:'2026-05-10',vendedor:'Rodrigo',proximo:'2026-06-10',status:'Pós-venda em andamento',satisfacao:'🙂',obs:'Cliente satisfeito com o produto. Interesse em ampliar mix.',createdAt:'2026-05-10T10:00:00Z',updatedAt:'2026-05-25T14:30:00Z'},
+    {id:'demo2',nome:'Construtora Nova Era',responsavel:'Ana Lima',tipo:'Construtora',cidade:'Campinas / SP',whatsapp:'(19) 99123-0002',produto:'Linha Externa Premium 3,6L (40 latas)',dataCompra:'2026-05-18',vendedor:'Fernanda',proximo:'2026-06-05',status:'Recebimento confirmado',satisfacao:'😊',obs:'Obra em andamento, próximo contato para verificar aplicação.',createdAt:'2026-05-18T09:00:00Z',updatedAt:'2026-05-28T11:00:00Z'},
+    {id:'demo3',nome:'Incorporadora Horizonte',responsavel:'Roberto Neves',tipo:'Incorporadora',cidade:'Curitiba / PR',whatsapp:'(41) 98000-0003',produto:'Linha Fachada Elastomérica',dataCompra:'2026-04-22',vendedor:'Rodrigo',proximo:'2026-05-30',status:'Possível recompra',satisfacao:'🤩',obs:'2 empreendimentos em fase final. Alta probabilidade de novo pedido para junho.',createdAt:'2026-04-22T08:00:00Z',updatedAt:'2026-05-20T09:00:00Z'},
+    {id:'demo4',nome:'Tintas & Cores Ltda',responsavel:'Paula Matos',tipo:'Lojista',cidade:'Belo Horizonte / MG',whatsapp:'(31) 97654-0004',produto:'Kit Mix Revenda 5 linhas',dataCompra:'2026-05-28',vendedor:'Fernanda',proximo:'2026-06-07',status:'Novo contato',satisfacao:'',obs:'Primeiro pedido. Acompanhar adaptação ao produto.',createdAt:'2026-05-28T15:00:00Z',updatedAt:'2026-05-28T15:00:00Z'},
+    {id:'demo5',nome:'João Pedro Pintor',responsavel:'João Pedro',tipo:'Profissional autônomo',cidade:'Sorocaba / SP',whatsapp:'(15) 96543-0005',produto:'Linha Interna Semibrilho 3,6L',dataCompra:'2026-05-05',vendedor:'Rodrigo',proximo:'2026-06-01',status:'Suporte necessário',satisfacao:'😐',obs:'Dificuldade com cobertura em parede muito porosa. Aguardando orientação técnica.',createdAt:'2026-05-05T11:00:00Z',updatedAt:'2026-05-29T10:00:00Z'}
+  ];
+  save(clients);
+}
+
+renderTable();
+</script>
+</body>
+</html>
