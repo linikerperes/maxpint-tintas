@@ -842,124 +842,208 @@
     }
 
     /* ══════════════════════════════════════════════════
-       VISUMAX — VISUALIZADOR DE PALETAS
-       Neuro: Embodied cognition — ver o espaço antes
-       de decidir reduz ansiedade e aumenta conversão.
-       Efecto de dotação: quem visualiza já "pertence".
+       VISUMAX PRO — IA DE PALETAS COM ANTHROPIC
+       Neuro: Embodied cognition — ver o resultado antes
+       de decidir elimina a ansiedade da escolha.
+       Efeito de dotação: quem visualiza já "pertence".
     ════════════════════════════════════════════════════ */
-    #visualizador{padding:100px 0;background:var(--gray-bg)}
-    .vis-hdr{text-align:center;margin-bottom:56px}
-    .vis-hdr .eyebrow{justify-content:center;margin-bottom:16px}
-    .vis-hdr .eyebrow::before{display:none}
-    .vis-layout{display:grid;grid-template-columns:1fr 1.5fr;gap:36px;align-items:start}
-    .vis-left{}
-    .vis-upload-area{
-      border:2px dashed var(--border);border-radius:4px;
-      background:var(--white);aspect-ratio:4/3;
+    #visualizador{padding:120px 0;background:var(--navy)}
+    .vis-hdr-c{text-align:center;margin-bottom:60px}
+    .vis-hdr-c .eyebrow{justify-content:center;margin-bottom:18px}
+    .vis-hdr-c .eyebrow::before{display:none}
+    .vis-hdr-c .h2{margin-bottom:16px;color:var(--white)}
+    .vis-hdr-c .h2 em{color:var(--yellow);font-style:normal}
+    .vis-hdr-c .lead{margin:0 auto;color:rgba(255,255,255,.45);max-width:580px;text-align:center}
+
+    .vis-card{
+      display:grid;grid-template-columns:1fr 1fr;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:6px;overflow:hidden;margin-bottom:28px
+    }
+
+    /* Upload zone */
+    .vis-zone{
+      position:relative;min-height:400px;cursor:pointer;
+      border-right:1px solid rgba(255,255,255,.08);
       display:flex;align-items:center;justify-content:center;
-      cursor:pointer;transition:all .25s;position:relative;overflow:hidden
+      overflow:hidden;transition:background .22s
     }
-    .vis-upload-area:hover{border-color:rgba(245,192,0,.5);background:rgba(245,192,0,.02)}
-    .vis-upload-area.has-img{border-style:solid;border-color:rgba(245,192,0,.35)}
-    .vis-upload-prompt{text-align:center;padding:28px;pointer-events:none}
-    .vis-up-icon{font-size:30px;margin-bottom:10px;opacity:.35;display:block}
-    .vis-up-title{font-size:14px;font-weight:600;color:var(--text-md);margin-bottom:4px}
-    .vis-up-sub{font-size:11.5px;color:var(--text-lt)}
-    .vis-preview-img{
-      position:absolute;inset:0;width:100%;height:100%;
-      object-fit:cover;display:none
+    .vis-zone:hover{background:rgba(255,255,255,.03)}
+    .vis-zone.drag-over{background:rgba(245,192,0,.07);border-right-color:rgba(245,192,0,.2)}
+    .vis-zone.has-img{cursor:default}
+    .vis-zone-inner{text-align:center;padding:44px 36px;pointer-events:none}
+    .vis-zone-ring{
+      width:88px;height:88px;border-radius:50%;
+      border:2px dashed rgba(255,255,255,.12);
+      display:flex;align-items:center;justify-content:center;
+      margin:0 auto 22px;font-size:34px;transition:all .25s;
+      background:rgba(255,255,255,.04)
     }
-    .vis-preview-img.show{display:block}
-    .vis-preview-label{
-      position:absolute;bottom:0;left:0;right:0;padding:8px 12px;
-      background:rgba(12,30,56,.72);backdrop-filter:blur(4px);
-      font-size:10.5px;color:rgba(255,255,255,.65);font-weight:500;
-      display:none;align-items:center;gap:6px
+    .vis-zone:hover .vis-zone-ring{border-color:rgba(245,192,0,.4);background:rgba(245,192,0,.07)}
+    .vis-zone-h{font-size:16px;font-weight:700;color:rgba(255,255,255,.65);margin-bottom:8px}
+    .vis-zone-s{font-size:12px;color:rgba(255,255,255,.25);line-height:1.65;margin-bottom:18px}
+    .vis-zone-btn{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:9px 18px;border:1px solid rgba(255,255,255,.12);
+      border-radius:3px;font-size:12px;font-weight:700;
+      color:rgba(255,255,255,.45);letter-spacing:.05em;
+      text-transform:uppercase;transition:all .2s
     }
-    .vis-preview-label.show{display:flex}
-    .vis-controls{margin-top:16px;display:flex;flex-direction:column;gap:12px}
-    .vis-select{
-      width:100%;padding:13px 16px;background:var(--white);
-      border:1px solid var(--border);border-radius:3px;
-      color:var(--text-dk);font-size:14px;font-family:inherit;
-      outline:none;transition:border-color .18s;
-      appearance:none;-webkit-appearance:none;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23898989' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-      background-repeat:no-repeat;background-position:right 14px center;
-      background-size:16px;padding-right:40px;background-color:var(--white)
+    .vis-zone:hover .vis-zone-btn{border-color:rgba(245,192,0,.35);color:var(--yellow)}
+    .vis-zone-note{font-size:10.5px;color:rgba(255,255,255,.18);margin-top:12px}
+    .vis-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none}
+    .vis-img.show{display:block}
+    .vis-img-bar{
+      position:absolute;bottom:0;left:0;right:0;
+      padding:12px 16px;background:rgba(12,30,56,.88);
+      backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+      display:none;align-items:center;justify-content:space-between;gap:8px
     }
-    .vis-select:focus{border-color:rgba(245,192,0,.5)}
-    .vis-gerar{
-      width:100%;padding:16px;background:var(--navy);color:var(--white);
-      font-size:13px;font-weight:900;border:none;border-radius:3px;
+    .vis-img-bar.show{display:flex}
+    .vis-img-bar-name{font-size:11px;color:rgba(255,255,255,.55);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .vis-img-bar-btn{
+      flex-shrink:0;background:none;border:1px solid rgba(245,192,0,.3);
+      color:var(--yellow);font-size:10px;font-weight:700;letter-spacing:.06em;
+      text-transform:uppercase;padding:5px 10px;border-radius:2px;
+      cursor:pointer;transition:all .18s
+    }
+    .vis-img-bar-btn:hover{background:rgba(245,192,0,.1)}
+
+    /* Controls pane */
+    .vis-pane{padding:38px 36px;display:flex;flex-direction:column;gap:22px}
+    .vis-pane-lbl{
+      font-size:10.5px;font-weight:700;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--yellow);margin-bottom:8px
+    }
+    .vis-textarea{
+      width:100%;min-height:170px;padding:16px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.1);border-radius:3px;
+      color:var(--white);font-size:14px;font-family:inherit;
+      line-height:1.68;outline:none;resize:vertical;
+      transition:border-color .18s
+    }
+    .vis-textarea::placeholder{color:rgba(255,255,255,.2);font-weight:400;font-size:13.5px}
+    .vis-textarea:focus{border-color:rgba(245,192,0,.38)}
+
+    .vis-api-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .vis-api-badge{
+      flex-shrink:0;display:inline-flex;align-items:center;gap:5px;
+      font-size:10.5px;font-weight:700;letter-spacing:.06em;
+      padding:7px 13px;border-radius:3px;border:1px solid;cursor:pointer;
+      transition:all .18s;background:none
+    }
+    .vis-api-badge.ok{border-color:rgba(74,222,128,.35);color:#4ADE80}
+    .vis-api-badge.miss{border-color:rgba(245,192,0,.3);color:var(--yellow)}
+    .vis-api-key-wrap{display:none;flex:1;position:relative;min-width:200px}
+    .vis-api-key-wrap.open{display:flex}
+    .vis-api-inp{
+      width:100%;padding:8px 38px 8px 12px;
+      background:rgba(255,255,255,.07);border:1px solid rgba(245,192,0,.28);
+      border-radius:3px;color:var(--white);font-size:12px;
+      font-family:monospace;outline:none;transition:border-color .18s
+    }
+    .vis-api-inp:focus{border-color:rgba(245,192,0,.55)}
+    .vis-api-ok{
+      position:absolute;right:6px;top:50%;transform:translateY(-50%);
+      background:var(--yellow);color:var(--navy);border:none;
+      font-size:10px;font-weight:900;padding:3px 9px;border-radius:2px;
+      cursor:pointer;letter-spacing:.04em
+    }
+
+    .vis-gen-btn{
+      width:100%;padding:18px;background:var(--yellow);color:var(--navy);
+      font-size:14px;font-weight:900;border:none;border-radius:3px;
       cursor:pointer;letter-spacing:.06em;text-transform:uppercase;
-      transition:all .18s;margin-top:4px
+      transition:all .18s;display:flex;align-items:center;
+      justify-content:center;gap:10px
     }
-    .vis-gerar:hover{background:var(--navy-mid)}
-    .vis-gerar:active{background:var(--yellow);color:var(--navy)}
-    .vis-hint{
-      font-size:11px;color:var(--text-lt);text-align:center;
-      margin-top:8px;line-height:1.55
+    .vis-gen-btn:hover{background:var(--yellow-2);transform:translateY(-1px)}
+    .vis-gen-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+    .vis-gen-btn .v-spin{
+      width:16px;height:16px;border:2px solid rgba(12,30,56,.25);
+      border-top-color:var(--navy);border-radius:50%;
+      animation:vspin .7s linear infinite;display:none;flex-shrink:0
     }
-    .vis-right{}
-    .vis-results{display:none}
-    .vis-results.show{display:block}
-    .vis-results-lbl{
-      font-size:10px;font-weight:700;letter-spacing:.18em;
-      text-transform:uppercase;color:var(--yellow-dk);
-      margin-bottom:18px;display:flex;align-items:center;gap:10px
+    .vis-gen-btn.busy .v-spin{display:block}
+    .vis-gen-btn.busy .v-label{opacity:.5}
+    @keyframes vspin{to{transform:rotate(360deg)}}
+
+    .vis-micro{font-size:11px;color:rgba(255,255,255,.2);line-height:1.6;padding-top:14px;border-top:1px solid rgba(255,255,255,.06)}
+    .vis-err{
+      padding:13px 16px;background:rgba(155,21,21,.18);
+      border:1px solid rgba(220,60,60,.25);border-radius:3px;
+      font-size:12.5px;color:rgba(255,120,120,.85);
+      line-height:1.6;display:none
     }
-    .vis-results-lbl::after{content:'';flex:1;height:1px;background:var(--border)}
-    .vis-paletas{display:flex;flex-direction:column;gap:14px}
-    .vis-paleta{
-      background:var(--white);border:1.5px solid var(--border);
-      border-radius:4px;padding:20px;cursor:pointer;
-      transition:all .22s;position:relative
+    .vis-err.on{display:block}
+
+    /* Results */
+    .vis-res{display:none;margin-top:4px}
+    .vis-res.on{display:block}
+    .vis-analise{
+      padding:18px 24px;background:rgba(245,192,0,.07);
+      border:1px solid rgba(245,192,0,.15);border-radius:4px;margin-bottom:22px
     }
-    .vis-paleta:hover,.vis-paleta.sel{border-color:var(--yellow);box-shadow:0 4px 22px rgba(245,192,0,.1)}
-    .vis-paleta-sel-badge{
-      display:none;position:absolute;top:14px;right:14px;
-      background:var(--yellow);color:var(--navy);
-      font-size:9.5px;font-weight:800;letter-spacing:.1em;
-      text-transform:uppercase;padding:3px 8px;border-radius:2px
+    .vis-analise-lbl{
+      font-size:9.5px;font-weight:700;letter-spacing:.2em;
+      text-transform:uppercase;color:var(--yellow);margin-bottom:7px
     }
-    .vis-paleta.sel .vis-paleta-sel-badge{display:block}
-    .vis-paleta-top{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px}
-    .vis-swatches{display:flex;gap:3px;flex-shrink:0}
-    .vis-sw{width:28px;height:50px;border-radius:3px;border:1px solid rgba(0,0,0,.06)}
-    .vis-paleta-info{flex:1;min-width:0}
-    .vis-paleta-tag{
-      font-size:9.5px;font-weight:700;letter-spacing:.14em;
-      text-transform:uppercase;color:var(--text-lt);margin-bottom:5px
+    .vis-analise-txt{font-size:13.5px;color:rgba(255,255,255,.55);line-height:1.75}
+    .vis-props{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}
+    .vis-p{
+      background:rgba(255,255,255,.04);
+      border:1.5px solid rgba(255,255,255,.08);
+      border-radius:4px;padding:22px;cursor:pointer;transition:all .22s
     }
-    .vis-paleta-name{
-      font-size:14px;font-weight:800;color:var(--text-dk);
-      letter-spacing:-.02em;margin-bottom:4px
+    .vis-p:hover,.vis-p.on{border-color:var(--yellow);background:rgba(245,192,0,.04)}
+    .vis-p-num{
+      font-size:9.5px;font-weight:700;letter-spacing:.16em;
+      text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:14px
     }
-    .vis-paleta-desc{font-size:11.5px;color:var(--text-md);line-height:1.6}
-    .vis-prods{
-      padding-top:12px;border-top:1px solid var(--border);
-      display:flex;flex-direction:column;gap:6px
+    .vis-p-sw{display:flex;gap:3px;margin-bottom:16px}
+    .vis-p-sw-i{flex:1;height:8px;border-radius:2px;border:1px solid rgba(255,255,255,.07)}
+    .vis-p-nome{
+      font-size:14px;font-weight:800;color:var(--white);
+      letter-spacing:-.02em;margin-bottom:3px
     }
-    .vis-prod{display:flex;align-items:center;gap:8px}
-    .vis-prod-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;border:1px solid rgba(0,0,0,.08)}
-    .vis-prod-name{font-size:11.5px;color:var(--text-md)}
-    .vis-share-btn{
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
-      margin-top:16px;padding:14px 18px;background:var(--navy);border-radius:3px;
-      text-decoration:none;transition:background .18s
+    .vis-p-estilo{
+      font-size:10.5px;color:rgba(255,255,255,.3);
+      letter-spacing:.06em;margin-bottom:12px
     }
-    .vis-share-btn:hover{background:var(--navy-mid)}
-    .vis-share-body{}
-    .vis-share-title{font-size:12.5px;font-weight:700;color:var(--white)}
-    .vis-share-sub{font-size:10.5px;color:rgba(255,255,255,.38);margin-top:1px}
-    .vis-share-icon{font-size:18px;flex-shrink:0}
-    .vis-empty{
-      background:var(--white);border:1.5px dashed var(--border);
-      border-radius:4px;padding:48px 32px;text-align:center
+    .vis-p-desc{font-size:12px;color:rgba(255,255,255,.45);line-height:1.65;margin-bottom:14px}
+    .vis-p-cores{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+    .vis-p-cor{display:flex;align-items:center;gap:8px}
+    .vis-p-cor-dot{width:11px;height:11px;border-radius:50%;flex-shrink:0;border:1px solid rgba(255,255,255,.1)}
+    .vis-p-cor-nome{font-size:11px;font-weight:600;color:rgba(255,255,255,.65);line-height:1}
+    .vis-p-cor-hex{font-size:10px;color:rgba(255,255,255,.28);font-family:monospace}
+    .vis-p-cor-uso{font-size:10px;color:rgba(255,255,255,.28);margin-top:1px}
+    .vis-p-dica{
+      padding:9px 12px;background:rgba(245,192,0,.07);
+      border-left:2px solid rgba(245,192,0,.4);
+      border-radius:0 3px 3px 0;
+      font-size:11px;color:rgba(255,255,255,.4);line-height:1.6;margin-bottom:12px
     }
-    .vis-empty-icon{font-size:32px;opacity:.2;margin-bottom:14px;display:block}
-    .vis-empty-t{font-size:13.5px;font-weight:600;color:var(--text-lt);line-height:1.5}
+    .vis-p-prods{
+      padding-top:12px;border-top:1px solid rgba(255,255,255,.06);
+      display:flex;flex-direction:column;gap:5px
+    }
+    .vis-p-prod{
+      font-size:11px;color:rgba(255,255,255,.32);
+      display:flex;align-items:center;gap:6px
+    }
+    .vis-p-prod::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--yellow);opacity:.5;flex-shrink:0}
+    .vis-cta{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:18px 24px;background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.07);border-radius:4px;
+      text-decoration:none;transition:background .18s;gap:12px
+    }
+    .vis-cta:hover{background:rgba(255,255,255,.07)}
+    .vis-cta-t{font-size:13px;font-weight:700;color:var(--white)}
+    .vis-cta-s{font-size:11px;color:rgba(255,255,255,.32);margin-top:2px}
+    .vis-cta-ico{font-size:24px;flex-shrink:0}
 
     /* ─── RESPONSIVO ──────────────────────────────────── */
     @media(max-width:1024px){
@@ -1545,76 +1629,102 @@
 
 
 <!-- ═══════════════════════════════════════
-     VISUMAX — VISUALIZADOR DE PALETAS
+     VISUMAX PRO — IA DE PALETAS
      Neuro: Embodied cognition + Efeito de Dotação
-     Ver o ambiente pintado antes de decidir reduz
-     resistência e acelera o comprometimento de compra
+     Ver o resultado antes de decidir elimina a
+     ansiedade da escolha e acelera o fechamento B2B
 ════════════════════════════════════════════ -->
 <section id="visualizador">
   <div class="container">
-    <div class="vis-hdr">
-      <div class="eyebrow fu">VisuMax · Ideias de arquiteto</div>
-      <h2 class="h2 fu d1">Veja o seu espaço com<br>olhar de arquiteto.</h2>
-      <p class="lead fu d2" style="margin:0 auto;text-align:center">Faça upload de uma foto do ambiente, selecione o tipo e o acabamento — e receba 3 propostas de paleta Maxpint com critério técnico e estético.</p>
-    </div>
-    <div class="vis-layout">
 
-      <!-- Coluna esquerda: upload + controles -->
-      <div class="vis-left">
-        <div class="vis-upload-area fu" id="vis-area" onclick="document.getElementById('vis-file').click()">
-          <input type="file" id="vis-file" accept="image/*" style="display:none" onchange="previewFoto(this)">
-          <div class="vis-upload-prompt" id="vis-prompt">
-            <span class="vis-up-icon">📷</span>
-            <div class="vis-up-title">Clique para enviar uma foto</div>
-            <div class="vis-up-sub">JPG, PNG ou WEBP · Até 10 MB</div>
+    <div class="vis-hdr-c fu">
+      <div class="eyebrow">VisuMax · Inteligência artificial</div>
+      <h2 class="h2" style="margin-top:16px;color:var(--white)">
+        Mostre o ambiente.<br>Descreva o que quer.<br><em style="font-style:normal;color:var(--yellow)">A IA sugere a paleta certa.</em>
+      </h2>
+      <p class="lead" style="margin:18px auto 0;color:rgba(255,255,255,.45);text-align:center;max-width:560px">
+        Envie uma foto do espaço, explique sua visão em palavras livres — e receba 3 propostas de arquiteto geradas por IA com produtos Maxpint indicados.
+      </p>
+    </div>
+
+    <!-- Card principal -->
+    <div class="vis-card fu d1">
+
+      <!-- Upload zone (esquerda) -->
+      <div class="vis-zone" id="vis-zone">
+        <input type="file" id="vis-file-in" accept="image/*" style="display:none"
+               onchange="visHandleFile(this.files[0])">
+        <div class="vis-zone-inner" id="vis-zone-inner">
+          <div class="vis-zone-ring">📷</div>
+          <div class="vis-zone-h">Arraste a foto aqui</div>
+          <div class="vis-zone-s">
+            Ambiente, fachada, quarto, escritório<br>
+            qualquer espaço que deseja transformar.
           </div>
-          <img class="vis-preview-img" id="vis-img" src="" alt="Prévia do ambiente">
-          <div class="vis-preview-label" id="vis-label">📷 Foto carregada — pronta para análise</div>
+          <div class="vis-zone-btn">ou clique para selecionar</div>
+          <div class="vis-zone-note">JPG · PNG · WEBP · até 10 MB</div>
         </div>
-        <div class="vis-controls">
-          <select class="vis-select" id="vis-amb">
-            <option value="">Tipo de ambiente</option>
-            <option value="sala">Sala de estar / Living</option>
-            <option value="quarto">Quarto / Suíte</option>
-            <option value="escritorio">Escritório / Home office</option>
-            <option value="fachada">Fachada / Área externa</option>
-            <option value="corredor">Corredor / Hall / Circulação</option>
-            <option value="banheiro">Banheiro / Lavabo</option>
-          </select>
-          <select class="vis-select" id="vis-acab">
-            <option value="">Acabamento desejado</option>
-            <option value="fosco">Fosco elegante (paredes e teto)</option>
-            <option value="acetinado">Acetinado lavável (cozinha, banh.)</option>
-            <option value="semibrilho">Semibrilho (alto tráfego)</option>
-            <option value="externo">Resistente externo (fachada)</option>
-          </select>
-          <button class="vis-gerar fu d2" onclick="gerarPaleta()">Gerar proposta de arquiteto</button>
-          <div class="vis-hint">A foto não é enviada a nenhum servidor. Todo o processamento acontece no seu dispositivo.</div>
+        <img class="vis-img" id="vis-img" src="" alt="Foto do ambiente">
+        <div class="vis-img-bar" id="vis-img-bar">
+          <span class="vis-img-bar-name" id="vis-img-name">foto.jpg</span>
+          <button class="vis-img-bar-btn" onclick="document.getElementById('vis-file-in').click();event.stopPropagation()">Trocar foto</button>
         </div>
       </div>
 
-      <!-- Coluna direita: resultado -->
-      <div class="vis-right">
-        <div id="vis-empty" class="vis-empty fu d1">
-          <span class="vis-empty-icon">🎨</span>
-          <div class="vis-empty-t">Suas propostas de paleta<br>aparecerão aqui após selecionar<br>o ambiente e clicar em gerar.</div>
+      <!-- Painel de controles (direita) -->
+      <div class="vis-pane">
+        <div>
+          <div class="vis-pane-lbl">Descreva o que você quer</div>
+          <textarea class="vis-textarea" id="vis-desc"
+            placeholder="Ex: Quero uma sala moderna com tons frios, sofá cinza e sem excesso de detalhes. Gosto de ambientes amplos e minimalistas. A parede do fundo pode ter um tom mais escuro..."></textarea>
         </div>
-        <div class="vis-results" id="vis-results">
-          <div class="vis-results-lbl">3 propostas para o seu ambiente</div>
-          <div class="vis-paletas" id="vis-paletas">
-            <!-- geradas por JS -->
-          </div>
-          <a href="#" id="vis-share" class="vis-share-btn" target="_blank" rel="noopener">
-            <div class="vis-share-body">
-              <div class="vis-share-title">Compartilhar com a Maxpint pelo WhatsApp</div>
-              <div class="vis-share-sub">Nosso time valida a proposta e indica o produto certo</div>
+
+        <div>
+          <div class="vis-pane-lbl">Chave de IA (Anthropic)</div>
+          <div class="vis-api-row">
+            <button class="vis-api-badge miss" id="vis-api-badge" onclick="visToggleKey()">
+              ⚙ Configurar chave
+            </button>
+            <div class="vis-api-key-wrap" id="vis-api-wrap">
+              <input class="vis-api-inp" id="vis-api-inp" type="password"
+                     placeholder="sk-ant-api03-..." autocomplete="off">
+              <button class="vis-api-ok" onclick="visSaveKey()">OK</button>
             </div>
-            <span class="vis-share-icon">💬</span>
-          </a>
+          </div>
+          <div style="margin-top:8px;font-size:11px;color:rgba(255,255,255,.2);line-height:1.55">
+            Chave Anthropic Claude · Armazenada apenas neste dispositivo · Nunca enviada para nossos servidores
+          </div>
+        </div>
+
+        <div id="vis-err" class="vis-err"></div>
+
+        <button class="vis-gen-btn" id="vis-gen-btn" onclick="visGerar()">
+          <div class="v-spin"></div>
+          <span class="v-label">Gerar proposta com IA</span>
+        </button>
+
+        <div class="vis-micro">
+          A foto é processada diretamente pelo Claude (Anthropic) e não passa por servidores Maxpint. Quanto mais detalhe na descrição, melhor a proposta.
         </div>
       </div>
-
     </div>
+
+    <!-- Resultados -->
+    <div class="vis-res" id="vis-res">
+      <div class="vis-analise">
+        <div class="vis-analise-lbl">Leitura do ambiente pela IA</div>
+        <div class="vis-analise-txt" id="vis-analise-txt"></div>
+      </div>
+      <div class="vis-props" id="vis-props"></div>
+      <a href="#" id="vis-cta-link" class="vis-cta" target="_blank" rel="noopener">
+        <div>
+          <div class="vis-cta-t">Confirmar proposta com a Maxpint pelo WhatsApp</div>
+          <div class="vis-cta-s">O time valida os produtos, confirma disponibilidade e abre o pedido</div>
+        </div>
+        <span class="vis-cta-ico">💬</span>
+      </a>
+    </div>
+
   </div>
 </section>
 
@@ -1891,159 +2001,197 @@
     if(p){ p.classList.add('show'); }
   }
 
-  /* ── VisuMax: dados de paletas ── */
-  var VIS = {
-    sala:[
-      {nome:'Calma Contemporânea',tag:'Sala · Neutros quentes',
-       desc:'Fundo neutro quente com parede focal em tom mais profundo. Sofisticação sem esforço para salas de convívio.',
-       cores:['#EDE6DA','#C5B49F','#7A6152'],
-       prods:['Branco Areia — Interior Premium Fosco','Greige Natural — Interior Premium Fosco','Castanho Soft — Interior Premium Fosco']},
-      {nome:'Minimalismo Urbano',tag:'Sala · Tons frios',
-       desc:'Cinzas frios com acento em azul aço. Ideal para ambientes modernos com mobiliário escuro e linhas retas.',
-       cores:['#F0F0EE','#C0C8D0','#2D4A5C'],
-       prods:['Branco Gelo — Interior Premium Fosco','Cinza Prata — Interior Premium Fosco','Azul Grafite — Interior Premium Fosco']},
-      {nome:'Terra e Natureza',tag:'Sala · Biofílico',
-       desc:'Paleta terrosa com verde musgo. Tendência biofílica 2025 que une aconchego orgânico e identidade.',
-       cores:['#F2EDE5','#C9A87A','#5C6B4A'],
-       prods:['Creme Natural — Interior Premium Fosco','Caramelo Suave — Interior Premium Fosco','Verde Musgo — Interior Premium Fosco']}
-    ],
-    quarto:[
-      {nome:'Serenidade Azul',tag:'Quarto · Relaxante',
-       desc:'Tons frios suaves que induzem relaxamento e sono. Perfeito para quartos de casal, suítes e dormitórios.',
-       cores:['#F4F6F8','#B8CBE0','#4A6880'],
-       prods:['Branco Suave — Interior Premium Fosco','Azul Névoa — Interior Premium Fosco','Azul Profundo — Interior Premium Fosco']},
-      {nome:'Refúgio Quente',tag:'Quarto · Intimista',
-       desc:'Bege rosado com parede focal em terracota suave. Cria ambiente intimista, feminino e acolhedor.',
-       cores:['#F5EDE5','#E0C4B0','#C08060'],
-       prods:['Areia Rosada — Interior Premium Fosco','Blush Natural — Interior Premium Fosco','Terracota Suave — Interior Premium Fosco']},
-      {nome:'Neutro Profundo',tag:'Quarto · Contemporâneo',
-       desc:'Off-white dominante com acento em grafite. Elegância minimalista para quartos modernos e unissex.',
-       cores:['#F0EDE8','#D0CBC2','#4A4845'],
-       prods:['Off-White — Interior Premium Fosco','Marfim Escuro — Interior Premium Fosco','Grafite Soft — Interior Premium Fosco']}
-    ],
-    escritorio:[
-      {nome:'Foco e Clareza',tag:'Escritório · Produtivo',
-       desc:'Branco intenso com acento em azul marinho. Aumenta concentração, projeta autoridade e sinaliza profissionalismo.',
-       cores:['#F8F8F8','#D0D8E4','#0C1E38'],
-       prods:['Branco Absoluto — Interior Premium Semibrilho','Azul Névoa — Interior Premium Semibrilho','Maxpint Navy — Interior Premium Fosco']},
-      {nome:'Criatividade Ativa',tag:'Escritório · Dinâmico',
-       desc:'Branco quente com toque de mostarda. Estimula criatividade sem abrir mão da clareza visual e do foco.',
-       cores:['#F8F5EF','#EAE0D0','#C9970A'],
-       prods:['Creme Off-White — Interior Premium Fosco','Areia Dourada — Interior Premium Fosco','Âmbar — Destaque Fosco']},
-      {nome:'Verde Equilíbrio',tag:'Escritório · Bem-estar',
-       desc:'Cinza neutro com verde sálvia. A combinação mais forte em design de trabalho para 2024-2025.',
-       cores:['#F0F0EC','#C8D4C8','#607860'],
-       prods:['Cinza Neutro — Interior Premium Fosco','Sálvia Claro — Interior Premium Fosco','Verde Sálvia — Interior Premium Fosco']}
-    ],
-    fachada:[
-      {nome:'Impacto Contemporâneo',tag:'Fachada · Moderno',
-       desc:'Massa branca pura com frisos em cinza escuro. Alto impacto visual, limpo e atemporal para qualquer tipologia.',
-       cores:['#F2F2F0','#B0B0AC','#383838'],
-       prods:['Branco Premium — Exterior Protect','Cinza Médio — Exterior Protect','Grafite Fundo — Exterior Protect']},
-      {nome:'Clássico Renovado',tag:'Fachada · Atemporal',
-       desc:'Pedra e creme com detalhes em marrom amadeirado. Elegância que resiste ao tempo e às tendências passageiras.',
-       cores:['#E8E0D4','#C8B89A','#887060'],
-       prods:['Creme Pedra — Exterior Protect','Areia Colonial — Exterior Protect','Marrom Rústico — Exterior Protect']},
-      {nome:'Minimalismo Bold',tag:'Fachada · Identidade',
-       desc:'Branco total com destaque em amarelo dourado nos frisos. Identidade forte e memorável para empreendimentos que querem se destacar.',
-       cores:['#F5F5F3','#E8E0D0','#F5C000'],
-       prods:['Branco Total — Exterior Protect','Cinza Claro — Exterior Protect','Maxpint Yellow — Detalhe Externo']}
-    ],
-    corredor:[
-      {nome:'Amplitude Luminosa',tag:'Corredor · Expansivo',
-       desc:'Branco reflexivo com tons quentes próximos. Amplia visualmente espaços estreitos e direciona o olhar.',
-       cores:['#FAFAF8','#F0EBE4','#D4C8B8'],
-       prods:['Branco Brilhante — Interior Semibrilho','Off-White Quente — Interior Semibrilho','Areia Claro — Interior Semibrilho']},
-      {nome:'Profundidade Elegante',tag:'Corredor · Sofisticado',
-       desc:'Neutro médio com parede de fundo em tom mais intenso. Cria profundidade, direção visual e interesse arquitetônico.',
-       cores:['#E8E4DC','#C8C0B4','#7A7268'],
-       prods:['Greige Claro — Interior Premium Fosco','Greige Médio — Interior Premium Fosco','Greige Escuro — Interior Premium Fosco']},
-      {nome:'Transição Natural',tag:'Corredor · Orgânico',
-       desc:'Tom amadeirado suave para corredores de conexão. Cria transição harmônica entre ambientes diferentes da casa.',
-       cores:['#EDE8E0','#D4C4A8','#A89070'],
-       prods:['Creme Natural — Interior Premium Fosco','Trigo Suave — Interior Premium Fosco','Caramelo — Interior Premium Fosco']}
-    ],
-    banheiro:[
-      {nome:'Spa Contemporâneo',tag:'Banheiro · Bem-estar',
-       desc:'Branco absoluto com acento azul água. Transmite limpeza, higiene e bem-estar como em um spa de luxo.',
-       cores:['#F8F8F8','#D4E4E4','#5C9090'],
-       prods:['Branco Total — Interior Semibrilho','Azul Água — Interior Semibrilho','Verde Teal — Interior Semibrilho']},
-      {nome:'Contraste Dramático',tag:'Banheiro · Design',
-       desc:'Off-white com acento em tom escuro profundo. Contraste máximo para banheiros modernos e de forte personalidade.',
-       cores:['#F5F5F5','#E0E0E0','#2A2A2A'],
-       prods:['Branco Polar — Interior Semibrilho','Cinza Claro — Interior Semibrilho','Preto Fosco — Interior Semibrilho']},
-      {nome:'Terracota Orgânico',tag:'Banheiro · Tendência 2025',
-       desc:'Terracota com bege claro. A paleta mais presente em projetos de interiores de alto padrão para 2024-2025.',
-       cores:['#F2EBE0','#DDBBA0','#C07850'],
-       prods:['Creme Bege — Interior Semibrilho','Terracota Claro — Interior Semibrilho','Terracota Bold — Interior Semibrilho']}
-    ]
-  };
+  /* ── VisuMax IA ── */
+  (function(){
+    var _b64=null,_mime=null;
 
-  /* ── VisuMax: preview de foto ── */
-  function previewFoto(input){
-    if(!input.files||!input.files[0]) return;
-    var reader=new FileReader();
-    reader.onload=function(e){
-      var img=document.getElementById('vis-img');
-      img.src=e.target.result;
-      img.classList.add('show');
-      document.getElementById('vis-prompt').style.display='none';
-      document.getElementById('vis-label').classList.add('show');
-      document.getElementById('vis-area').classList.add('has-img');
+    /* drag & drop */
+    var zone=document.getElementById('vis-zone');
+    if(zone){
+      zone.addEventListener('dragover',function(e){e.preventDefault();zone.classList.add('drag-over');});
+      zone.addEventListener('dragleave',function(){zone.classList.remove('drag-over');});
+      zone.addEventListener('drop',function(e){
+        e.preventDefault();zone.classList.remove('drag-over');
+        var f=e.dataTransfer.files[0];
+        if(f&&f.type.startsWith('image/'))_loadFile(f);
+      });
+      zone.addEventListener('click',function(e){
+        if(e.target.closest('.vis-img-bar-btn'))return;
+        if(!zone.classList.contains('has-img'))document.getElementById('vis-file-in').click();
+      });
+    }
+
+    function _loadFile(file){
+      var r=new FileReader();
+      r.onload=function(e){
+        _b64=e.target.result.split(',')[1];
+        _mime=file.type||'image/jpeg';
+        var img=document.getElementById('vis-img');
+        img.src=e.target.result;
+        img.classList.add('show');
+        document.getElementById('vis-zone-inner').style.opacity='0';
+        document.getElementById('vis-zone-inner').style.pointerEvents='none';
+        var bar=document.getElementById('vis-img-bar');
+        bar.classList.add('show');
+        document.getElementById('vis-img-name').textContent=file.name;
+        zone.classList.add('has-img');
+      };
+      r.readAsDataURL(file);
+    }
+
+    window.visHandleFile=function(f){if(f&&f.type.startsWith('image/'))_loadFile(f);};
+
+    /* API key */
+    function _badge(){
+      var k=localStorage.getItem('mpx_key');
+      var b=document.getElementById('vis-api-badge');
+      if(k){b.className='vis-api-badge ok';b.textContent='✔ IA conectada';}
+      else{b.className='vis-api-badge miss';b.textContent='⚙ Configurar chave';}
+    }
+    _badge();
+
+    window.visToggleKey=function(){
+      var w=document.getElementById('vis-api-key-wrap');
+      w.classList.toggle('open');
+      if(w.classList.contains('open')){
+        var i=document.getElementById('vis-api-inp');
+        i.value=localStorage.getItem('mpx_key')||'';
+        i.focus();
+      }
     };
-    reader.readAsDataURL(input.files[0]);
-  }
+    window.visSaveKey=function(){
+      var v=document.getElementById('vis-api-inp').value.trim();
+      if(!v)return;
+      localStorage.setItem('mpx_key',v);
+      document.getElementById('vis-api-key-wrap').classList.remove('open');
+      _badge();
+    };
+    document.getElementById('vis-api-inp').addEventListener('keydown',function(e){if(e.key==='Enter')visSaveKey();});
 
-  /* ── VisuMax: gerar paleta ── */
-  function gerarPaleta(){
-    var amb  = document.getElementById('vis-amb').value;
-    var acab = document.getElementById('vis-acab').value;
-    var err  = false;
-    if(!amb){document.getElementById('vis-amb').style.borderColor='rgba(200,80,80,.5)';err=true;}
-    else{document.getElementById('vis-amb').style.borderColor='';}
-    if(!acab){document.getElementById('vis-acab').style.borderColor='rgba(200,80,80,.5)';err=true;}
-    else{document.getElementById('vis-acab').style.borderColor='';}
-    if(err) return;
-    var paletas = VIS[amb] || VIS.sala;
-    var container = document.getElementById('vis-paletas');
-    container.innerHTML='';
-    paletas.forEach(function(p,i){
-      var swatches = p.cores.map(function(c){
-        return '<div class="vis-sw" style="background:'+c+'"></div>';
-      }).join('');
-      var prods = p.prods.map(function(pr,pi){
-        return '<div class="vis-prod"><div class="vis-prod-dot" style="background:'+p.cores[pi]+'"></div><span class="vis-prod-name">'+pr+'</span></div>';
-      }).join('');
-      var acabLabel = {fosco:'Fosco Premium',acetinado:'Acetinado Lavável',semibrilho:'Semibrilho',externo:'Exterior Protect'}[acab]||acab;
-      container.innerHTML += '<div class="vis-paleta'+(i===0?' sel':'')+'" onclick="selecionarPaleta(this,\''+encodeURIComponent(p.nome)+'\')">'+
-        '<div class="vis-paleta-sel-badge">Proposta selecionada</div>'+
-        '<div class="vis-paleta-top">'+
-          '<div class="vis-swatches">'+swatches+'</div>'+
-          '<div class="vis-paleta-info">'+
-            '<div class="vis-paleta-tag">'+p.tag+' · '+acabLabel+'</div>'+
-            '<div class="vis-paleta-name">'+p.nome+'</div>'+
-            '<div class="vis-paleta-desc">'+p.desc+'</div>'+
-          '</div>'+
-        '</div>'+
-        '<div class="vis-prods">'+prods+'</div>'+
-      '</div>';
-    });
-    document.getElementById('vis-empty').style.display='none';
-    var res = document.getElementById('vis-results');
-    res.classList.add('show');
-    var ambLabel = document.getElementById('vis-amb').options[document.getElementById('vis-amb').selectedIndex].text;
-    var msg = encodeURIComponent('Olá, usei o VisuMax e escolhi a proposta "'+decodeURIComponent(paletas[0].nome)+'" para '+ambLabel+'. Gostaria de confirmar os produtos e receber orientação técnica.');
-    document.getElementById('vis-share').href = 'https://wa.me/5500000000000?text='+msg;
-    res.scrollIntoView({behavior:'smooth',block:'start'});
-  }
+    /* Generate */
+    window.visGerar=async function(){
+      var desc=document.getElementById('vis-desc').value.trim();
+      var key=localStorage.getItem('mpx_key');
+      var err=document.getElementById('vis-err');
+      err.classList.remove('on');
 
-  function selecionarPaleta(el, nomeCod){
-    document.querySelectorAll('.vis-paleta').forEach(function(p){p.classList.remove('sel');});
-    el.classList.add('sel');
-    var amb = document.getElementById('vis-amb').options[document.getElementById('vis-amb').selectedIndex].text;
-    var msg = encodeURIComponent('Olá, usei o VisuMax e escolhi a proposta "'+decodeURIComponent(nomeCod)+'" para '+amb+'. Gostaria de confirmar os produtos e receber orientação técnica.');
-    document.getElementById('vis-share').href = 'https://wa.me/5500000000000?text='+msg;
-  }
+      if(!key){
+        document.getElementById('vis-api-key-wrap').classList.add('open');
+        document.getElementById('vis-api-inp').focus();
+        err.textContent='Configure sua chave da API Anthropic para continuar.';
+        err.classList.add('on');
+        return;
+      }
+      if(!desc&&!_b64){
+        err.textContent='Faça upload de uma foto ou descreva o ambiente que deseja transformar.';
+        err.classList.add('on');
+        return;
+      }
+
+      var btn=document.getElementById('vis-gen-btn');
+      btn.classList.add('busy');btn.disabled=true;
+      document.getElementById('vis-res').classList.remove('on');
+
+      var prompt='Você é um arquiteto de interiores e consultor de cores especializado em tintas premium brasileiras.\n\n'+
+        (_b64?'Analise a imagem do ambiente enviada pelo cliente e ':'Baseando-se exclusivamente na descrição do cliente, ')+
+        'sugira exatamente 3 propostas de paleta de cores usando produtos da Maxpint Tintas.\n\n'+
+        (desc?'Descrição do cliente: '+desc+'\n\n':'')+
+        'Responda SOMENTE com JSON válido, sem markdown, sem texto fora do JSON:\n'+
+        '{\n'+
+        '  "leitura_ambiente": "análise em 1-2 frases do espaço e pedido",\n'+
+        '  "propostas": [\n'+
+        '    {\n'+
+        '      "numero": 1,\n'+
+        '      "nome": "Nome criativo",\n'+
+        '      "estilo": "Estilo · Tendência",\n'+
+        '      "descricao_arquiteto": "2-3 frases com linguagem de arquiteto",\n'+
+        '      "cores": [\n'+
+        '        {"hex":"#XXXXXX","nome":"Nome da cor","uso":"onde aplicar"},\n'+
+        '        {"hex":"#XXXXXX","nome":"Nome da cor","uso":"onde aplicar"},\n'+
+        '        {"hex":"#XXXXXX","nome":"Nome da cor","uso":"onde aplicar"}\n'+
+        '      ],\n'+
+        '      "produtos_maxpint": ["Maxpint Interior Premium — Fosco","Maxpint Interior Premium — Acetinado","Maxpint Exterior Protect"],\n'+
+        '      "dica_tecnica": "dica de aplicação em 1 frase"\n'+
+        '    }\n'+
+        '  ]\n'+
+        '}';
+
+      var content=_b64
+        ? [{type:'image',source:{type:'base64',media_type:_mime,data:_b64}},{type:'text',text:prompt}]
+        : [{type:'text',text:prompt}];
+
+      try{
+        var r=await fetch('https://api.anthropic.com/v1/messages',{
+          method:'POST',
+          headers:{
+            'x-api-key':key,
+            'anthropic-version':'2023-06-01',
+            'content-type':'application/json',
+            'anthropic-dangerous-direct-browser-access':'true'
+          },
+          body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:2048,messages:[{role:'user',content:content}]})
+        });
+        if(!r.ok){
+          var ed=await r.json().catch(()=>({}));
+          throw new Error((ed.error&&ed.error.message)||'Erro '+r.status+'. Verifique sua chave.');
+        }
+        var d=await r.json();
+        var raw=d.content[0].text.trim();
+        var m=raw.match(/\{[\s\S]*\}/);
+        if(!m)throw new Error('Formato inesperado. Tente novamente.');
+        _render(JSON.parse(m[0]),desc);
+      }catch(e){
+        err.textContent='Erro: '+e.message;
+        err.classList.add('on');
+      }finally{
+        btn.classList.remove('busy');btn.disabled=false;
+      }
+    };
+
+    function _render(data,desc){
+      document.getElementById('vis-analise-txt').textContent=data.leitura_ambiente||'';
+      var grid=document.getElementById('vis-props');
+      grid.innerHTML='';
+      (data.propostas||[]).forEach(function(p,i){
+        var sw=(p.cores||[]).map(function(c){return '<div class="vis-p-sw-i" style="background:'+c.hex+'"></div>';}).join('');
+        var cores=(p.cores||[]).map(function(c){
+          return '<div class="vis-p-cor">'+
+            '<div class="vis-p-cor-dot" style="background:'+c.hex+'"></div>'+
+            '<div><div class="vis-p-cor-nome">'+c.nome+' <span class="vis-p-cor-hex">'+c.hex+'</span></div>'+
+            '<div class="vis-p-cor-uso">'+c.uso+'</div></div></div>';
+        }).join('');
+        var prods=(p.produtos_maxpint||[]).map(function(x){return '<div class="vis-p-prod">'+x+'</div>';}).join('');
+        var card=document.createElement('div');
+        card.className='vis-p'+(i===0?' on':'');
+        card.innerHTML=
+          '<div class="vis-p-num">Proposta 0'+(i+1)+'</div>'+
+          '<div class="vis-p-sw">'+sw+'</div>'+
+          '<div class="vis-p-nome">'+p.nome+'</div>'+
+          '<div class="vis-p-estilo">'+p.estilo+'</div>'+
+          '<div class="vis-p-desc">'+p.descricao_arquiteto+'</div>'+
+          '<div class="vis-p-cores">'+cores+'</div>'+
+          (p.dica_tecnica?'<div class="vis-p-dica">'+p.dica_tecnica+'</div>':'')+
+          '<div class="vis-p-prods">'+prods+'</div>';
+        card.onclick=function(){
+          document.querySelectorAll('.vis-p').forEach(function(x){x.classList.remove('on');});
+          card.classList.add('on');
+          _cta(p.nome,desc);
+        };
+        grid.appendChild(card);
+      });
+      if(data.propostas&&data.propostas[0])_cta(data.propostas[0].nome,desc);
+      var res=document.getElementById('vis-res');
+      res.classList.add('on');
+      res.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+
+    function _cta(nome,desc){
+      var msg='Olá! Usei o VisuMax Maxpint e escolhi a proposta "'+nome+'".'+
+        (desc?' Descrição do meu ambiente: '+desc.substring(0,120)+'.':'')+
+        ' Podem confirmar os produtos e abrir o pedido?';
+      document.getElementById('vis-cta-link').href='https://wa.me/5500000000000?text='+encodeURIComponent(msg);
+    }
+  })();
 
   /* ── Calculadora de rendimento ── */
   function calcular(){
