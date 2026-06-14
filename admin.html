@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Maxpint — Painel do Gestor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0C1E38;--navy-mid:#152845;--yellow:#F5C000;--yellow-dk:#C9970A;
+    --white:#fff;--gray:#F4F4F2;--text:#2C3543;--text-md:#6C7280;--border:#E5E7EB
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:'Inter',sans-serif;background:var(--gray);color:var(--text);
+    min-height:100vh;-webkit-font-smoothing:antialiased
+  }
+  a{color:inherit}
+
+  /* LOGIN */
+  .login-wrap{
+    min-height:100vh;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);padding:20px
+  }
+  .login-card{
+    background:var(--white);padding:48px 40px;max-width:420px;width:100%;
+    border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.25)
+  }
+  .login-logo{font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:var(--navy);letter-spacing:-.02em;margin-bottom:6px}
+  .login-logo span{color:var(--yellow-dk)}
+  .login-sub{font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text-md);margin-bottom:38px}
+  .login-h{font-family:'Fraunces',serif;font-size:26px;font-weight:600;letter-spacing:-.02em;color:var(--navy);margin-bottom:10px;line-height:1.15}
+  .login-p{font-size:13px;color:var(--text-md);line-height:1.6;margin-bottom:30px}
+  .login-field{margin-bottom:18px}
+  .login-label{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-md);margin-bottom:8px}
+  .login-inp{
+    width:100%;padding:12px 14px;background:var(--gray);border:1px solid var(--border);
+    border-radius:4px;font-size:14px;font-family:inherit;color:var(--text);outline:none;
+    transition:border-color .18s,background .18s
+  }
+  .login-inp:focus{border-color:var(--yellow);background:var(--white)}
+  .login-btn{
+    width:100%;padding:14px;background:var(--navy);color:var(--white);border:none;
+    border-radius:4px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    cursor:pointer;transition:background .18s;margin-top:8px
+  }
+  .login-btn:hover{background:var(--yellow-dk)}
+  .login-err{color:#C53030;font-size:12.5px;margin-top:14px;display:none}
+  .login-err.on{display:block}
+
+  /* PANEL */
+  .panel{display:none}
+  .panel.on{display:block}
+  header{
+    background:var(--navy);color:var(--white);padding:20px 0;
+    border-bottom:1px solid rgba(245,192,0,.15)
+  }
+  .container{max-width:1100px;margin:0 auto;padding:0 28px}
+  .h-row{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .h-logo{font-family:'Fraunces',serif;font-size:20px;font-weight:600;letter-spacing:-.02em}
+  .h-logo span{color:var(--yellow)}
+  .h-sub{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:2px}
+  .h-actions{display:flex;gap:10px;align-items:center}
+  .h-btn{
+    padding:8px 14px;background:transparent;color:rgba(255,255,255,.8);
+    border:1px solid rgba(255,255,255,.18);border-radius:4px;font-size:12px;
+    font-weight:600;text-decoration:none;transition:all .18s;cursor:pointer;font-family:inherit
+  }
+  .h-btn:hover{border-color:var(--yellow);color:var(--yellow)}
+  .h-btn.danger:hover{border-color:#C53030;color:#C53030}
+
+  main{padding:48px 0 80px}
+  .page-h{font-family:'Fraunces',serif;font-size:34px;font-weight:600;letter-spacing:-.025em;color:var(--navy);margin-bottom:8px;line-height:1.1}
+  .page-p{font-size:14px;color:var(--text-md);line-height:1.65;margin-bottom:42px;max-width:580px}
+
+  .slot{
+    background:var(--white);border-radius:8px;padding:24px;margin-bottom:18px;
+    display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start;
+    box-shadow:0 1px 3px rgba(0,0,0,.04);border:1px solid var(--border)
+  }
+  .slot-preview{
+    width:100%;aspect-ratio:4/3;background:var(--gray);border-radius:4px;
+    background-size:cover;background-position:center;position:relative;
+    border:1px solid var(--border);overflow:hidden
+  }
+  .slot-preview.empty::after{
+    content:'Sem foto';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    color:var(--text-md);font-size:12px;letter-spacing:.05em
+  }
+  .slot-info{padding-top:4px}
+  .slot-tag{
+    display:inline-block;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--yellow-dk);background:rgba(245,192,0,.1);padding:4px 10px;border-radius:3px;margin-bottom:12px
+  }
+  .slot-title{font-family:'Fraunces',serif;font-size:22px;font-weight:600;letter-spacing:-.02em;color:var(--navy);margin-bottom:8px;line-height:1.15}
+  .slot-desc{font-size:13px;color:var(--text-md);line-height:1.6;margin-bottom:20px}
+  .slot-actions{display:flex;gap:10px;flex-wrap:wrap}
+  .btn-up{
+    padding:10px 18px;background:var(--navy);color:var(--white);border:none;
+    border-radius:4px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;
+    transition:background .18s
+  }
+  .btn-up:hover{background:var(--yellow-dk)}
+  .btn-rm{
+    padding:10px 18px;background:transparent;color:#C53030;border:1px solid rgba(197,48,48,.25);
+    border-radius:4px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .18s
+  }
+  .btn-rm:hover{background:rgba(197,48,48,.06);border-color:#C53030}
+  .file-in{display:none}
+
+  .toast{
+    position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);
+    background:var(--navy);color:var(--white);padding:14px 24px;border-radius:6px;
+    font-size:13px;font-weight:500;box-shadow:0 10px 30px rgba(0,0,0,.25);
+    transition:transform .28s ease;z-index:100
+  }
+  .toast.on{transform:translateX(-50%) translateY(0)}
+
+  .notice{
+    background:rgba(245,192,0,.08);border:1px solid rgba(245,192,0,.25);
+    padding:18px 22px;border-radius:6px;margin-bottom:32px;display:flex;gap:14px;align-items:flex-start
+  }
+  .notice-ico{font-size:18px;line-height:1}
+  .notice-body{font-size:12.5px;color:var(--text);line-height:1.6}
+  .notice-body strong{font-weight:700;color:var(--navy)}
+
+  @media(max-width:680px){
+    .slot{grid-template-columns:1fr}
+    .page-h{font-size:26px}
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-wrap" id="login">
+  <form class="login-card" onsubmit="event.preventDefault();fazerLogin()">
+    <div class="login-logo">Max<span>pint</span> Tintas</div>
+    <div class="login-sub">Painel interno</div>
+
+    <div class="login-h">Acesso restrito</div>
+    <div class="login-p">Esta área é exclusiva para gestores e sócios da Maxpint. Informe a senha para gerenciar as fotos do site.</div>
+
+    <div class="login-field">
+      <label class="login-label" for="senha">Senha</label>
+      <input class="login-inp" id="senha" type="password" autocomplete="current-password" autofocus>
+    </div>
+
+    <button class="login-btn" type="submit">Entrar</button>
+    <div class="login-err" id="login-err">Senha incorreta. Tente novamente.</div>
+  </form>
+</div>
+
+<!-- PAINEL -->
+<div class="panel" id="panel">
+  <header>
+    <div class="container">
+      <div class="h-row">
+        <div>
+          <div class="h-logo">Max<span>pint</span> · Painel</div>
+          <div class="h-sub">Gestão de conteúdo do site</div>
+        </div>
+        <div class="h-actions">
+          <a href="index.html" class="h-btn" target="_blank">Ver site →</a>
+          <button class="h-btn danger" onclick="sair()">Sair</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="page-h">Fotos do site</div>
+      <div class="page-p">Faça upload das imagens que devem aparecer no site público. Use fotos de alta qualidade (mínimo 1200px de largura).</div>
+
+      <div class="notice">
+        <div class="notice-ico">ℹ️</div>
+        <div class="notice-body">
+          <strong>Armazenamento local:</strong> nesta versão, as fotos ficam salvas no navegador deste dispositivo. Para que visitantes vejam as fotos publicamente, é preciso conectar um servidor de imagens (Supabase, Cloudinary). Posso configurar isso quando você quiser.
+        </div>
+      </div>
+
+      <!-- Hero -->
+      <div class="slot">
+        <div class="slot-preview empty" id="prev-hero"></div>
+        <div class="slot-info">
+          <span class="slot-tag">Topo do site</span>
+          <div class="slot-title">Foto do Hero</div>
+          <div class="slot-desc">Imagem de fundo da primeira seção. Funciona melhor com ambientes amplos, fachadas ou texturas. Será exibida com sobreposição navy escuro.</div>
+          <div class="slot-actions">
+            <input type="file" accept="image/*" class="file-in" id="f-hero" onchange="up('hero',this)">
+            <button class="btn-up" onclick="document.getElementById('f-hero').click()">Selecionar foto</button>
+            <button class="btn-rm" onclick="rm('hero')">Remover</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 Produtos -->
+      <div class="slot">
+        <div class="slot-preview empty" id="prev-p1"></div>
+        <div class="slot-info">
+          <span class="slot-tag">Linhas · Card 1</span>
+          <div class="slot-title">Ambientes internos</div>
+          <div class="slot-desc">Foto que ilustra um ambiente residencial ou comercial interno bem pintado.</div>
+          <div class="slot-actions">
+            <input type="file" accept="image/*" class="file-in" id="f-p1" onchange="up('p1',this)">
+            <button class="btn-up" onclick="document.getElementById('f-p1').click()">Selecionar foto</button>
+            <button class="btn-rm" onclick="rm('p1')">Remover</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-preview empty" id="prev-p2"></div>
+        <div class="slot-info">
+          <span class="slot-tag">Linhas · Card 2</span>
+          <div class="slot-title">Áreas externas e fachadas</div>
+          <div class="slot-desc">Foto de fachada ou área externa que mostre o trabalho da Maxpint.</div>
+          <div class="slot-actions">
+            <input type="file" accept="image/*" class="file-in" id="f-p2" onchange="up('p2',this)">
+            <button class="btn-up" onclick="document.getElementById('f-p2').click()">Selecionar foto</button>
+            <button class="btn-rm" onclick="rm('p2')">Remover</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-preview empty" id="prev-p3"></div>
+        <div class="slot-info">
+          <span class="slot-tag">Linhas · Card 3</span>
+          <div class="slot-title">Obras e empreendimentos</div>
+          <div class="slot-desc">Foto de canteiro de obra ou empreendimento em fase de pintura.</div>
+          <div class="slot-actions">
+            <input type="file" accept="image/*" class="file-in" id="f-p3" onchange="up('p3',this)">
+            <button class="btn-up" onclick="document.getElementById('f-p3').click()">Selecionar foto</button>
+            <button class="btn-rm" onclick="rm('p3')">Remover</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-preview empty" id="prev-p4"></div>
+        <div class="slot-info">
+          <span class="slot-tag">Linhas · Card 4</span>
+          <div class="slot-title">Revenda e parceiros</div>
+          <div class="slot-desc">Foto de loja parceira, prateleira de produtos Maxpint ou atendimento no balcão.</div>
+          <div class="slot-actions">
+            <input type="file" accept="image/*" class="file-in" id="f-p4" onchange="up('p4',this)">
+            <button class="btn-up" onclick="document.getElementById('f-p4').click()">Selecionar foto</button>
+            <button class="btn-rm" onclick="rm('p4')">Remover</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast">Foto salva</div>
+
+<script>
+  /* Senha padrão — pode ser trocada depois.
+     Hash simples só para não deixar em texto puro no fonte. */
+  var SENHA_HASH = 'maxpint2026'; // troque aqui pela senha definitiva
+
+  function fazerLogin(){
+    var s = document.getElementById('senha').value;
+    if(s === SENHA_HASH){
+      sessionStorage.setItem('mpx_admin','1');
+      mostrarPainel();
+    } else {
+      document.getElementById('login-err').classList.add('on');
+    }
+  }
+  function sair(){
+    sessionStorage.removeItem('mpx_admin');
+    location.reload();
+  }
+  function mostrarPainel(){
+    document.getElementById('login').style.display='none';
+    document.getElementById('panel').classList.add('on');
+    carregarPreviews();
+  }
+
+  if(sessionStorage.getItem('mpx_admin')==='1'){ mostrarPainel(); }
+
+  function _photos(){ return JSON.parse(localStorage.getItem('mpx_site_photos')||'{}'); }
+  function _save(p){ localStorage.setItem('mpx_site_photos', JSON.stringify(p)); }
+
+  function carregarPreviews(){
+    var p = _photos();
+    ['hero','p1','p2','p3','p4'].forEach(function(k){
+      var el = document.getElementById('prev-'+k);
+      if(p[k]){ el.style.backgroundImage='url('+p[k]+')'; el.classList.remove('empty'); }
+      else{ el.style.backgroundImage=''; el.classList.add('empty'); }
+    });
+  }
+
+  function up(key, input){
+    var file = input.files[0];
+    if(!file) return;
+    if(file.size > 5*1024*1024){
+      toast('Arquivo grande demais. Use uma foto até 5 MB.', true);
+      input.value=''; return;
+    }
+    var r = new FileReader();
+    r.onload = function(e){
+      var p = _photos();
+      p[key] = e.target.result;
+      try{
+        _save(p);
+        carregarPreviews();
+        toast('Foto salva com sucesso');
+      }catch(err){
+        toast('Espaço local cheio. Reduza o tamanho da foto.', true);
+      }
+    };
+    r.readAsDataURL(file);
+    input.value='';
+  }
+
+  function rm(key){
+    var p = _photos();
+    delete p[key];
+    _save(p);
+    carregarPreviews();
+    toast('Foto removida');
+  }
+
+  var _t;
+  function toast(msg, err){
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.style.background = err ? '#C53030' : '#0C1E38';
+    t.classList.add('on');
+    clearTimeout(_t);
+    _t = setTimeout(function(){ t.classList.remove('on'); }, 2400);
+  }
+</script>
+</body>
+</html>

@@ -7,7 +7,7 @@
   <meta name="description" content="Soluções profissionais em tintas para lojistas, construtoras e incorporadoras. Qualidade, clareza técnica e acompanhamento responsável.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
   <style>
     /*
      * NEUROMARKETING APLICADO — PRINCÍPIOS ESTRUTURAIS
@@ -73,11 +73,12 @@
     .eyebrow.dark::before{background:var(--yellow)}
 
     /* Fluência cognitiva: tipografia com hierarquia forte */
-    .h1{font-size:clamp(36px,5vw,64px);font-weight:900;
-        letter-spacing:-.04em;line-height:1.05;color:var(--white)}
-    .h1 em{font-style:normal;color:var(--yellow)}
-    .h2{font-size:clamp(26px,3.2vw,40px);font-weight:800;
-        letter-spacing:-.035em;line-height:1.1;color:var(--text-dk)}
+    .h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(38px,5.2vw,68px);font-weight:600;
+        letter-spacing:-.035em;line-height:1.02;color:var(--white);font-variation-settings:"opsz" 144,"SOFT" 50}
+    .h1 em{font-style:italic;color:var(--yellow);font-weight:500}
+    .h2{font-family:'Fraunces',Georgia,serif;font-size:clamp(28px,3.4vw,44px);font-weight:600;
+        letter-spacing:-.025em;line-height:1.08;color:var(--text-dk);font-variation-settings:"opsz" 144,"SOFT" 50}
+    .h2 em{font-style:italic;color:var(--yellow);font-weight:500}
     .h2.light{color:var(--white)}
     .lead{font-size:16px;color:var(--text-md);line-height:1.78;max-width:500px}
     .lead.light{color:rgba(255,255,255,.5)}
@@ -196,6 +197,15 @@
       display:flex;align-items:center;padding-top:var(--nav-h);
       position:relative;overflow:hidden
     }
+    .hero-bg-img{
+      position:absolute;inset:0;background-size:cover;background-position:center;
+      opacity:0;transition:opacity 1.2s ease;z-index:0
+    }
+    .hero-bg-img.on{opacity:.35}
+    #hero::after{
+      content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+      background:linear-gradient(180deg,rgba(12,30,56,.55) 0%,rgba(12,30,56,.85) 60%,rgba(12,30,56,.95) 100%)
+    }
     .hero-stars{
       position:absolute;inset:0;
       background:
@@ -222,10 +232,12 @@
     .hero-eyebrow::before{content:'';width:36px;height:2px;background:var(--yellow)}
     .hero-eyebrow-t{font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--yellow)}
     .hero-h1{
-      font-size:clamp(36px,5.5vw,66px);font-weight:900;
-      color:var(--white);line-height:1.06;letter-spacing:-.04em;margin-bottom:22px
+      font-family:'Fraunces',Georgia,serif;
+      font-size:clamp(42px,6vw,72px);font-weight:600;
+      color:var(--white);line-height:1.0;letter-spacing:-.035em;margin-bottom:28px;
+      font-variation-settings:"opsz" 144,"SOFT" 50
     }
-    .hero-h1 em{font-style:normal;color:var(--yellow)}
+    .hero-h1 em{font-style:italic;color:var(--yellow);font-weight:500}
     .hero-body{
       font-size:17px;color:rgba(255,255,255,.48);
       line-height:1.75;max-width:520px;margin-bottom:20px
@@ -350,9 +362,20 @@
       border:1px solid var(--border);border-radius:4px;overflow:hidden
     }
     .pcard{
-      background:var(--white);padding:36px 28px;
-      position:relative;transition:background .22s;overflow:hidden
+      background:var(--white);padding:0;
+      position:relative;transition:background .22s;overflow:hidden;display:flex;flex-direction:column
     }
+    .pcard-img{
+      width:100%;aspect-ratio:4/3;background:var(--gray-bg);background-size:cover;background-position:center;
+      position:relative;transition:transform .5s ease
+    }
+    .pcard-img.empty::after{
+      content:'';position:absolute;inset:0;
+      background:linear-gradient(135deg,#0C1E38 0%,#152845 100%);
+      opacity:.04
+    }
+    .pcard:hover .pcard-img{transform:scale(1.04)}
+    .pcard-body{padding:30px 28px;display:flex;flex-direction:column;flex:1}
     .pcard:hover{background:var(--navy)}
     .pcard:hover .pcard-icon-bg{background:rgba(245,192,0,.12)}
     .pcard:hover .ptitle{color:var(--white)}
@@ -1128,6 +1151,7 @@
      "Decisões erradas têm custo" (implícito)
 ════════════════════════════════════════════ -->
 <section id="hero">
+  <div class="hero-bg-img" id="hero-bg-img"></div>
   <div class="hero-stars"></div>
   <div class="hero-grid"></div>
   <div class="hero-geo"></div>
@@ -1247,28 +1271,36 @@
     </div>
     <div class="pgrid fu d1">
       <div class="pcard">
-        <div class="pcard-icon-bg">🏠</div>
-        <div class="ptitle">Ambientes internos</div>
-        <div class="pdesc">Tintas para espaços residenciais e comerciais internos. Acabamento uniforme, alta lavabilidade e durabilidade comprovada em diferentes condições.</div>
-        <a href="#contato" class="plink">Ver indicação</a>
+        <div class="pcard-img empty" id="pcard-img-1"></div>
+        <div class="pcard-body">
+          <div class="ptitle">Ambientes internos</div>
+          <div class="pdesc">Tintas para espaços residenciais e comerciais internos. Acabamento uniforme, alta lavabilidade e durabilidade comprovada em diferentes condições.</div>
+          <a href="#contato" class="plink">Ver indicação</a>
+        </div>
       </div>
       <div class="pcard">
-        <div class="pcard-icon-bg">🏢</div>
-        <div class="ptitle">Áreas externas e fachadas</div>
-        <div class="pdesc">Formulações resistentes à exposição solar, chuva e variação térmica. Proteção real para fachadas e superfícies que enfrentam intempéries.</div>
-        <a href="#contato" class="plink">Ver indicação</a>
+        <div class="pcard-img empty" id="pcard-img-2"></div>
+        <div class="pcard-body">
+          <div class="ptitle">Áreas externas e fachadas</div>
+          <div class="pdesc">Formulações resistentes à exposição solar, chuva e variação térmica. Proteção real para fachadas e superfícies que enfrentam intempéries.</div>
+          <a href="#contato" class="plink">Ver indicação</a>
+        </div>
       </div>
       <div class="pcard">
-        <div class="pcard-icon-bg">🏗️</div>
-        <div class="ptitle">Obras e empreendimentos</div>
-        <div class="pdesc">Soluções para canteiros e empreendimentos com demanda contínua, padronização de lote e suporte técnico durante toda a aplicação.</div>
-        <a href="#contato" class="plink">Ver indicação</a>
+        <div class="pcard-img empty" id="pcard-img-3"></div>
+        <div class="pcard-body">
+          <div class="ptitle">Obras e empreendimentos</div>
+          <div class="pdesc">Soluções para canteiros e empreendimentos com demanda contínua, padronização de lote e suporte técnico durante toda a aplicação.</div>
+          <a href="#contato" class="plink">Ver indicação</a>
+        </div>
       </div>
       <div class="pcard">
-        <div class="pcard-icon-bg">🏪</div>
-        <div class="ptitle">Revenda e parceiros</div>
-        <div class="pdesc">Portfólio estruturado para lojistas, com apoio para apresentação técnica, treinamento e canal direto de suporte comercial.</div>
-        <a href="#contato" class="plink">Ver indicação</a>
+        <div class="pcard-img empty" id="pcard-img-4"></div>
+        <div class="pcard-body">
+          <div class="ptitle">Revenda e parceiros</div>
+          <div class="pdesc">Portfólio estruturado para lojistas, com apoio para apresentação técnica, treinamento e canal direto de suporte comercial.</div>
+          <a href="#contato" class="plink">Ver indicação</a>
+        </div>
       </div>
     </div>
   </div>
@@ -1911,7 +1943,11 @@
           <div class="logo-main">Max<span>pint</span> Tintas</div>
         </div>
         <div class="f-tag">Qualidade, orientação e confiança em cada aplicação.</div>
-        <div class="f-crm"><a href="crm.html" style="color:inherit;transition:color .18s">Acesso interno</a></div>
+        <div class="f-crm">
+          <a href="crm.html" style="color:inherit;transition:color .18s">CRM interno</a>
+          <span style="opacity:.3;margin:0 8px">·</span>
+          <a href="admin.html" style="color:inherit;transition:color .18s">Painel do gestor</a>
+        </div>
       </div>
       <div class="f-links">
         <a href="#linhas">Linhas</a>
@@ -1940,6 +1976,19 @@
     entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
   },{threshold:0.1});
   document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+
+  /* ── Site photos: carrega do localStorage (editável via /admin.html) ── */
+  (function(){
+    try{
+      var photos = JSON.parse(localStorage.getItem('mpx_site_photos')||'{}');
+      var hero = document.getElementById('hero-bg-img');
+      if(hero && photos.hero){ hero.style.backgroundImage='url('+photos.hero+')'; hero.classList.add('on'); }
+      for(var i=1;i<=4;i++){
+        var el = document.getElementById('pcard-img-'+i);
+        if(el && photos['p'+i]){ el.style.backgroundImage='url('+photos['p'+i]+')'; el.classList.remove('empty'); }
+      }
+    }catch(e){}
+  })();
 
   /* ── Escolha orientada ── */
   function selE(btn, key){
