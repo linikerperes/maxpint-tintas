@@ -1105,10 +1105,8 @@
         <div class="logo-sub">Premium · Soluções profissionais</div>
       </a>
       <div class="nav-menu">
-        <a href="#sobre">A marca</a>
         <a href="#linhas">Linhas</a>
-        <a href="#academia">Academia</a>
-        <a href="#parceiros">Parceiros</a>
+        <a href="#visualizador">VisuMax IA</a>
         <a href="#contato" class="nav-cta">Falar com a Maxpint</a>
       </div>
       <div class="hamburger" id="ham" onclick="toggleMenu()">
@@ -1118,11 +1116,8 @@
   </div>
 </nav>
 <div class="mob-menu" id="mob-menu">
-  <a href="#sobre" onclick="closeMenu()">A marca</a>
   <a href="#linhas" onclick="closeMenu()">Linhas de produto</a>
-  <a href="#escolha" onclick="closeMenu()">Escolha orientada</a>
-  <a href="#academia" onclick="closeMenu()">Academia Maxpint</a>
-  <a href="#parceiros" onclick="closeMenu()">Parceiros B2B</a>
+  <a href="#visualizador" onclick="closeMenu()">VisuMax IA</a>
   <a href="#contato" onclick="closeMenu()">Falar com a Maxpint →</a>
 </div>
 
@@ -1152,7 +1147,6 @@
         A Maxpint desenvolve soluções para parceiros comerciais, obras e revendas que buscam qualidade comprovada, clareza técnica e acompanhamento responsável em cada etapa.
       </p>
 
-      <!-- Prova social com especificidade — mais convincente que adjetivos -->
       <div class="hero-trust">
         <div class="hero-trust-item">
           <div class="hero-trust-num">+10</div>
@@ -1168,18 +1162,11 @@
           <div class="hero-trust-num">100%</div>
           <div class="hero-trust-label">Orientação técnica</div>
         </div>
-        <div class="hero-trust-sep"></div>
-        <div class="hero-trust-item">
-          <div class="hero-trust-num">4 etapas</div>
-          <div class="hero-trust-label">Pós-venda estruturado</div>
-        </div>
       </div>
 
-      <!-- 3 botões hierarquizados — Lei de Hick: decisão clara -->
       <div class="hero-actions">
-        <a href="#sobre" class="btn-cta">Conhecer a marca</a>
-        <a href="#linhas" class="btn-ghost">Ver linhas de produto</a>
-        <a href="#contato" class="btn-soft">Falar com a Maxpint →</a>
+        <a href="#linhas" class="btn-cta">Ver linhas de produto</a>
+        <a href="#contato" class="btn-ghost">Falar com a Maxpint →</a>
       </div>
     </div>
   </div>
@@ -1194,41 +1181,7 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════
-     BARRA DE PROVA SOCIAL
-     Neuro: Números concretos > afirmações vagas
-     Especificidade = credibilidade percebida
-════════════════════════════════════════════ -->
-<section id="prova-social">
-  <div class="container" style="padding:0">
-    <div class="prova-inner">
-      <div class="prova-item fu">
-        <div class="prova-num">3 estados</div>
-        <div class="prova-label">Cobertura de atuação</div>
-      </div>
-      <div class="prova-item fu d1">
-        <div class="prova-num">Linha Premium</div>
-        <div class="prova-label">Portfólio exclusivo</div>
-      </div>
-      <a href="#fichas" class="prova-item fu d2" style="text-decoration:none">
-        <div class="prova-num">Fichas técnicas</div>
-        <div class="prova-label">Documentação completa</div>
-      </a>
-      <div class="prova-item fu d3">
-        <div class="prova-num">Pós-venda ativo</div>
-        <div class="prova-label">Acompanhamento real</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════
-     SOBRE
-     Neuro: Identidade de ingroup +
-     3 pilares (chunking) + Autoridade
-════════════════════════════════════════════ -->
-<section id="sobre">
+<section id="sobre" style="display:none">
   <div class="container">
     <div class="sobre-grid">
       <div class="sobre-left">
@@ -1327,7 +1280,7 @@
      Neuro: Autoridade — documentação técnica eleva
      percepção de competência no processo de aprovação B2B
 ════════════════════════════════════════════ -->
-<section id="fichas">
+<section id="fichas" style="display:none">
   <div class="container">
     <div class="fichas-hdr">
       <div class="eyebrow fu">Fichas técnicas</div>
@@ -1411,7 +1364,7 @@
      Framing de perda > framing de ganho
      Ativa amígdala → maior memorização
 ════════════════════════════════════════════ -->
-<section id="perda">
+<section id="perda" style="display:none">
   <div class="container">
     <div class="perda-label fu">Por que a escolha certa importa</div>
     <h2 class="perda-titulo fu d1">
@@ -1449,7 +1402,7 @@
      Neuro: Sensação de controle + reciprocidade
      Comprometimento cognitivo antes da compra
 ════════════════════════════════════════════ -->
-<section id="calculadora">
+<section id="calculadora" style="display:none">
   <div class="container">
     <div class="calc-grid">
       <div class="calc-left">
@@ -1519,7 +1472,7 @@
      Neuro: Sensação de controle reduz ansiedade
      Guia o comprador sem decidir por ele
 ════════════════════════════════════════════ -->
-<section id="escolha">
+<section id="escolha" style="display:none">
   <div class="container">
     <div class="escolha-hdr fu">
       <div class="eyebrow">Escolha orientada</div>
@@ -1597,7 +1550,7 @@
      Neuro: Reciprocidade — dar antes de pedir
      Autoridade percebida pela qualidade do conteúdo
 ════════════════════════════════════════════ -->
-<section id="academia">
+<section id="academia" style="display:none">
   <div class="container">
     <div class="academia-hdr">
       <div class="eyebrow fu">Academia Maxpint</div>
@@ -1735,7 +1688,7 @@
      Comprometimento visível reduz ansiedade pós-compra
      Tempo específico = maior credibilidade
 ════════════════════════════════════════════ -->
-<section id="posvenda">
+<section id="posvenda" style="display:none">
   <div class="container">
     <div class="pv-hdr">
       <div class="eyebrow fu">Pós-venda responsável</div>
@@ -1777,7 +1730,7 @@
      Neuro: Identidade de grupo (ingroup bias)
      Falar direto com cada persona = reconhecimento
 ════════════════════════════════════════════ -->
-<section id="parceiros">
+<section id="parceiros" style="display:none">
   <div class="container">
     <div class="parc-hdr">
       <div class="eyebrow fu">Para parceiros B2B</div>
@@ -1811,7 +1764,7 @@
      se reconhece nos parceiros que já compraram.
      Especificidade de persona = identificação imediata
 ════════════════════════════════════════════ -->
-<section id="depoimentos">
+<section id="depoimentos" style="display:none">
   <div class="container">
     <div class="dep-hdr">
       <div class="eyebrow fu">Parceiros que confiam</div>
@@ -1961,12 +1914,8 @@
         <div class="f-crm"><a href="crm.html" style="color:inherit;transition:color .18s">Acesso interno</a></div>
       </div>
       <div class="f-links">
-        <a href="#sobre">A marca</a>
         <a href="#linhas">Linhas</a>
-        <a href="#fichas">Fichas técnicas</a>
-        <a href="#calculadora">Calculadora</a>
-        <a href="#academia">Academia</a>
-        <a href="#parceiros">Parceiros</a>
+        <a href="#visualizador">VisuMax IA</a>
         <a href="#contato">Contato</a>
       </div>
       <div class="f-copy">© 2026 Maxpint Tintas. Todos os direitos reservados.</div>
