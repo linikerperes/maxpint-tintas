@@ -254,6 +254,95 @@
         </div>
       </div>
 
+      <div style="margin:48px 0 24px">
+        <div class="page-h" style="font-size:26px">Galeria de trabalhos</div>
+        <div class="page-p">6 fotos que aparecem na seção "Trabalhos Maxpint" do site. A primeira ocupa um espaço maior — use a melhor foto nela.</div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-preview empty" id="prev-g1"></div>
+        <div class="slot-info">
+          <span class="slot-tag">Galeria · Foto principal</span>
+          <div class="slot-title">Foto destaque</div>
+          <div class="slot-desc">Foto maior da galeria. Use sua melhor imagem — projeto finalizado, obra entregue, ambiente bem fotografado.</div>
+          <div class="slot-actions">
+            <input type="file" accept="image/*" class="file-in" id="f-g1" onchange="up('g1',this)">
+            <button class="btn-up" onclick="document.getElementById('f-g1').click()">Selecionar foto</button>
+            <button class="btn-rm" onclick="rm('g1')">Remover</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-preview empty" id="prev-g2"></div>
+        <div class="slot-info">
+          <span class="slot-tag">Galeria · Foto 2</span>
+          <div class="slot-title">Trabalho 2</div>
+          <div class="slot-desc">Projeto, obra ou ambiente representativo.</div>
+          <div class="slot-actions">
+            <input type="file" accept="image/*" class="file-in" id="f-g2" onchange="up('g2',this)">
+            <button class="btn-up" onclick="document.getElementById('f-g2').click()">Selecionar foto</button>
+            <button class="btn-rm" onclick="rm('g2')">Remover</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-preview empty" id="prev-g3"></div>
+        <div class="slot-info">
+          <span class="slot-tag">Galeria · Foto 3</span>
+          <div class="slot-title">Trabalho 3</div>
+          <div class="slot-desc">Projeto, obra ou ambiente representativo.</div>
+          <div class="slot-actions">
+            <input type="file" accept="image/*" class="file-in" id="f-g3" onchange="up('g3',this)">
+            <button class="btn-up" onclick="document.getElementById('f-g3').click()">Selecionar foto</button>
+            <button class="btn-rm" onclick="rm('g3')">Remover</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-preview empty" id="prev-g4"></div>
+        <div class="slot-info">
+          <span class="slot-tag">Galeria · Foto 4</span>
+          <div class="slot-title">Trabalho 4</div>
+          <div class="slot-desc">Projeto, obra ou ambiente representativo.</div>
+          <div class="slot-actions">
+            <input type="file" accept="image/*" class="file-in" id="f-g4" onchange="up('g4',this)">
+            <button class="btn-up" onclick="document.getElementById('f-g4').click()">Selecionar foto</button>
+            <button class="btn-rm" onclick="rm('g4')">Remover</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-preview empty" id="prev-g5"></div>
+        <div class="slot-info">
+          <span class="slot-tag">Galeria · Foto 5</span>
+          <div class="slot-title">Trabalho 5</div>
+          <div class="slot-desc">Projeto, obra ou ambiente representativo.</div>
+          <div class="slot-actions">
+            <input type="file" accept="image/*" class="file-in" id="f-g5" onchange="up('g5',this)">
+            <button class="btn-up" onclick="document.getElementById('f-g5').click()">Selecionar foto</button>
+            <button class="btn-rm" onclick="rm('g5')">Remover</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-preview empty" id="prev-g6"></div>
+        <div class="slot-info">
+          <span class="slot-tag">Galeria · Foto 6</span>
+          <div class="slot-title">Trabalho 6</div>
+          <div class="slot-desc">Projeto, obra ou ambiente representativo.</div>
+          <div class="slot-actions">
+            <input type="file" accept="image/*" class="file-in" id="f-g6" onchange="up('g6',this)">
+            <button class="btn-up" onclick="document.getElementById('f-g6').click()">Selecionar foto</button>
+            <button class="btn-rm" onclick="rm('g6')">Remover</button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </main>
 </div>
@@ -291,7 +380,7 @@
 
   function carregarPreviews(){
     var p = _photos();
-    ['hero','p1','p2','p3','p4'].forEach(function(k){
+    ['hero','p1','p2','p3','p4','g1','g2','g3','g4','g5','g6'].forEach(function(k){
       var el = document.getElementById('prev-'+k);
       if(p[k]){ el.style.backgroundImage='url('+p[k]+')'; el.classList.remove('empty'); }
       else{ el.style.backgroundImage=''; el.classList.add('empty'); }

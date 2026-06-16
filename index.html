@@ -1085,7 +1085,7 @@
       .container{padding:0 24px}
       .nav-menu{display:none}
       .hamburger{display:flex}
-      #hero,#sobre,#linhas,#fichas,#escolha,#perda,#calculadora,#academia,#posvenda,#parceiros,#depoimentos,#contato{padding-top:80px;padding-bottom:80px}
+      #hero,#sobre,#linhas,#fichas,#escolha,#perda,#calculadora,#academia,#posvenda,#parceiros,#depoimentos,#contato,#galeria,#descobrir,#tendencias,#pets,#psicologia{padding-top:80px;padding-bottom:80px}
       #hero{padding-top:var(--nav-h)}
       .hero-content{padding:60px 0}
       .hero-h1{font-size:34px}
@@ -1106,6 +1106,152 @@
       .f-inner{flex-direction:column;align-items:flex-start;gap:20px}
       .sobre-grid{gap:40px}
       .pilar{margin:0 -24px;padding:18px 24px}
+    }
+    /* ═══ GALERIA ═══ */
+    #galeria{padding:90px 0;background:var(--white)}
+    .gal-hdr{margin-bottom:48px;max-width:680px}
+    .gal-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:240px;gap:14px}
+    .gal-grid > div:nth-child(1){grid-row:span 2;grid-column:span 1}
+    .gal-item{background:var(--gray-bg);background-size:cover;background-position:center;
+      position:relative;overflow:hidden;cursor:pointer;transition:transform .4s ease}
+    .gal-item:hover{transform:scale(1.02)}
+    .gal-item.empty{
+      background:linear-gradient(135deg,#F4F4F2 0%,#E5E7EB 100%);
+      display:flex;align-items:center;justify-content:center;font-size:11px;
+      letter-spacing:.18em;text-transform:uppercase;color:#9CA3AF;font-weight:600
+    }
+    .gal-item::after{
+      content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(12,30,56,.55) 100%);
+      opacity:0;transition:opacity .3s
+    }
+    .gal-item:not(.empty):hover::after{opacity:1}
+    .gal-item-tag{
+      position:absolute;bottom:18px;left:20px;color:#fff;font-size:11px;font-weight:700;
+      letter-spacing:.14em;text-transform:uppercase;z-index:1;opacity:0;transition:opacity .3s
+    }
+    .gal-item:not(.empty):hover .gal-item-tag{opacity:1}
+
+    /* ═══ DESCUBRA SUA TINTA ═══ */
+    #descobrir{padding:110px 0;background:var(--navy);position:relative;overflow:hidden}
+    #descobrir::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse 700px 500px at 20% 30%,rgba(245,192,0,.04) 0%,transparent 60%)
+    }
+    .desc-wrap{position:relative;z-index:1;max-width:780px;margin:0 auto;text-align:center}
+    .desc-q{
+      font-family:'Fraunces',serif;font-size:14px;font-weight:600;letter-spacing:.15em;
+      text-transform:uppercase;color:var(--yellow);margin-bottom:24px
+    }
+    .desc-step{display:none}
+    .desc-step.on{display:block;animation:descIn .5s ease}
+    @keyframes descIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    .desc-h{
+      font-family:'Fraunces',serif;font-size:clamp(26px,3.5vw,42px);font-weight:600;
+      letter-spacing:-.025em;line-height:1.1;color:var(--white);margin-bottom:42px
+    }
+    .desc-opts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:560px;margin:0 auto 32px}
+    .desc-opt{
+      padding:24px 22px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);
+      border-radius:6px;color:var(--white);font-size:14px;font-weight:500;cursor:pointer;
+      transition:all .22s;text-align:left;font-family:inherit
+    }
+    .desc-opt:hover{background:rgba(245,192,0,.05);border-color:rgba(245,192,0,.35)}
+    .desc-opt-ico{font-size:24px;margin-bottom:10px;display:block}
+    .desc-progress{display:flex;gap:6px;justify-content:center;margin-bottom:32px}
+    .desc-dot{width:24px;height:3px;background:rgba(255,255,255,.1);border-radius:2px;transition:background .3s}
+    .desc-dot.act{background:var(--yellow)}
+    .desc-result{display:none;text-align:left;background:rgba(255,255,255,.03);
+      border:1px solid rgba(245,192,0,.2);padding:36px 32px;border-radius:8px;margin-top:8px}
+    .desc-result.on{display:block;animation:descIn .5s ease}
+    .desc-result-tag{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--yellow);margin-bottom:14px}
+    .desc-result-h{font-family:'Fraunces',serif;font-size:28px;font-weight:600;color:#fff;letter-spacing:-.02em;margin-bottom:14px;line-height:1.15}
+    .desc-result-p{font-size:14px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:22px}
+    .desc-result-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+    .desc-result-spec{background:rgba(255,255,255,.03);padding:14px 16px;border-radius:4px;border:1px solid rgba(255,255,255,.05)}
+    .desc-result-spec-k{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:6px;font-weight:700}
+    .desc-result-spec-v{font-size:13px;color:#fff;font-weight:600}
+    .desc-result-cta{display:inline-flex;align-items:center;gap:10px;background:var(--yellow);color:var(--navy);
+      padding:14px 26px;border-radius:6px;font-size:13px;font-weight:700;letter-spacing:.06em;text-decoration:none;
+      transition:background .22s}
+    .desc-result-cta:hover{background:var(--yellow-2)}
+    .desc-restart{background:none;border:none;color:rgba(255,255,255,.4);font-size:12px;cursor:pointer;
+      margin-top:24px;font-family:inherit;text-decoration:underline;letter-spacing:.02em}
+    .desc-restart:hover{color:var(--yellow)}
+
+    /* ═══ TENDÊNCIAS 2026 ═══ */
+    #tendencias{padding:110px 0;background:var(--gray-bg)}
+    .trend-hdr{text-align:center;max-width:720px;margin:0 auto 56px}
+    .trend-coy{
+      display:grid;grid-template-columns:1fr 1.6fr;gap:0;
+      background:var(--white);overflow:hidden;border-radius:8px;margin-bottom:48px;
+      box-shadow:0 30px 80px rgba(12,30,56,.06)
+    }
+    .trend-coy-sw{background:#FAFBF8;min-height:380px;position:relative;display:flex;align-items:center;justify-content:center}
+    .trend-coy-sw::after{content:'';position:absolute;inset:30px;border:1px solid rgba(12,30,56,.06)}
+    .trend-coy-sw-inner{position:relative;z-index:1;text-align:center;padding:40px}
+    .trend-coy-hex{font-size:12px;letter-spacing:.2em;color:rgba(12,30,56,.35);font-family:monospace;font-weight:600;margin-top:18px}
+    .trend-coy-body{padding:52px 48px;display:flex;flex-direction:column;justify-content:center}
+    .trend-coy-tag{font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--yellow-dk);margin-bottom:14px}
+    .trend-coy-name{font-family:'Fraunces',serif;font-size:42px;font-weight:600;letter-spacing:-.025em;color:var(--navy);margin-bottom:8px;line-height:1.05}
+    .trend-coy-sub{font-family:'Fraunces',serif;font-style:italic;font-size:18px;color:var(--text-md);margin-bottom:22px}
+    .trend-coy-p{font-size:14px;color:var(--text-md);line-height:1.75;margin-bottom:26px}
+    .trend-coy-src{font-size:11px;color:#9CA3AF;letter-spacing:.04em}
+    .trend-palette{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+    .trend-c{background:var(--white);border-radius:6px;overflow:hidden;transition:transform .3s}
+    .trend-c:hover{transform:translateY(-4px)}
+    .trend-c-sw{aspect-ratio:1/1;display:flex;align-items:flex-end;padding:14px;color:#fff;font-size:10px;letter-spacing:.1em;font-family:monospace}
+    .trend-c-b{padding:16px 14px}
+    .trend-c-name{font-family:'Fraunces',serif;font-size:15px;font-weight:600;color:var(--navy);margin-bottom:3px;letter-spacing:-.01em}
+    .trend-c-mood{font-size:11px;color:var(--text-md);letter-spacing:.02em}
+
+    /* ═══ CORES PARA PETS ═══ */
+    #pets{padding:110px 0;background:var(--white);position:relative;overflow:hidden}
+    .pets-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+    .pets-h{font-family:'Fraunces',serif;font-size:clamp(28px,3.6vw,44px);font-weight:600;letter-spacing:-.025em;
+      line-height:1.08;color:var(--navy);margin-bottom:18px}
+    .pets-h em{font-style:italic;color:var(--yellow-dk)}
+    .pets-p{font-size:15px;color:var(--text-md);line-height:1.75;margin-bottom:28px}
+    .pets-feat{display:flex;flex-direction:column;gap:14px}
+    .pets-f{display:flex;gap:14px;align-items:flex-start}
+    .pets-f-ico{width:38px;height:38px;background:rgba(245,192,0,.1);border-radius:50%;
+      display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+    .pets-f-t{font-weight:700;color:var(--navy);font-size:14px;margin-bottom:3px}
+    .pets-f-d{font-size:13px;color:var(--text-md);line-height:1.6}
+    .pets-palette{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .pets-c{background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:all .22s}
+    .pets-c:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(12,30,56,.08);border-color:rgba(245,192,0,.3)}
+    .pets-c-sw{aspect-ratio:5/3}
+    .pets-c-b{padding:16px 18px}
+    .pets-c-name{font-family:'Fraunces',serif;font-size:16px;font-weight:600;color:var(--navy);margin-bottom:3px}
+    .pets-c-why{font-size:12px;color:var(--text-md);line-height:1.55}
+
+    /* ═══ PSICOLOGIA DAS CORES ═══ */
+    #psicologia{padding:110px 0;background:var(--navy-mid);color:#fff;position:relative;overflow:hidden}
+    #psicologia::before{content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse 600px 400px at 80% 20%,rgba(245,192,0,.04) 0%,transparent 65%)}
+    .psi-hdr{position:relative;z-index:1;text-align:center;max-width:680px;margin:0 auto 56px}
+    .psi-h2{color:#fff !important}
+    .psi-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .psi-card{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:8px;
+      overflow:hidden;transition:all .25s}
+    .psi-card:hover{background:rgba(255,255,255,.04);border-color:rgba(245,192,0,.25);transform:translateY(-4px)}
+    .psi-bar{height:78px}
+    .psi-b{padding:24px 24px 26px}
+    .psi-tag{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--yellow);margin-bottom:10px}
+    .psi-name{font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:#fff;margin-bottom:10px;letter-spacing:-.01em}
+    .psi-emo{font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:rgba(255,255,255,.55);margin-bottom:14px}
+    .psi-p{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:16px}
+    .psi-use{font-size:11px;color:var(--yellow);font-weight:600;letter-spacing:.06em;padding-top:14px;border-top:1px solid rgba(255,255,255,.06)}
+
+    @media(max-width:880px){
+      .gal-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:200px}
+      .gal-grid > div:nth-child(1){grid-row:span 1}
+      .trend-coy{grid-template-columns:1fr}
+      .trend-coy-sw{min-height:280px}
+      .trend-palette{grid-template-columns:repeat(3,1fr)}
+      .pets-grid{grid-template-columns:1fr;gap:48px}
+      .psi-grid{grid-template-columns:1fr}
+      .desc-opts{grid-template-columns:1fr}
     }
     @media(max-width:480px){
       .steps{grid-template-columns:1fr}
@@ -1129,6 +1275,8 @@
       </a>
       <div class="nav-menu">
         <a href="#linhas">Linhas</a>
+        <a href="#descobrir">Diagnóstico</a>
+        <a href="#tendencias">Tendências</a>
         <a href="#visualizador">VisuMax IA</a>
         <a href="#contato" class="nav-cta">Falar com a Maxpint</a>
       </div>
@@ -1140,6 +1288,11 @@
 </nav>
 <div class="mob-menu" id="mob-menu">
   <a href="#linhas" onclick="closeMenu()">Linhas de produto</a>
+  <a href="#descobrir" onclick="closeMenu()">Descubra sua tinta</a>
+  <a href="#tendencias" onclick="closeMenu()">Tendências 2026</a>
+  <a href="#pets" onclick="closeMenu()">Cores para pets</a>
+  <a href="#psicologia" onclick="closeMenu()">Psicologia das cores</a>
+  <a href="#calculadora" onclick="closeMenu()">Calculadora</a>
   <a href="#visualizador" onclick="closeMenu()">VisuMax IA</a>
   <a href="#contato" onclick="closeMenu()">Falar com a Maxpint →</a>
 </div>
@@ -1201,6 +1354,28 @@
       <path d="M0,40 Q360,0 720,40 Q1080,80 1440,40 L1440,80 L0,80 Z" fill="#F5C000" opacity="0.06"/>
       <path d="M0,55 Q360,15 720,55 Q1080,90 1440,55" stroke="#F5C000" stroke-width="1.5" fill="none" opacity="0.2"/>
     </svg>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     GALERIA EDITÁVEL
+     Fotos reais gerenciadas pelo painel /admin.html
+════════════════════════════════════════════ -->
+<section id="galeria">
+  <div class="container">
+    <div class="gal-hdr fu">
+      <div class="eyebrow">Trabalhos Maxpint</div>
+      <h2 class="h2" style="margin-top:14px">Projetos e parceiros<br>em todo o Brasil.</h2>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-item empty" id="gal-1">Foto 01</div>
+      <div class="gal-item empty" id="gal-2">Foto 02</div>
+      <div class="gal-item empty" id="gal-3">Foto 03</div>
+      <div class="gal-item empty" id="gal-4">Foto 04</div>
+      <div class="gal-item empty" id="gal-5">Foto 05</div>
+      <div class="gal-item empty" id="gal-6">Foto 06</div>
+    </div>
   </div>
 </section>
 
@@ -1300,6 +1475,276 @@
           <div class="ptitle">Revenda e parceiros</div>
           <div class="pdesc">Portfólio estruturado para lojistas, com apoio para apresentação técnica, treinamento e canal direto de suporte comercial.</div>
           <a href="#contato" class="plink">Ver indicação</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     DESCUBRA SUA TINTA — diagnóstico estilo Suvinil
+════════════════════════════════════════════ -->
+<section id="descobrir">
+  <div class="container">
+    <div class="desc-wrap">
+      <div class="desc-q fu">Diagnóstico em 30 segundos</div>
+      <div class="desc-progress fu d1" id="desc-progress">
+        <div class="desc-dot act"></div><div class="desc-dot"></div><div class="desc-dot"></div><div class="desc-dot"></div>
+      </div>
+
+      <div class="desc-step on" data-step="1">
+        <h2 class="desc-h">Onde você vai pintar?</h2>
+        <div class="desc-opts">
+          <button class="desc-opt" onclick="descNext('amb','interno')"><span class="desc-opt-ico">🛋️</span>Ambiente interno<br><small style="opacity:.5;font-weight:400">Sala, quarto, cozinha</small></button>
+          <button class="desc-opt" onclick="descNext('amb','externo')"><span class="desc-opt-ico">🏢</span>Área externa<br><small style="opacity:.5;font-weight:400">Fachada, muro, garagem</small></button>
+          <button class="desc-opt" onclick="descNext('amb','obra')"><span class="desc-opt-ico">🏗️</span>Obra ou empreendimento<br><small style="opacity:.5;font-weight:400">Canteiro ativo, múltiplas unidades</small></button>
+          <button class="desc-opt" onclick="descNext('amb','revenda')"><span class="desc-opt-ico">🏪</span>Revenda e estoque<br><small style="opacity:.5;font-weight:400">Lojista, parceiro comercial</small></button>
+        </div>
+      </div>
+
+      <div class="desc-step" data-step="2">
+        <h2 class="desc-h">Qual a condição da superfície?</h2>
+        <div class="desc-opts">
+          <button class="desc-opt" onclick="descNext('sup','lisa')"><span class="desc-opt-ico">✨</span>Lisa e regular<br><small style="opacity:.5;font-weight:400">Alvenaria nova, drywall</small></button>
+          <button class="desc-opt" onclick="descNext('sup','porosa')"><span class="desc-opt-ico">🧱</span>Porosa ou texturizada<br><small style="opacity:.5;font-weight:400">Reboco grosso, textura</small></button>
+          <button class="desc-opt" onclick="descNext('sup','umida')"><span class="desc-opt-ico">💧</span>Com umidade ou desgaste<br><small style="opacity:.5;font-weight:400">Manchas, descascamento</small></button>
+          <button class="desc-opt" onclick="descNext('sup','pintada')"><span class="desc-opt-ico">🎨</span>Já pintada anteriormente<br><small style="opacity:.5;font-weight:400">Repintura sobre cor existente</small></button>
+        </div>
+      </div>
+
+      <div class="desc-step" data-step="3">
+        <h2 class="desc-h">Tem crianças ou pets em casa?</h2>
+        <div class="desc-opts">
+          <button class="desc-opt" onclick="descNext('pet','sim')"><span class="desc-opt-ico">🐾</span>Sim<br><small style="opacity:.5;font-weight:400">Priorizar lavabilidade e baixo VOC</small></button>
+          <button class="desc-opt" onclick="descNext('pet','nao')"><span class="desc-opt-ico">🏠</span>Não<br><small style="opacity:.5;font-weight:400">Sem restrição específica</small></button>
+        </div>
+      </div>
+
+      <div class="desc-step" data-step="4">
+        <h2 class="desc-h">Que acabamento você prefere?</h2>
+        <div class="desc-opts">
+          <button class="desc-opt" onclick="descFinish('fosco')"><span class="desc-opt-ico">🌫️</span>Fosco aveludado<br><small style="opacity:.5;font-weight:400">Visual sóbrio, esconde imperfeições</small></button>
+          <button class="desc-opt" onclick="descFinish('acetinado')"><span class="desc-opt-ico">💎</span>Acetinado<br><small style="opacity:.5;font-weight:400">Brilho leve, fácil de limpar</small></button>
+          <button class="desc-opt" onclick="descFinish('semibrilho')"><span class="desc-opt-ico">✨</span>Semibrilho<br><small style="opacity:.5;font-weight:400">Alta durabilidade, áreas úmidas</small></button>
+          <button class="desc-opt" onclick="descFinish('brilhante')"><span class="desc-opt-ico">🪞</span>Brilhante<br><small style="opacity:.5;font-weight:400">Máximo brilho, destaque visual</small></button>
+        </div>
+      </div>
+
+      <div class="desc-result" id="desc-result">
+        <div class="desc-result-tag">✔ Indicação Maxpint</div>
+        <div class="desc-result-h" id="desc-result-h">—</div>
+        <div class="desc-result-p" id="desc-result-p">—</div>
+        <div class="desc-result-specs" id="desc-result-specs"></div>
+        <a class="desc-result-cta" id="desc-result-cta" href="https://wa.me/5500000000000" target="_blank" rel="noopener">Falar com um especialista →</a>
+        <br><button class="desc-restart" onclick="descReset()">Refazer diagnóstico</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     TENDÊNCIAS 2026 — cor do ano + paleta
+     Baseado em pesquisa Pantone Cloud Dancer + paletas de mercado
+════════════════════════════════════════════ -->
+<section id="tendencias">
+  <div class="container">
+    <div class="trend-hdr fu">
+      <div class="eyebrow dark">Tendências 2026</div>
+      <h2 class="h2" style="margin-top:14px">A paleta que vai dominar<br><em>o próximo ano.</em></h2>
+      <p class="lead" style="margin:20px auto 0;text-align:center">Pesquisa de mercado consolidada das principais marcas globais e instituições de cor. Use como referência para projetos e especificações.</p>
+    </div>
+
+    <div class="trend-coy fu d1">
+      <div class="trend-coy-sw" style="background:#F5F2EC">
+        <div class="trend-coy-sw-inner">
+          <div style="width:140px;height:140px;background:#F5F2EC;border-radius:50%;margin:0 auto;box-shadow:inset 0 0 60px rgba(12,30,56,.04)"></div>
+          <div class="trend-coy-hex">#F5F2EC</div>
+        </div>
+      </div>
+      <div class="trend-coy-body">
+        <div class="trend-coy-tag">Cor do ano · Pantone 2026</div>
+        <div class="trend-coy-name">Cloud Dancer</div>
+        <div class="trend-coy-sub">Branco etéreo · silêncio visual</div>
+        <p class="trend-coy-p">Um branco quase-bege que evoca calma, leveza e desprendimento. A tendência reflete um momento cultural de busca por bem-estar emocional, conexão com a natureza e ambientes que acolhem em vez de estimular. Funciona como base neutra que valoriza texturas e materiais naturais.</p>
+        <div class="trend-coy-src">Fonte: Pantone Color Institute · 2026</div>
+      </div>
+    </div>
+
+    <div class="trend-palette fu d2">
+      <div class="trend-c">
+        <div class="trend-c-sw" style="background:#3F6B5A">#3F6B5A</div>
+        <div class="trend-c-b"><div class="trend-c-name">Verde Musgo</div><div class="trend-c-mood">Natureza · serenidade</div></div>
+      </div>
+      <div class="trend-c">
+        <div class="trend-c-sw" style="background:#7A4E3A">#7A4E3A</div>
+        <div class="trend-c-b"><div class="trend-c-name">Mocha</div><div class="trend-c-mood">Acolhimento · sofisticação</div></div>
+      </div>
+      <div class="trend-c">
+        <div class="trend-c-sw" style="background:#B66D4C">#B66D4C</div>
+        <div class="trend-c-b"><div class="trend-c-name">Terracota</div><div class="trend-c-mood">Energia · interação social</div></div>
+      </div>
+      <div class="trend-c">
+        <div class="trend-c-sw" style="background:#1F3A4D">#1F3A4D</div>
+        <div class="trend-c-b"><div class="trend-c-name">Azul Profundo</div><div class="trend-c-mood">Foco · contemplação</div></div>
+      </div>
+      <div class="trend-c">
+        <div class="trend-c-sw" style="background:#D4B896;color:#5C4A36">#D4B896</div>
+        <div class="trend-c-b"><div class="trend-c-name">Areia</div><div class="trend-c-mood">Neutralidade · base</div></div>
+      </div>
+      <div class="trend-c">
+        <div class="trend-c-sw" style="background:#2B7A78">#2B7A78</div>
+        <div class="trend-c-b"><div class="trend-c-name">Transformative Teal</div><div class="trend-c-mood">Tecnologia · bem-estar</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     CORES PARA PETS
+     Pesquisa: ambientes pet-friendly = VOC-free,
+     laváveis e tons médios que camuflam sujeira
+════════════════════════════════════════════ -->
+<section id="pets">
+  <div class="container">
+    <div class="pets-grid">
+      <div class="fu">
+        <div class="eyebrow">Lar com pets</div>
+        <h2 class="pets-h" style="margin-top:14px">Cores que <em>respeitam</em><br>quem mora com você.</h2>
+        <p class="pets-p">Lares com cachorros e gatos exigem tintas pensadas além da estética. Baixo VOC para a saúde respiratória dos pets, alta lavabilidade para o dia a dia e tons que disfarçam marcas naturais da convivência.</p>
+        <div class="pets-feat">
+          <div class="pets-f">
+            <div class="pets-f-ico">🌬️</div>
+            <div>
+              <div class="pets-f-t">Baixo VOC, sem odor agressivo</div>
+              <div class="pets-f-d">Compostos voláteis em tintas comuns podem causar irritação respiratória em pets. As linhas Maxpint à base aquosa são desenvolvidas com VOC reduzido.</div>
+            </div>
+          </div>
+          <div class="pets-f">
+            <div class="pets-f-ico">🧽</div>
+            <div>
+              <div class="pets-f-t">Alta lavabilidade</div>
+              <div class="pets-f-d">Pêlos, patas com terra, salivação na parede — tudo isso é rotina. Tintas com lavabilidade reforçada permitem limpeza sem comprometer o acabamento.</div>
+            </div>
+          </div>
+          <div class="pets-f">
+            <div class="pets-f-ico">🎨</div>
+            <div>
+              <div class="pets-f-t">Tons que camuflam o dia a dia</div>
+              <div class="pets-f-d">Arquitetos recomendam tons médios neutros — cinza quente, fendi, caramelo — para reduzir a percepção de marcas entre limpezas.</div>
+            </div>
+          </div>
+          <div class="pets-f">
+            <div class="pets-f-ico">😌</div>
+            <div>
+              <div class="pets-f-t">Paleta calma para o bem-estar animal</div>
+              <div class="pets-f-d">Tons suaves e azuis claros criam atmosfera tranquila, ajudando os animais a se sentirem relaxados no ambiente.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pets-palette fu d2">
+        <div class="pets-c">
+          <div class="pets-c-sw" style="background:#A89888"></div>
+          <div class="pets-c-b"><div class="pets-c-name">Cinza Quente</div><div class="pets-c-why">Disfarça pêlos claros, fácil limpeza</div></div>
+        </div>
+        <div class="pets-c">
+          <div class="pets-c-sw" style="background:#8B7355"></div>
+          <div class="pets-c-b"><div class="pets-c-name">Fendi</div><div class="pets-c-why">Camufla terra, ideal para entradas</div></div>
+        </div>
+        <div class="pets-c">
+          <div class="pets-c-sw" style="background:#B89B7E"></div>
+          <div class="pets-c-b"><div class="pets-c-name">Caramelo</div><div class="pets-c-why">Acolhedor, neutraliza pêlos escuros</div></div>
+        </div>
+        <div class="pets-c">
+          <div class="pets-c-sw" style="background:#C5D1D8"></div>
+          <div class="pets-c-b"><div class="pets-c-name">Azul Sereno</div><div class="pets-c-why">Acalma pets ansiosos, áreas de descanso</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     PSICOLOGIA DAS CORES
+     Como cada cor afeta emoção e comportamento
+════════════════════════════════════════════ -->
+<section id="psicologia">
+  <div class="psi-hdr fu">
+    <div class="eyebrow">Psicologia das cores</div>
+    <h2 class="h2 psi-h2" style="margin-top:14px">A cor certa muda<br><em>o que se sente no ambiente.</em></h2>
+    <p class="lead" style="color:rgba(255,255,255,.5);margin:18px auto 0;text-align:center">Neuroarquitetura aplicada — o que cada cor desperta no corpo e na mente, e onde usá-la com intenção.</p>
+  </div>
+
+  <div class="container">
+    <div class="psi-grid">
+      <div class="psi-card fu">
+        <div class="psi-bar" style="background:#1F3A4D"></div>
+        <div class="psi-b">
+          <div class="psi-tag">Azul profundo</div>
+          <div class="psi-name">Tranquilidade</div>
+          <div class="psi-emo">Desacelera o ritmo cardíaco</div>
+          <p class="psi-p">Tons frios induzem estados de calma profunda. Estimulam a concentração, reduzem ansiedade e ampliam visualmente o espaço.</p>
+          <div class="psi-use">→ Quartos, home offices, áreas de leitura</div>
+        </div>
+      </div>
+
+      <div class="psi-card fu d1">
+        <div class="psi-bar" style="background:#B66D4C"></div>
+        <div class="psi-b">
+          <div class="psi-tag">Terracota</div>
+          <div class="psi-name">Conexão</div>
+          <div class="psi-emo">Estimula interação social</div>
+          <p class="psi-p">Cores quentes ativam áreas cerebrais ligadas ao convívio. Aumentam apetite, conversas mais longas e a percepção de hospitalidade.</p>
+          <div class="psi-use">→ Sala de jantar, cozinha, recepções</div>
+        </div>
+      </div>
+
+      <div class="psi-card fu d2">
+        <div class="psi-bar" style="background:#3F6B5A"></div>
+        <div class="psi-b">
+          <div class="psi-tag">Verde musgo</div>
+          <div class="psi-name">Equilíbrio</div>
+          <div class="psi-emo">Reduz fadiga visual</div>
+          <p class="psi-p">A cor mais fácil para o olho humano processar. Reduz cortisol, conecta com a natureza e promove sensação de segurança.</p>
+          <div class="psi-use">→ Salas de espera, escritórios longos</div>
+        </div>
+      </div>
+
+      <div class="psi-card fu">
+        <div class="psi-bar" style="background:#F5C000"></div>
+        <div class="psi-b">
+          <div class="psi-tag">Amarelo</div>
+          <div class="psi-name">Otimismo</div>
+          <div class="psi-emo">Aumenta serotonina</div>
+          <p class="psi-p">Estimula alegria, criatividade e abertura. Em excesso, gera agitação — use em detalhes, paredes de destaque ou ambientes infantis.</p>
+          <div class="psi-use">→ Áreas criativas, cozinhas, brinquedotecas</div>
+        </div>
+      </div>
+
+      <div class="psi-card fu d1">
+        <div class="psi-bar" style="background:#A89888"></div>
+        <div class="psi-b">
+          <div class="psi-tag">Neutros quentes</div>
+          <div class="psi-name">Acolhimento</div>
+          <div class="psi-emo">Sensação de lar</div>
+          <p class="psi-p">Bege, areia e taupe são "abraços visuais". Funcionam como base que valoriza texturas, móveis e arte sem competir por atenção.</p>
+          <div class="psi-use">→ Salas, corredores, espaços compartilhados</div>
+        </div>
+      </div>
+
+      <div class="psi-card fu d2">
+        <div class="psi-bar" style="background:#F5F2EC"></div>
+        <div class="psi-b">
+          <div class="psi-tag">Branco etéreo</div>
+          <div class="psi-name">Clareza</div>
+          <div class="psi-emo">Silêncio visual</div>
+          <p class="psi-p">Reduz estímulos, amplia a percepção espacial e estabelece atmosfera contemplativa. Tendência forte para 2026 segundo a Pantone.</p>
+          <div class="psi-use">→ Galerias, ateliês, ambientes minimalistas</div>
         </div>
       </div>
     </div>
@@ -1434,7 +1879,7 @@
      Neuro: Sensação de controle + reciprocidade
      Comprometimento cognitivo antes da compra
 ════════════════════════════════════════════ -->
-<section id="calculadora" style="display:none">
+<section id="calculadora">
   <div class="container">
     <div class="calc-grid">
       <div class="calc-left">
@@ -1951,6 +2396,11 @@
       </div>
       <div class="f-links">
         <a href="#linhas">Linhas</a>
+        <a href="#descobrir">Descubra sua tinta</a>
+        <a href="#tendencias">Tendências 2026</a>
+        <a href="#pets">Cores para pets</a>
+        <a href="#psicologia">Psicologia das cores</a>
+        <a href="#calculadora">Calculadora</a>
         <a href="#visualizador">VisuMax IA</a>
         <a href="#contato">Contato</a>
       </div>
@@ -1987,8 +2437,58 @@
         var el = document.getElementById('pcard-img-'+i);
         if(el && photos['p'+i]){ el.style.backgroundImage='url('+photos['p'+i]+')'; el.classList.remove('empty'); }
       }
+      for(var g=1;g<=6;g++){
+        var ge = document.getElementById('gal-'+g);
+        if(ge && photos['g'+g]){ ge.style.backgroundImage='url('+photos['g'+g]+')'; ge.classList.remove('empty'); ge.textContent=''; }
+      }
     }catch(e){}
   })();
+
+  /* ── Diagnóstico: Descubra sua tinta ── */
+  var descState = {};
+  var descStep = 1;
+  function descNext(key, val){
+    descState[key] = val;
+    descStep++;
+    document.querySelectorAll('.desc-step').forEach(function(s){s.classList.remove('on')});
+    var next = document.querySelector('[data-step="'+descStep+'"]');
+    if(next) next.classList.add('on');
+    var dots = document.querySelectorAll('#desc-progress .desc-dot');
+    dots.forEach(function(d,i){ d.classList.toggle('act', i < descStep); });
+  }
+  var descProdutos = {
+    interno: {n:'Maxpint Interior Premium', desc:'Tinta látex acrílica de alto rendimento desenvolvida para ambientes internos. Cobertura uniforme e alta lavabilidade — ideal para residências, escritórios e áreas comerciais.', rend:'10–12 m²/L', dem:'2 demãos', sec:'2 h (toque)'},
+    externo: {n:'Maxpint Exterior Protect', desc:'Tinta acrílica de alta resistência para fachadas e áreas expostas. Proteção UV reforçada, impermeabilizante e resistente a variação térmica.', rend:'8–10 m²/L', dem:'2–3 demãos', sec:'4 h (toque)'},
+    obra: {n:'Maxpint Obra Total', desc:'Solução desenvolvida para obras e empreendimentos. Fornecimento padronizado por lote com rastreabilidade — sem variação de tonalidade entre etapas.', rend:'9–11 m²/L', dem:'2 demãos', sec:'2 h (toque)'},
+    revenda: {n:'Maxpint Base Profissional', desc:'Portfólio estruturado para lojistas e revendedores. Produtos de alto giro com material técnico incluso para apresentação na loja.', rend:'10–13 m²/L', dem:'2 demãos', sec:'2 h (toque)'}
+  };
+  function descFinish(acab){
+    descState.acab = acab;
+    document.querySelectorAll('.desc-step').forEach(function(s){s.classList.remove('on')});
+    var dots = document.querySelectorAll('#desc-progress .desc-dot');
+    dots.forEach(function(d){d.classList.add('act')});
+    var p = descProdutos[descState.amb] || descProdutos.interno;
+    document.getElementById('desc-result-h').textContent = p.n;
+    var pet = descState.pet==='sim' ? ' Linha desenvolvida com baixo VOC e alta lavabilidade, indicada para lares com pets e crianças.' : '';
+    var sup = ' Adequada para superfície '+descState.sup+'.';
+    document.getElementById('desc-result-p').textContent = p.desc + sup + pet;
+    var acabamentos = {fosco:'Fosco aveludado', acetinado:'Acetinado', semibrilho:'Semibrilho', brilhante:'Brilhante'};
+    document.getElementById('desc-result-specs').innerHTML =
+      '<div class="desc-result-spec"><div class="desc-result-spec-k">Rendimento</div><div class="desc-result-spec-v">'+p.rend+'</div></div>'+
+      '<div class="desc-result-spec"><div class="desc-result-spec-k">Demãos</div><div class="desc-result-spec-v">'+p.dem+'</div></div>'+
+      '<div class="desc-result-spec"><div class="desc-result-spec-k">Acabamento</div><div class="desc-result-spec-v">'+(acabamentos[acab]||acab)+'</div></div>';
+    var msg = encodeURIComponent('Olá! Fiz o diagnóstico no site e a indicação foi '+p.n+'. Gostaria de mais informações.');
+    document.getElementById('desc-result-cta').href='https://wa.me/5500000000000?text='+msg;
+    document.getElementById('desc-result').classList.add('on');
+  }
+  function descReset(){
+    descState={};descStep=1;
+    document.querySelectorAll('.desc-step').forEach(function(s){s.classList.remove('on')});
+    document.querySelector('[data-step="1"]').classList.add('on');
+    document.getElementById('desc-result').classList.remove('on');
+    var dots = document.querySelectorAll('#desc-progress .desc-dot');
+    dots.forEach(function(d,i){d.classList.toggle('act', i===0)});
+  }
 
   /* ── Escolha orientada ── */
   function selE(btn, key){
