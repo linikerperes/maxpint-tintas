@@ -682,8 +682,13 @@
     .f-links a{font-size:12px;color:rgba(255,255,255,.28);transition:color .18s}
     .f-links a:hover{color:rgba(255,255,255,.6)}
     .f-copy{font-size:11.5px;color:rgba(255,255,255,.18)}
-    .f-crm{font-size:10px;color:rgba(255,255,255,.1);margin-top:6px}
-    .f-crm a:hover{color:rgba(255,255,255,.4)}
+    .f-crm{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+    .f-crm a{
+      font-size:11px;font-weight:600;letter-spacing:.04em;color:rgba(255,255,255,.55);
+      border:1px solid rgba(255,255,255,.14);padding:7px 14px;border-radius:6px;
+      text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all .18s
+    }
+    .f-crm a:hover{color:var(--yellow);border-color:rgba(245,192,0,.4);background:rgba(245,192,0,.05)}
 
     /* ══════════════════════════════════════════════════
        FICHAS TÉCNICAS
@@ -2550,9 +2555,8 @@
         </div>
         <div class="f-tag">Qualidade, orientação e confiança em cada aplicação.</div>
         <div class="f-crm">
-          <a href="crm.html" style="color:inherit;transition:color .18s">CRM interno</a>
-          <span style="opacity:.3;margin:0 8px">·</span>
-          <a href="admin.html" style="color:inherit;transition:color .18s">Painel do gestor</a>
+          <a href="admin.html">🖼️ Adicionar fotos</a>
+          <a href="crm.html">📋 CRM interno</a>
         </div>
       </div>
       <div class="f-links">
