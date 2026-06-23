@@ -10,24 +10,16 @@
 <style>
   :root{
     --navy:#0C1E38;--navy-mid:#152845;--yellow:#F5C000;--yellow-dk:#C9970A;
-    --white:#fff;--gray:#F4F4F2;--text:#2C3543;--text-md:#6C7280;--border:#E5E7EB
+    --white:#fff;--gray:#F4F4F2;--text:#2C3543;--text-md:#6C7280;--border:#E5E7EB;
+    --green:#1F9D55;--red:#C53030
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  body{
-    font-family:'Inter',sans-serif;background:var(--gray);color:var(--text);
-    min-height:100vh;-webkit-font-smoothing:antialiased
-  }
+  body{font-family:'Inter',sans-serif;background:var(--gray);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
   a{color:inherit}
 
   /* LOGIN */
-  .login-wrap{
-    min-height:100vh;display:flex;align-items:center;justify-content:center;
-    background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);padding:20px
-  }
-  .login-card{
-    background:var(--white);padding:48px 40px;max-width:420px;width:100%;
-    border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.25)
-  }
+  .login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);padding:20px}
+  .login-card{background:var(--white);padding:48px 40px;max-width:420px;width:100%;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.25)}
   .login-logo{font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:var(--navy);letter-spacing:-.02em;margin-bottom:6px}
   .login-logo span{color:var(--yellow-dk)}
   .login-sub{font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text-md);margin-bottom:38px}
@@ -35,101 +27,103 @@
   .login-p{font-size:13px;color:var(--text-md);line-height:1.6;margin-bottom:30px}
   .login-field{margin-bottom:18px}
   .login-label{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-md);margin-bottom:8px}
-  .login-inp{
-    width:100%;padding:12px 14px;background:var(--gray);border:1px solid var(--border);
-    border-radius:4px;font-size:14px;font-family:inherit;color:var(--text);outline:none;
-    transition:border-color .18s,background .18s
-  }
+  .login-inp{width:100%;padding:12px 14px;background:var(--gray);border:1px solid var(--border);border-radius:4px;font-size:14px;font-family:inherit;color:var(--text);outline:none;transition:border-color .18s,background .18s}
   .login-inp:focus{border-color:var(--yellow);background:var(--white)}
-  .login-btn{
-    width:100%;padding:14px;background:var(--navy);color:var(--white);border:none;
-    border-radius:4px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-    cursor:pointer;transition:background .18s;margin-top:8px
-  }
+  .login-btn{width:100%;padding:14px;background:var(--navy);color:var(--white);border:none;border-radius:4px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .18s;margin-top:8px}
   .login-btn:hover{background:var(--yellow-dk)}
-  .login-err{color:#C53030;font-size:12.5px;margin-top:14px;display:none}
+  .login-err{color:var(--red);font-size:12.5px;margin-top:14px;display:none}
   .login-err.on{display:block}
 
   /* PANEL */
   .panel{display:none}
   .panel.on{display:block}
-  header{
-    background:var(--navy);color:var(--white);padding:20px 0;
-    border-bottom:1px solid rgba(245,192,0,.15)
-  }
-  .container{max-width:1100px;margin:0 auto;padding:0 28px}
+  header{background:var(--navy);color:var(--white);padding:18px 0;border-bottom:1px solid rgba(245,192,0,.15);position:sticky;top:0;z-index:50}
+  .container{max-width:980px;margin:0 auto;padding:0 28px}
   .h-row{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
   .h-logo{font-family:'Fraunces',serif;font-size:20px;font-weight:600;letter-spacing:-.02em}
   .h-logo span{color:var(--yellow)}
-  .h-sub{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:2px}
+  .h-sub{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:2px}
   .h-actions{display:flex;gap:10px;align-items:center}
-  .h-btn{
-    padding:8px 14px;background:transparent;color:rgba(255,255,255,.8);
-    border:1px solid rgba(255,255,255,.18);border-radius:4px;font-size:12px;
-    font-weight:600;text-decoration:none;transition:all .18s;cursor:pointer;font-family:inherit
-  }
+  .h-btn{padding:8px 14px;background:transparent;color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.18);border-radius:4px;font-size:12px;font-weight:600;text-decoration:none;transition:all .18s;cursor:pointer;font-family:inherit}
   .h-btn:hover{border-color:var(--yellow);color:var(--yellow)}
-  .h-btn.danger:hover{border-color:#C53030;color:#C53030}
+  .h-btn.danger:hover{border-color:var(--red);color:#ff8080}
 
-  main{padding:48px 0 80px}
-  .page-h{font-family:'Fraunces',serif;font-size:34px;font-weight:600;letter-spacing:-.025em;color:var(--navy);margin-bottom:8px;line-height:1.1}
-  .page-p{font-size:14px;color:var(--text-md);line-height:1.65;margin-bottom:42px;max-width:580px}
+  /* GitHub bar */
+  .gh-bar{background:#fff;border-bottom:1px solid var(--border)}
+  .gh-in{display:flex;align-items:center;gap:14px;padding:14px 0;flex-wrap:wrap}
+  .gh-dot{width:9px;height:9px;border-radius:50%;background:var(--red);flex-shrink:0}
+  .gh-dot.ok{background:var(--green)}
+  .gh-status{font-size:13px;font-weight:600;color:var(--text)}
+  .gh-status small{display:block;font-weight:400;color:var(--text-md);font-size:11.5px;margin-top:1px}
+  .gh-btn{margin-left:auto;padding:9px 16px;background:var(--navy);color:#fff;border:none;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .18s}
+  .gh-btn:hover{background:var(--yellow-dk)}
+  .gh-config{display:none;padding:0 0 16px}
+  .gh-config.on{display:block}
+  .gh-help{background:rgba(245,192,0,.07);border:1px solid rgba(245,192,0,.22);border-radius:6px;padding:16px 18px;margin-bottom:14px;font-size:12.5px;line-height:1.65}
+  .gh-help b{color:var(--navy)}
+  .gh-help ol{margin:10px 0 0 18px;display:flex;flex-direction:column;gap:5px}
+  .gh-help a{color:var(--yellow-dk);font-weight:600}
+  .gh-row{display:flex;gap:10px}
+  .gh-inp{flex:1;padding:11px 13px;background:var(--gray);border:1px solid var(--border);border-radius:5px;font-size:13px;font-family:monospace;outline:none}
+  .gh-inp:focus{border-color:var(--yellow);background:#fff}
 
-  .slot{
-    background:var(--white);border-radius:8px;padding:24px;margin-bottom:18px;
-    display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start;
-    box-shadow:0 1px 3px rgba(0,0,0,.04);border:1px solid var(--border)
-  }
-  .slot-preview{
-    width:100%;aspect-ratio:4/3;background:var(--gray);border-radius:4px;
-    background-size:cover;background-position:center;position:relative;
-    border:1px solid var(--border);overflow:hidden
-  }
-  .slot-preview.empty::after{
-    content:'Sem foto';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-    color:var(--text-md);font-size:12px;letter-spacing:.05em
-  }
-  .slot-info{padding-top:4px}
-  .slot-tag{
-    display:inline-block;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--yellow-dk);background:rgba(245,192,0,.1);padding:4px 10px;border-radius:3px;margin-bottom:12px
-  }
-  .slot-title{font-family:'Fraunces',serif;font-size:22px;font-weight:600;letter-spacing:-.02em;color:var(--navy);margin-bottom:8px;line-height:1.15}
-  .slot-desc{font-size:13px;color:var(--text-md);line-height:1.6;margin-bottom:20px}
+  /* Tabs */
+  .tabs{display:flex;gap:4px;border-bottom:1px solid var(--border);margin:32px 0 0;overflow-x:auto}
+  .tab{padding:13px 20px;background:none;border:none;border-bottom:2px solid transparent;font-size:13.5px;font-weight:600;color:var(--text-md);cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .18s}
+  .tab:hover{color:var(--navy)}
+  .tab.act{color:var(--navy);border-bottom-color:var(--yellow)}
+  main{padding:0 0 140px}
+  .tabpane{display:none;padding-top:36px}
+  .tabpane.on{display:block}
+  .pane-h{font-family:'Fraunces',serif;font-size:28px;font-weight:600;letter-spacing:-.02em;color:var(--navy);margin-bottom:6px}
+  .pane-p{font-size:13.5px;color:var(--text-md);line-height:1.6;margin-bottom:30px;max-width:600px}
+
+  /* Field */
+  .field{margin-bottom:22px}
+  .flabel{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-md);margin-bottom:7px}
+  .fhint{font-size:11.5px;color:#9CA3AF;margin-top:5px;line-height:1.4}
+  .finp,.ftext{width:100%;padding:12px 14px;background:#fff;border:1px solid var(--border);border-radius:6px;font-size:14px;font-family:inherit;color:var(--text);outline:none;transition:border-color .18s}
+  .finp:focus,.ftext:focus{border-color:var(--yellow)}
+  .ftext{resize:vertical;min-height:80px;line-height:1.55}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+
+  /* Photo slots */
+  .slot{background:#fff;border-radius:8px;padding:20px;margin-bottom:16px;display:grid;grid-template-columns:220px 1fr;gap:22px;align-items:start;box-shadow:0 1px 3px rgba(0,0,0,.04);border:1px solid var(--border)}
+  .slot-preview{width:100%;aspect-ratio:4/3;background:var(--gray);border-radius:4px;background-size:cover;background-position:center;position:relative;border:1px solid var(--border);overflow:hidden}
+  .slot-preview.empty::after{content:'Sem foto';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--text-md);font-size:12px}
+  .slot-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow-dk);background:rgba(245,192,0,.1);padding:4px 10px;border-radius:3px;margin-bottom:10px}
+  .slot-title{font-family:'Fraunces',serif;font-size:19px;font-weight:600;color:var(--navy);margin-bottom:6px}
+  .slot-desc{font-size:12.5px;color:var(--text-md);line-height:1.55;margin-bottom:16px}
   .slot-actions{display:flex;gap:10px;flex-wrap:wrap}
-  .btn-up{
-    padding:10px 18px;background:var(--navy);color:var(--white);border:none;
-    border-radius:4px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;
-    transition:background .18s
-  }
+  .btn-up{padding:9px 16px;background:var(--navy);color:#fff;border:none;border-radius:4px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .18s}
   .btn-up:hover{background:var(--yellow-dk)}
-  .btn-rm{
-    padding:10px 18px;background:transparent;color:#C53030;border:1px solid rgba(197,48,48,.25);
-    border-radius:4px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .18s
-  }
-  .btn-rm:hover{background:rgba(197,48,48,.06);border-color:#C53030}
+  .btn-rm{padding:9px 16px;background:transparent;color:var(--red);border:1px solid rgba(197,48,48,.25);border-radius:4px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .18s}
+  .btn-rm:hover{background:rgba(197,48,48,.06)}
   .file-in{display:none}
+  .pending{font-size:11px;color:var(--yellow-dk);font-weight:600;margin-top:8px;display:none}
+  .pending.on{display:block}
 
-  .toast{
-    position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);
-    background:var(--navy);color:var(--white);padding:14px 24px;border-radius:6px;
-    font-size:13px;font-weight:500;box-shadow:0 10px 30px rgba(0,0,0,.25);
-    transition:transform .28s ease;z-index:100
-  }
-  .toast.on{transform:translateX(-50%) translateY(0)}
+  /* Catalog editor */
+  .cat-edit{background:#fff;border:1px solid var(--border);border-radius:8px;padding:22px;margin-bottom:16px}
+  .cat-edit-head{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+  .cat-edit-num{font-size:11px;font-weight:700;letter-spacing:.12em;color:#B6BCC6}
 
-  .notice{
-    background:rgba(245,192,0,.08);border:1px solid rgba(245,192,0,.25);
-    padding:18px 22px;border-radius:6px;margin-bottom:32px;display:flex;gap:14px;align-items:flex-start
-  }
-  .notice-ico{font-size:18px;line-height:1}
-  .notice-body{font-size:12.5px;color:var(--text);line-height:1.6}
-  .notice-body strong{font-weight:700;color:var(--navy)}
+  /* Publish bar */
+  .pubbar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);box-shadow:0 -8px 30px rgba(0,0,0,.06);z-index:40}
+  .pubbar-in{max-width:980px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;gap:16px}
+  .pub-info{font-size:12.5px;color:var(--text-md)}
+  .pub-info b{color:var(--navy)}
+  .pub-btn{margin-left:auto;padding:13px 28px;background:var(--green);color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:700;letter-spacing:.04em;cursor:pointer;font-family:inherit;transition:all .18s;display:inline-flex;align-items:center;gap:9px}
+  .pub-btn:hover{background:#187a42}
+  .pub-btn:disabled{opacity:.45;cursor:not-allowed}
+  .pub-spin{width:15px;height:15px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none}
+  .pub-btn.busy .pub-spin{display:block}
+  @keyframes spin{to{transform:rotate(360deg)}}
 
-  @media(max-width:680px){
-    .slot{grid-template-columns:1fr}
-    .page-h{font-size:26px}
-  }
+  .toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);opacity:0;background:var(--navy);color:#fff;padding:14px 24px;border-radius:6px;font-size:13px;font-weight:500;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:all .28s;z-index:100;pointer-events:none;max-width:90%;text-align:center}
+  .toast.on{transform:translateX(-50%) translateY(0);opacity:1}
+
+  @media(max-width:680px){.slot{grid-template-columns:1fr}.frow{grid-template-columns:1fr}.pane-h{font-size:23px}}
 </style>
 </head>
 <body>
@@ -138,16 +132,13 @@
 <div class="login-wrap" id="login">
   <form class="login-card" onsubmit="event.preventDefault();fazerLogin()">
     <div class="login-logo">Max<span>pint</span> Tintas</div>
-    <div class="login-sub">Painel interno</div>
-
+    <div class="login-sub">Painel do gestor</div>
     <div class="login-h">Acesso restrito</div>
-    <div class="login-p">Esta área é exclusiva para gestores e sócios da Maxpint. Informe a senha para gerenciar as fotos do site.</div>
-
+    <div class="login-p">Área exclusiva para gestores e sócios da Maxpint. Informe a senha para gerenciar o conteúdo do site.</div>
     <div class="login-field">
       <label class="login-label" for="senha">Senha</label>
       <input class="login-inp" id="senha" type="password" autocomplete="current-password" autofocus>
     </div>
-
     <button class="login-btn" type="submit">Entrar</button>
     <div class="login-err" id="login-err">Senha incorreta. Tente novamente.</div>
   </form>
@@ -160,7 +151,7 @@
       <div class="h-row">
         <div>
           <div class="h-logo">Max<span>pint</span> · Painel</div>
-          <div class="h-sub">Gestão de conteúdo do site</div>
+          <div class="h-sub">Gestão de conteúdo</div>
         </div>
         <div class="h-actions">
           <a href="index.html" class="h-btn" target="_blank">Ver site →</a>
@@ -170,262 +161,366 @@
     </div>
   </header>
 
-  <main>
+  <!-- GitHub connection -->
+  <div class="gh-bar">
     <div class="container">
-      <div class="page-h">Fotos do site</div>
-      <div class="page-p">Faça upload das imagens que devem aparecer no site público. Use fotos de alta qualidade (mínimo 1200px de largura).</div>
-
-      <div class="notice">
-        <div class="notice-ico">ℹ️</div>
-        <div class="notice-body">
-          <strong>Armazenamento local:</strong> nesta versão, as fotos ficam salvas no navegador deste dispositivo. Para que visitantes vejam as fotos publicamente, é preciso conectar um servidor de imagens (Supabase, Cloudinary). Posso configurar isso quando você quiser.
+      <div class="gh-in">
+        <span class="gh-dot" id="gh-dot"></span>
+        <div class="gh-status" id="gh-status">Não conectado ao GitHub<small>Conecte para que as alterações fiquem públicas no site</small></div>
+        <button class="gh-btn" onclick="toggleGh()" id="gh-toggle">Conectar</button>
+      </div>
+      <div class="gh-config" id="gh-config">
+        <div class="gh-help">
+          <b>Como conectar (uma vez só):</b>
+          <ol>
+            <li>Acesse <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> (logado como dono do site)</li>
+            <li>Em <b>Repository access</b> → "Only select repositories" → escolha <b>maxpint-tintas</b></li>
+            <li>Em <b>Permissions</b> → Repository permissions → <b>Contents</b> → <b>Read and write</b></li>
+            <li>Clique em <b>Generate token</b>, copie o código e cole abaixo</li>
+          </ol>
+        </div>
+        <div class="gh-row">
+          <input class="gh-inp" id="gh-token" type="password" placeholder="github_pat_..." autocomplete="off">
+          <button class="gh-btn" style="margin:0" onclick="salvarToken()">Salvar e conectar</button>
         </div>
       </div>
-
-      <!-- Hero -->
-      <div class="slot">
-        <div class="slot-preview empty" id="prev-hero"></div>
-        <div class="slot-info">
-          <span class="slot-tag">Topo do site</span>
-          <div class="slot-title">Foto do Hero</div>
-          <div class="slot-desc">Imagem de fundo da primeira seção. Funciona melhor com ambientes amplos, fachadas ou texturas. Será exibida com sobreposição navy escuro.</div>
-          <div class="slot-actions">
-            <input type="file" accept="image/*" class="file-in" id="f-hero" onchange="up('hero',this)">
-            <button class="btn-up" onclick="document.getElementById('f-hero').click()">Selecionar foto</button>
-            <button class="btn-rm" onclick="rm('hero')">Remover</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4 Produtos -->
-      <div class="slot">
-        <div class="slot-preview empty" id="prev-p1"></div>
-        <div class="slot-info">
-          <span class="slot-tag">Linhas · Card 1</span>
-          <div class="slot-title">Ambientes internos</div>
-          <div class="slot-desc">Foto que ilustra um ambiente residencial ou comercial interno bem pintado.</div>
-          <div class="slot-actions">
-            <input type="file" accept="image/*" class="file-in" id="f-p1" onchange="up('p1',this)">
-            <button class="btn-up" onclick="document.getElementById('f-p1').click()">Selecionar foto</button>
-            <button class="btn-rm" onclick="rm('p1')">Remover</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="slot">
-        <div class="slot-preview empty" id="prev-p2"></div>
-        <div class="slot-info">
-          <span class="slot-tag">Linhas · Card 2</span>
-          <div class="slot-title">Áreas externas e fachadas</div>
-          <div class="slot-desc">Foto de fachada ou área externa que mostre o trabalho da Maxpint.</div>
-          <div class="slot-actions">
-            <input type="file" accept="image/*" class="file-in" id="f-p2" onchange="up('p2',this)">
-            <button class="btn-up" onclick="document.getElementById('f-p2').click()">Selecionar foto</button>
-            <button class="btn-rm" onclick="rm('p2')">Remover</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="slot">
-        <div class="slot-preview empty" id="prev-p3"></div>
-        <div class="slot-info">
-          <span class="slot-tag">Linhas · Card 3</span>
-          <div class="slot-title">Obras e empreendimentos</div>
-          <div class="slot-desc">Foto de canteiro de obra ou empreendimento em fase de pintura.</div>
-          <div class="slot-actions">
-            <input type="file" accept="image/*" class="file-in" id="f-p3" onchange="up('p3',this)">
-            <button class="btn-up" onclick="document.getElementById('f-p3').click()">Selecionar foto</button>
-            <button class="btn-rm" onclick="rm('p3')">Remover</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="slot">
-        <div class="slot-preview empty" id="prev-p4"></div>
-        <div class="slot-info">
-          <span class="slot-tag">Linhas · Card 4</span>
-          <div class="slot-title">Revenda e parceiros</div>
-          <div class="slot-desc">Foto de loja parceira, prateleira de produtos Maxpint ou atendimento no balcão.</div>
-          <div class="slot-actions">
-            <input type="file" accept="image/*" class="file-in" id="f-p4" onchange="up('p4',this)">
-            <button class="btn-up" onclick="document.getElementById('f-p4').click()">Selecionar foto</button>
-            <button class="btn-rm" onclick="rm('p4')">Remover</button>
-          </div>
-        </div>
-      </div>
-
-      <div style="margin:48px 0 24px">
-        <div class="page-h" style="font-size:26px">Galeria de trabalhos</div>
-        <div class="page-p">6 fotos que aparecem na seção "Trabalhos Maxpint" do site. A primeira ocupa um espaço maior — use a melhor foto nela.</div>
-      </div>
-
-      <div class="slot">
-        <div class="slot-preview empty" id="prev-g1"></div>
-        <div class="slot-info">
-          <span class="slot-tag">Galeria · Foto principal</span>
-          <div class="slot-title">Foto destaque</div>
-          <div class="slot-desc">Foto maior da galeria. Use sua melhor imagem — projeto finalizado, obra entregue, ambiente bem fotografado.</div>
-          <div class="slot-actions">
-            <input type="file" accept="image/*" class="file-in" id="f-g1" onchange="up('g1',this)">
-            <button class="btn-up" onclick="document.getElementById('f-g1').click()">Selecionar foto</button>
-            <button class="btn-rm" onclick="rm('g1')">Remover</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="slot">
-        <div class="slot-preview empty" id="prev-g2"></div>
-        <div class="slot-info">
-          <span class="slot-tag">Galeria · Foto 2</span>
-          <div class="slot-title">Trabalho 2</div>
-          <div class="slot-desc">Projeto, obra ou ambiente representativo.</div>
-          <div class="slot-actions">
-            <input type="file" accept="image/*" class="file-in" id="f-g2" onchange="up('g2',this)">
-            <button class="btn-up" onclick="document.getElementById('f-g2').click()">Selecionar foto</button>
-            <button class="btn-rm" onclick="rm('g2')">Remover</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="slot">
-        <div class="slot-preview empty" id="prev-g3"></div>
-        <div class="slot-info">
-          <span class="slot-tag">Galeria · Foto 3</span>
-          <div class="slot-title">Trabalho 3</div>
-          <div class="slot-desc">Projeto, obra ou ambiente representativo.</div>
-          <div class="slot-actions">
-            <input type="file" accept="image/*" class="file-in" id="f-g3" onchange="up('g3',this)">
-            <button class="btn-up" onclick="document.getElementById('f-g3').click()">Selecionar foto</button>
-            <button class="btn-rm" onclick="rm('g3')">Remover</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="slot">
-        <div class="slot-preview empty" id="prev-g4"></div>
-        <div class="slot-info">
-          <span class="slot-tag">Galeria · Foto 4</span>
-          <div class="slot-title">Trabalho 4</div>
-          <div class="slot-desc">Projeto, obra ou ambiente representativo.</div>
-          <div class="slot-actions">
-            <input type="file" accept="image/*" class="file-in" id="f-g4" onchange="up('g4',this)">
-            <button class="btn-up" onclick="document.getElementById('f-g4').click()">Selecionar foto</button>
-            <button class="btn-rm" onclick="rm('g4')">Remover</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="slot">
-        <div class="slot-preview empty" id="prev-g5"></div>
-        <div class="slot-info">
-          <span class="slot-tag">Galeria · Foto 5</span>
-          <div class="slot-title">Trabalho 5</div>
-          <div class="slot-desc">Projeto, obra ou ambiente representativo.</div>
-          <div class="slot-actions">
-            <input type="file" accept="image/*" class="file-in" id="f-g5" onchange="up('g5',this)">
-            <button class="btn-up" onclick="document.getElementById('f-g5').click()">Selecionar foto</button>
-            <button class="btn-rm" onclick="rm('g5')">Remover</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="slot">
-        <div class="slot-preview empty" id="prev-g6"></div>
-        <div class="slot-info">
-          <span class="slot-tag">Galeria · Foto 6</span>
-          <div class="slot-title">Trabalho 6</div>
-          <div class="slot-desc">Projeto, obra ou ambiente representativo.</div>
-          <div class="slot-actions">
-            <input type="file" accept="image/*" class="file-in" id="f-g6" onchange="up('g6',this)">
-            <button class="btn-up" onclick="document.getElementById('f-g6').click()">Selecionar foto</button>
-            <button class="btn-rm" onclick="rm('g6')">Remover</button>
-          </div>
-        </div>
-      </div>
-
     </div>
-  </main>
+  </div>
+
+  <div class="container">
+    <div class="tabs">
+      <button class="tab act" onclick="showTab('fotos',this)">Fotos</button>
+      <button class="tab" onclick="showTab('contato',this)">Contato</button>
+      <button class="tab" onclick="showTab('textos',this)">Textos</button>
+      <button class="tab" onclick="showTab('catalogo',this)">Catálogo</button>
+    </div>
+
+    <main>
+      <!-- FOTOS -->
+      <div class="tabpane on" id="pane-fotos">
+        <div class="pane-h">Fotos do site</div>
+        <div class="pane-p">Use imagens de alta qualidade (mín. 1200px de largura, até 5 MB). As alterações só ficam públicas após clicar em <b>Publicar</b>.</div>
+        <div id="slots-fotos"></div>
+        <div class="pane-h" style="font-size:22px;margin-top:40px">Galeria de trabalhos</div>
+        <div class="pane-p">6 fotos da seção "Trabalhos Maxpint". A primeira aparece maior — use a melhor imagem.</div>
+        <div id="slots-galeria"></div>
+      </div>
+
+      <!-- CONTATO -->
+      <div class="tabpane" id="pane-contato">
+        <div class="pane-h">Dados de contato</div>
+        <div class="pane-p">Estes dados aparecem na seção de contato e em todos os botões de WhatsApp do site.</div>
+        <div class="frow">
+          <div class="field">
+            <label class="flabel">WhatsApp (só números, com DDD e país)</label>
+            <input class="finp" id="c-whatsapp" placeholder="5511999998888">
+            <div class="fhint">Ex: 55 + DDD + número. Usado em todos os botões de WhatsApp.</div>
+          </div>
+          <div class="field">
+            <label class="flabel">WhatsApp (como aparece na tela)</label>
+            <input class="finp" id="c-whatsapp_display" placeholder="(11) 99999-8888">
+          </div>
+        </div>
+        <div class="frow">
+          <div class="field">
+            <label class="flabel">Telefone fixo (como aparece)</label>
+            <input class="finp" id="c-telefone_display" placeholder="(11) 3333-4444">
+          </div>
+          <div class="field">
+            <label class="flabel">Telefone fixo (só números p/ ligar)</label>
+            <input class="finp" id="c-telefone_link" placeholder="551133334444">
+          </div>
+        </div>
+        <div class="frow">
+          <div class="field">
+            <label class="flabel">Instagram (@)</label>
+            <input class="finp" id="c-instagram_handle" placeholder="@maxpinttintas">
+          </div>
+          <div class="field">
+            <label class="flabel">Link do Instagram</label>
+            <input class="finp" id="c-instagram_url" placeholder="https://instagram.com/maxpinttintas">
+          </div>
+        </div>
+        <div class="field">
+          <label class="flabel">Endereço</label>
+          <input class="finp" id="c-endereco" placeholder="Rua Exemplo, 123 — Bairro, Cidade/UF">
+        </div>
+      </div>
+
+      <!-- TEXTOS -->
+      <div class="tabpane" id="pane-textos">
+        <div class="pane-h">Textos das seções</div>
+        <div class="pane-p">Edite os textos principais do site. Para quebrar linha em títulos, dê <b>Enter</b> (uma nova linha).</div>
+        <div class="field">
+          <label class="flabel">Topo — etiqueta (acima do título)</label>
+          <input class="finp" id="t-hero_eyebrow">
+        </div>
+        <div class="field">
+          <label class="flabel">Topo — título principal</label>
+          <textarea class="ftext" id="t-hero_titulo"></textarea>
+          <div class="fhint">Cada Enter vira uma quebra de linha no site.</div>
+        </div>
+        <div class="field">
+          <label class="flabel">Topo — parágrafo</label>
+          <textarea class="ftext" id="t-hero_body"></textarea>
+        </div>
+        <div class="field">
+          <label class="flabel">Contato — título</label>
+          <textarea class="ftext" id="t-contato_titulo"></textarea>
+        </div>
+        <div class="field">
+          <label class="flabel">Contato — parágrafo</label>
+          <textarea class="ftext" id="t-contato_lead"></textarea>
+        </div>
+      </div>
+
+      <!-- CATÁLOGO -->
+      <div class="tabpane" id="pane-catalogo">
+        <div class="pane-h">Catálogo de produtos</div>
+        <div class="pane-p">Edite as categorias e produtos. Um produto por linha. Para marcar selo, escreva no fim da linha <b>[Premium]</b> ou <b>[Standard]</b>.</div>
+        <div id="cat-editor"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Publish bar -->
+  <div class="pubbar">
+    <div class="pubbar-in">
+      <div class="pub-info" id="pub-info">Conecte o GitHub para publicar alterações.</div>
+      <button class="pub-btn" id="pub-btn" onclick="publicar()" disabled>
+        <span class="pub-spin"></span><span>Publicar alterações</span>
+      </button>
+    </div>
+  </div>
 </div>
 
-<div class="toast" id="toast">Foto salva</div>
+<div class="toast" id="toast"></div>
 
 <script>
-  /* Senha padrão — pode ser trocada depois.
-     Hash simples só para não deixar em texto puro no fonte. */
-  var SENHA_HASH = 'maxpint2026'; // troque aqui pela senha definitiva
+  /* ════ Config ════ */
+  var SENHA = 'maxpint2026';            // troque pela senha definitiva
+  var OWNER='linikerperes', REPO='maxpint-tintas', BRANCH='main';
+  var GH='https://api.github.com/repos/'+OWNER+'/'+REPO+'/contents/';
 
+  var CONTENT = null;           // conteúdo carregado de content.json
+  var pendingImages = {};       // key -> dataURL (fotos novas ainda não publicadas)
+
+  /* ════ Login ════ */
   function fazerLogin(){
-    var s = document.getElementById('senha').value;
-    if(s === SENHA_HASH){
-      sessionStorage.setItem('mpx_admin','1');
-      mostrarPainel();
-    } else {
-      document.getElementById('login-err').classList.add('on');
-    }
+    if(document.getElementById('senha').value === SENHA){
+      sessionStorage.setItem('mpx_admin','1'); abrirPainel();
+    } else { document.getElementById('login-err').classList.add('on'); }
   }
-  function sair(){
-    sessionStorage.removeItem('mpx_admin');
-    location.reload();
-  }
-  function mostrarPainel(){
+  function sair(){ sessionStorage.removeItem('mpx_admin'); location.reload(); }
+  function abrirPainel(){
     document.getElementById('login').style.display='none';
     document.getElementById('panel').classList.add('on');
-    carregarPreviews();
+    refreshGhStatus();
+    carregarConteudo();
+  }
+  if(sessionStorage.getItem('mpx_admin')==='1'){ abrirPainel(); }
+
+  /* ════ GitHub token ════ */
+  function getToken(){ return localStorage.getItem('mpx_gh_token')||''; }
+  function toggleGh(){ document.getElementById('gh-config').classList.toggle('on'); }
+  function salvarToken(){
+    var t=document.getElementById('gh-token').value.trim();
+    if(!t){ toast('Cole o token do GitHub.', true); return; }
+    localStorage.setItem('mpx_gh_token', t);
+    document.getElementById('gh-config').classList.remove('on');
+    refreshGhStatus();
+    toast('GitHub conectado!');
+  }
+  function refreshGhStatus(){
+    var has=!!getToken();
+    document.getElementById('gh-dot').classList.toggle('ok',has);
+    document.getElementById('gh-status').innerHTML = has
+      ? 'Conectado ao GitHub<small>Pronto para publicar — alterações ficam públicas no site</small>'
+      : 'Não conectado ao GitHub<small>Conecte para que as alterações fiquem públicas no site</small>';
+    document.getElementById('gh-toggle').textContent = has ? 'Trocar token' : 'Conectar';
+    document.getElementById('pub-btn').disabled = !has;
+    document.getElementById('pub-info').innerHTML = has
+      ? 'Tudo pronto. Clique para enviar suas alterações ao site.'
+      : 'Conecte o GitHub para publicar alterações.';
   }
 
-  if(sessionStorage.getItem('mpx_admin')==='1'){ mostrarPainel(); }
+  /* ════ Carregar conteúdo atual ════ */
+  function carregarConteudo(){
+    fetch('content.json?v='+Date.now()).then(function(r){return r.json();}).then(function(c){
+      CONTENT=c; preencherForms();
+    }).catch(function(){
+      CONTENT={contato:{},textos:{},fotos:{},catalogo:[]}; preencherForms();
+      toast('Não foi possível ler content.json — começando do zero.', true);
+    });
+  }
+  function preencherForms(){
+    CONTENT.contato=CONTENT.contato||{}; CONTENT.textos=CONTENT.textos||{};
+    CONTENT.fotos=CONTENT.fotos||{}; CONTENT.catalogo=CONTENT.catalogo||[];
+    // Contato
+    ['whatsapp','whatsapp_display','telefone_display','telefone_link','instagram_handle','instagram_url','endereco'].forEach(function(k){
+      var el=document.getElementById('c-'+k); if(el) el.value=CONTENT.contato[k]||'';
+    });
+    // Textos
+    ['hero_eyebrow','hero_titulo','hero_body','contato_titulo','contato_lead'].forEach(function(k){
+      var el=document.getElementById('t-'+k); if(el) el.value=CONTENT.textos[k]||'';
+    });
+    renderSlots(); renderCatEditor();
+  }
 
-  function _photos(){ return JSON.parse(localStorage.getItem('mpx_site_photos')||'{}'); }
-  function _save(p){ localStorage.setItem('mpx_site_photos', JSON.stringify(p)); }
+  /* ════ Fotos ════ */
+  var FOTOS=[
+    {k:'hero',tag:'Topo do site',t:'Foto do Hero',d:'Imagem de fundo do topo. Ambientes amplos, fachadas ou texturas funcionam melhor.'},
+    {k:'p1',tag:'Linhas · Card 1',t:'Ambientes internos',d:'Ambiente residencial ou comercial interno bem pintado.'},
+    {k:'p2',tag:'Linhas · Card 2',t:'Áreas externas',d:'Fachada ou área externa.'},
+    {k:'p3',tag:'Linhas · Card 3',t:'Obras',d:'Canteiro de obra ou empreendimento.'},
+    {k:'p4',tag:'Linhas · Card 4',t:'Revenda',d:'Loja parceira, prateleira ou atendimento.'}
+  ];
+  var GALERIA=[1,2,3,4,5,6].map(function(n){return {k:'g'+n,tag:'Galeria · Foto '+n,t:(n===1?'Foto destaque':'Trabalho '+n),d:(n===1?'Foto maior da galeria — use sua melhor imagem.':'Projeto, obra ou ambiente.')};});
+  function slotHtml(s){
+    return '<div class="slot">'+
+      '<div class="slot-preview empty" id="prev-'+s.k+'"></div>'+
+      '<div><span class="slot-tag">'+s.tag+'</span>'+
+      '<div class="slot-title">'+s.t+'</div>'+
+      '<div class="slot-desc">'+s.d+'</div>'+
+      '<div class="slot-actions">'+
+        '<input type="file" accept="image/*" class="file-in" id="f-'+s.k+'" onchange="upFoto(\''+s.k+'\',this)">'+
+        '<button class="btn-up" onclick="document.getElementById(\'f-'+s.k+'\').click()">Selecionar foto</button>'+
+        '<button class="btn-rm" onclick="rmFoto(\''+s.k+'\')">Remover</button>'+
+      '</div><div class="pending" id="pend-'+s.k+'">● Alteração não publicada</div></div></div>';
+  }
+  function renderSlots(){
+    document.getElementById('slots-fotos').innerHTML=FOTOS.map(slotHtml).join('');
+    document.getElementById('slots-galeria').innerHTML=GALERIA.map(slotHtml).join('');
+    FOTOS.concat(GALERIA).forEach(function(s){ refreshPrev(s.k); });
+  }
+  function refreshPrev(k){
+    var el=document.getElementById('prev-'+k); if(!el) return;
+    var src=pendingImages[k]||CONTENT.fotos[k]||'';
+    if(src){ el.style.backgroundImage='url('+src+')'; el.classList.remove('empty'); }
+    else{ el.style.backgroundImage=''; el.classList.add('empty'); }
+    document.getElementById('pend-'+k).classList.toggle('on', !!pendingImages[k]);
+  }
+  function upFoto(k,input){
+    var f=input.files[0]; if(!f) return;
+    if(f.size>5*1024*1024){ toast('Foto grande demais (máx 5 MB).',true); input.value=''; return; }
+    var r=new FileReader();
+    r.onload=function(e){ pendingImages[k]=e.target.result; refreshPrev(k); toast('Foto pronta — clique em Publicar para enviar.'); };
+    r.readAsDataURL(f); input.value='';
+  }
+  function rmFoto(k){
+    delete pendingImages[k]; if(CONTENT.fotos[k]) CONTENT.fotos[k]='';
+    refreshPrev(k); toast('Foto marcada para remoção — publique para confirmar.');
+  }
 
-  function carregarPreviews(){
-    var p = _photos();
-    ['hero','p1','p2','p3','p4','g1','g2','g3','g4','g5','g6'].forEach(function(k){
-      var el = document.getElementById('prev-'+k);
-      if(p[k]){ el.style.backgroundImage='url('+p[k]+')'; el.classList.remove('empty'); }
-      else{ el.style.backgroundImage=''; el.classList.add('empty'); }
+  /* ════ Catálogo editor ════ */
+  function renderCatEditor(){
+    document.getElementById('cat-editor').innerHTML = CONTENT.catalogo.map(function(cat,i){
+      var linhas=(cat.produtos||[]).map(function(p){
+        if(typeof p==='string') return p;
+        return p.nome + (p.selo?(' ['+p.selo+']'):'');
+      }).join('\n');
+      return '<div class="cat-edit">'+
+        '<div class="cat-edit-head"><span style="font-size:22px">'+(cat.icone||'🎨')+'</span>'+
+        '<span class="cat-edit-num">'+(cat.num||'')+' · '+(cat.selo||'')+'</span></div>'+
+        '<div class="field"><label class="flabel">Nome da categoria</label>'+
+        '<input class="finp" data-cat="'+i+'" data-f="nome" value="'+(cat.nome||'').replace(/"/g,'&quot;')+'"></div>'+
+        '<div class="field"><label class="flabel">Descrição curta</label>'+
+        '<input class="finp" data-cat="'+i+'" data-f="tag" value="'+(cat.tag||'').replace(/"/g,'&quot;')+'"></div>'+
+        '<div class="field"><label class="flabel">Produtos (um por linha)</label>'+
+        '<textarea class="ftext" data-cat="'+i+'" data-f="produtos" style="min-height:150px">'+linhas+'</textarea></div>'+
+        '</div>';
+    }).join('');
+  }
+  function coletarCatalogo(){
+    document.querySelectorAll('[data-cat]').forEach(function(el){
+      var i=+el.getAttribute('data-cat'), f=el.getAttribute('data-f');
+      if(f==='produtos'){
+        CONTENT.catalogo[i].produtos = el.value.split('\n').map(function(l){return l.trim();}).filter(Boolean).map(function(l){
+          var m=l.match(/\s*\[(Premium|Standard)\]\s*$/i);
+          if(m){ return {nome:l.replace(/\s*\[(Premium|Standard)\]\s*$/i,'').trim(), selo:m[1].charAt(0).toUpperCase()+m[1].slice(1).toLowerCase()}; }
+          return l;
+        });
+      } else { CONTENT.catalogo[i][f]=el.value; }
     });
   }
 
-  function up(key, input){
-    var file = input.files[0];
-    if(!file) return;
-    if(file.size > 5*1024*1024){
-      toast('Arquivo grande demais. Use uma foto até 5 MB.', true);
-      input.value=''; return;
-    }
-    var r = new FileReader();
-    r.onload = function(e){
-      var p = _photos();
-      p[key] = e.target.result;
-      try{
-        _save(p);
-        carregarPreviews();
-        toast('Foto salva com sucesso');
-      }catch(err){
-        toast('Espaço local cheio. Reduza o tamanho da foto.', true);
-      }
-    };
-    r.readAsDataURL(file);
-    input.value='';
+  /* ════ Coletar tudo dos forms ════ */
+  function coletarTudo(){
+    ['whatsapp','whatsapp_display','telefone_display','telefone_link','instagram_handle','instagram_url','endereco'].forEach(function(k){
+      var el=document.getElementById('c-'+k); if(el) CONTENT.contato[k]=el.value.trim();
+    });
+    ['hero_eyebrow','hero_titulo','hero_body','contato_titulo','contato_lead'].forEach(function(k){
+      var el=document.getElementById('t-'+k); if(el) CONTENT.textos[k]=el.value;
+    });
+    coletarCatalogo();
   }
 
-  function rm(key){
-    var p = _photos();
-    delete p[key];
-    _save(p);
-    carregarPreviews();
-    toast('Foto removida');
+  /* ════ GitHub helpers ════ */
+  function b64utf8(s){ return btoa(unescape(encodeURIComponent(s))); }
+  function ghHeaders(){ return {'Authorization':'Bearer '+getToken(),'Accept':'application/vnd.github+json'}; }
+  function getSha(path){
+    return fetch(GH+path+'?ref='+BRANCH+'&t='+Date.now(),{headers:ghHeaders()})
+      .then(function(r){ return r.ok ? r.json().then(function(j){return j.sha;}) : null; })
+      .catch(function(){return null;});
+  }
+  function ghPut(path, base64, msg){
+    return getSha(path).then(function(sha){
+      var body={message:msg, content:base64, branch:BRANCH};
+      if(sha) body.sha=sha;
+      return fetch(GH+path,{method:'PUT',headers:ghHeaders(),body:JSON.stringify(body)}).then(function(r){
+        if(!r.ok) return r.json().then(function(e){ throw new Error(e.message||('Erro '+r.status)); });
+        return r.json();
+      });
+    });
   }
 
+  /* ════ Publicar ════ */
+  function publicar(){
+    if(!getToken()){ toast('Conecte o GitHub primeiro.',true); return; }
+    coletarTudo();
+    var btn=document.getElementById('pub-btn'); btn.classList.add('busy'); btn.disabled=true;
+    var imgKeys=Object.keys(pendingImages);
+    var chain=Promise.resolve();
+    // 1) sobe imagens novas
+    imgKeys.forEach(function(k){
+      chain=chain.then(function(){
+        var dataUrl=pendingImages[k];
+        var ext=(dataUrl.substring(5,dataUrl.indexOf(';')).split('/')[1]||'jpg').replace('jpeg','jpg');
+        var path='assets/uploads/'+k+'.'+ext;
+        var base64=dataUrl.split(',')[1];
+        toast('Enviando foto '+k+'…');
+        return ghPut(path, base64, 'painel: atualiza foto '+k).then(function(){
+          CONTENT.fotos[k]=path+'?v='+Date.now();
+        });
+      });
+    });
+    // 2) sobe content.json
+    chain=chain.then(function(){
+      toast('Salvando conteúdo…');
+      return ghPut('content.json', b64utf8(JSON.stringify(CONTENT,null,2)), 'painel: atualiza conteúdo do site');
+    });
+    chain.then(function(){
+      pendingImages={}; renderSlots();
+      btn.classList.remove('busy'); btn.disabled=false;
+      toast('✓ Publicado! O site atualiza em ~1 minuto.');
+    }).catch(function(err){
+      btn.classList.remove('busy'); btn.disabled=false;
+      toast('Erro ao publicar: '+err.message, true);
+    });
+  }
+
+  /* ════ UI ════ */
+  function showTab(name,btn){
+    document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('act')});
+    btn.classList.add('act');
+    document.querySelectorAll('.tabpane').forEach(function(p){p.classList.remove('on')});
+    document.getElementById('pane-'+name).classList.add('on');
+  }
   var _t;
-  function toast(msg, err){
-    var t = document.getElementById('toast');
-    t.textContent = msg;
-    t.style.background = err ? '#C53030' : '#0C1E38';
-    t.classList.add('on');
-    clearTimeout(_t);
-    _t = setTimeout(function(){ t.classList.remove('on'); }, 2400);
+  function toast(msg,err){
+    var t=document.getElementById('toast'); t.textContent=msg;
+    t.style.background=err?'#C53030':'#0C1E38'; t.classList.add('on');
+    clearTimeout(_t); _t=setTimeout(function(){t.classList.remove('on');}, err?3800:2600);
   }
 </script>
 </body>

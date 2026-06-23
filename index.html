@@ -1364,15 +1364,15 @@
   <div class="container">
     <div class="hero-content">
       <div class="hero-eyebrow">
-        <span class="hero-eyebrow-t">Maxpint Tintas Premium — B2B</span>
+        <span class="hero-eyebrow-t" data-cms="hero_eyebrow">Maxpint Tintas Premium — B2B</span>
       </div>
 
       <!-- Aversão à perda: a palavra "erradas" ativa cautela -->
-      <h1 class="hero-h1">
+      <h1 class="hero-h1" data-cms-html="hero_titulo">
         Tintas profissionais<br>para <em>decisões</em><br>mais seguras.
       </h1>
 
-      <p class="hero-body">
+      <p class="hero-body" data-cms="hero_body">
         A Maxpint desenvolve soluções para parceiros comerciais, obras e revendas que buscam qualidade comprovada, clareza técnica e acompanhamento responsável em cada etapa.
       </p>
 
@@ -1538,7 +1538,7 @@
       <p class="lead" style="margin-top:18px">Sistema completo desenvolvido para profissionais — complementos, acabamentos acrílicos, esmaltes e efeitos decorativos. Tudo sob o mesmo padrão técnico Maxpint.</p>
     </div>
 
-    <div class="cat-grid">
+    <div class="cat-grid" id="cat-grid">
 
       <div class="cat-card fu" style="--c:#9CA3AF;--cbg:rgba(156,163,175,.12)">
         <div class="cat-top">
@@ -2492,35 +2492,35 @@
     <div class="contato-grid">
       <div class="c-left">
         <div class="eyebrow fu">Contato</div>
-        <h2 class="h2 light fu d1">Fale com<br>a Maxpint.</h2>
-        <p class="lead light fu d2">Disponíveis para atender parceiros comerciais, responder dúvidas técnicas e iniciar novas relações com quem busca qualidade e organização.</p>
+        <h2 class="h2 light fu d1" data-cms-html="contato_titulo">Fale com<br>a Maxpint.</h2>
+        <p class="lead light fu d2" data-cms="contato_lead">Disponíveis para atender parceiros comerciais, responder dúvidas técnicas e iniciar novas relações com quem busca qualidade e organização.</p>
         <div class="c-items fu d3">
           <a href="https://wa.me/5500000000000" class="c-item" target="_blank" rel="noopener" style="text-decoration:none">
             <div class="c-icon">💬</div>
             <div>
               <div class="c-lbl">WhatsApp — canal principal</div>
-              <div class="c-val">(00) 00000-0000</div>
+              <div class="c-val" data-cms="whatsapp_display">(00) 00000-0000</div>
             </div>
           </a>
-          <a href="https://instagram.com/maxpinttintas" class="c-item" target="_blank" rel="noopener" style="text-decoration:none">
+          <a href="https://instagram.com/maxpinttintas" class="c-item" target="_blank" rel="noopener" style="text-decoration:none" data-cms-href="instagram_url">
             <div class="c-icon">📱</div>
             <div>
               <div class="c-lbl">Instagram</div>
-              <div class="c-val">@maxpinttintas</div>
+              <div class="c-val" data-cms="instagram_handle">@maxpinttintas</div>
             </div>
           </a>
           <a href="tel:+5500000000000" class="c-item" style="text-decoration:none">
             <div class="c-icon">📞</div>
             <div>
               <div class="c-lbl">Telefone</div>
-              <div class="c-val">(00) 0000-0000</div>
+              <div class="c-val" data-cms="telefone_display">(00) 0000-0000</div>
             </div>
           </a>
           <div class="c-item" style="cursor:default">
             <div class="c-icon">📍</div>
             <div>
               <div class="c-lbl">Endereço</div>
-              <div class="c-val">Rua das Tintas, 00 — Cidade, UF</div>
+              <div class="c-val" data-cms="endereco">Rua das Tintas, 00 — Cidade, UF</div>
             </div>
           </div>
         </div>
@@ -2590,23 +2590,90 @@
   const obs = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
   },{threshold:0.1});
+  window._mpxObs = obs;
   document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
 
-  /* ── Site photos: carrega do localStorage (editável via /admin.html) ── */
+  /* ════════════════════════════════════════════════════
+     CMS — conteúdo editável via /admin.html (GitHub como banco)
+     Lê content.json e aplica fotos, contato, textos e catálogo.
+     Fallback: se content.json não existir, usa o HTML padrão.
+  ═══════════════════════════════════════════════════════ */
+  function aplicarFotos(fotos){
+    if(!fotos) return;
+    var hero = document.getElementById('hero-bg-img');
+    if(hero && fotos.hero){ hero.style.backgroundImage='url('+fotos.hero+')'; hero.classList.add('on'); }
+    for(var i=1;i<=4;i++){
+      var el = document.getElementById('pcard-img-'+i);
+      if(el && fotos['p'+i]){ el.style.backgroundImage='url('+fotos['p'+i]+')'; el.classList.remove('empty'); }
+    }
+    for(var g=1;g<=6;g++){
+      var ge = document.getElementById('gal-'+g);
+      if(ge && fotos['g'+g]){ ge.style.backgroundImage='url('+fotos['g'+g]+')'; ge.classList.remove('empty'); ge.textContent=''; }
+    }
+  }
+  function aplicarContato(c){
+    if(!c) return;
+    // WhatsApp e telefone: substitui o placeholder em TODOS os links do site
+    if(c.whatsapp){
+      document.querySelectorAll('a[href*="wa.me/5500000000000"]').forEach(function(a){
+        a.href = a.href.replace('5500000000000', c.whatsapp);
+      });
+    }
+    var telLink = c.telefone_link || c.whatsapp;
+    if(telLink){
+      document.querySelectorAll('a[href^="tel:+5500000000000"]').forEach(function(a){
+        a.href = 'tel:+'+telLink;
+      });
+    }
+    var map = {whatsapp_display:'whatsapp_display', telefone_display:'telefone_display',
+               instagram_handle:'instagram_handle', endereco:'endereco'};
+    Object.keys(map).forEach(function(k){
+      if(c[k]){ document.querySelectorAll('[data-cms="'+k+'"]').forEach(function(e){e.textContent=c[k];}); }
+    });
+    if(c.instagram_url){ document.querySelectorAll('[data-cms-href="instagram_url"]').forEach(function(e){e.href=c.instagram_url;}); }
+  }
+  function aplicarTextos(t){
+    if(!t) return;
+    Object.keys(t).forEach(function(k){
+      document.querySelectorAll('[data-cms="'+k+'"]').forEach(function(e){ e.textContent = t[k]; });
+      document.querySelectorAll('[data-cms-html="'+k+'"]').forEach(function(e){ e.innerHTML = (t[k]||'').replace(/\n/g,'<br>'); });
+    });
+  }
+  function renderCatalogo(cats){
+    if(!cats || !cats.length) return;
+    var grid = document.getElementById('cat-grid');
+    if(!grid) return;
+    grid.innerHTML = cats.map(function(c,i){
+      var produtos = (c.produtos||[]).map(function(p){
+        var nome = typeof p === 'string' ? p : p.nome;
+        var selo = (typeof p === 'object' && p.selo) ? '<span class="badge '+(p.selo==='Premium'?'badge-prem':'badge-std')+'">'+p.selo+'</span>' : '';
+        return '<li>'+nome+selo+'</li>';
+      }).join('');
+      var wppMsg = encodeURIComponent('Olá! Gostaria de informações sobre a linha '+c.nome+' Maxpint.');
+      var delay = i%3===1?' d1':(i%3===2?' d2':'');
+      return '<div class="cat-card fu'+delay+'" style="--c:'+(c.cor||'#F5C000')+';--cbg:'+(c.cor_bg||'rgba(245,192,0,.12)')+'">'+
+        '<div class="cat-top"><div class="cat-ico">'+(c.icone||'🎨')+'</div><div><div class="cat-num">'+(c.num||'')+' · '+(c.selo||'')+'</div></div></div>'+
+        '<div class="cat-name">'+c.nome+'</div>'+
+        '<div class="cat-tag">'+(c.tag||'')+'</div>'+
+        '<ul class="cat-list">'+produtos+'</ul>'+
+        '<a href="https://wa.me/'+(window._mpxWpp||'5500000000000')+'?text='+wppMsg+'" class="cat-cta" target="_blank" rel="noopener">Solicitar informações →</a>'+
+        '</div>';
+    }).join('');
+    // reobserva animações
+    if(window._mpxObs){ grid.querySelectorAll('.fu').forEach(function(el){window._mpxObs.observe(el);}); }
+  }
   (function(){
-    try{
-      var photos = JSON.parse(localStorage.getItem('mpx_site_photos')||'{}');
-      var hero = document.getElementById('hero-bg-img');
-      if(hero && photos.hero){ hero.style.backgroundImage='url('+photos.hero+')'; hero.classList.add('on'); }
-      for(var i=1;i<=4;i++){
-        var el = document.getElementById('pcard-img-'+i);
-        if(el && photos['p'+i]){ el.style.backgroundImage='url('+photos['p'+i]+')'; el.classList.remove('empty'); }
-      }
-      for(var g=1;g<=6;g++){
-        var ge = document.getElementById('gal-'+g);
-        if(ge && photos['g'+g]){ ge.style.backgroundImage='url('+photos['g'+g]+')'; ge.classList.remove('empty'); ge.textContent=''; }
-      }
-    }catch(e){}
+    // Fallback imediato com localStorage (para o painel local funcionar offline)
+    try{ aplicarFotos(JSON.parse(localStorage.getItem('mpx_site_photos')||'{}')); }catch(e){}
+    // Carrega content.json (fonte pública de verdade)
+    fetch('content.json?v='+Date.now()).then(function(r){ return r.ok ? r.json() : null; }).then(function(c){
+      if(!c) return;
+      if(c.contato && c.contato.whatsapp) window._mpxWpp = c.contato.whatsapp;
+      aplicarFotos(c.fotos);
+      aplicarContato(c.contato);
+      aplicarTextos(c.textos);
+      renderCatalogo(c.catalogo);
+    }).catch(function(){});
   })();
 
   /* ── Diagnóstico: Descubra sua tinta ── */

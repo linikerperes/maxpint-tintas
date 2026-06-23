@@ -1,0 +1,63 @@
+{
+  "contato": {
+    "whatsapp": "5500000000000",
+    "telefone_link": "5500000000000",
+    "whatsapp_display": "(00) 00000-0000",
+    "telefone_display": "(00) 0000-0000",
+    "instagram_handle": "@maxpinttintas",
+    "instagram_url": "https://instagram.com/maxpinttintas",
+    "endereco": "Rua das Tintas, 00 — Cidade, UF"
+  },
+  "textos": {
+    "hero_eyebrow": "Maxpint Tintas Premium — B2B",
+    "hero_titulo": "Tintas profissionais\npara decisões\nmais seguras.",
+    "hero_body": "A Maxpint desenvolve soluções para parceiros comerciais, obras e revendas que buscam qualidade comprovada, clareza técnica e acompanhamento responsável em cada etapa.",
+    "contato_titulo": "Fale com\na Maxpint.",
+    "contato_lead": "Disponíveis para atender parceiros comerciais, responder dúvidas técnicas e iniciar novas relações com quem busca qualidade e organização."
+  },
+  "fotos": {},
+  "catalogo": [
+    {
+      "num": "01", "selo": "BASE", "icone": "🧱", "cor": "#9CA3AF", "cor_bg": "rgba(156,163,175,.12)",
+      "nome": "Complementos",
+      "tag": "Preparo de superfície — a base de toda pintura durável.",
+      "produtos": ["Massa PVA", "Massa acrílica", "Textura rústica", "Textura lisa", "Textura projetada", "Fundo preparador", "Selador acrílico"]
+    },
+    {
+      "num": "02", "selo": "ACRÍLICO", "icone": "🎨", "cor": "#F5C000", "cor_bg": "rgba(245,192,0,.14)",
+      "nome": "Acabamento Acrílico",
+      "tag": "Tintas de parede para cada nível de exigência e acabamento.",
+      "produtos": [
+        {"nome": "Acrílica fosco Profissional"},
+        {"nome": "Acrílica fosco Rendemax", "selo": "Standard"},
+        {"nome": "Acrílica fosco Premium", "selo": "Premium"},
+        {"nome": "Acrílica acetinado Premium", "selo": "Premium"},
+        {"nome": "Acrílica semibrilho Premium", "selo": "Premium"}
+      ]
+    },
+    {
+      "num": "03", "selo": "PROTEÇÃO", "icone": "🛡️", "cor": "#3F6B5A", "cor_bg": "rgba(63,107,90,.12)",
+      "nome": "Linha Emborrachada",
+      "tag": "Impermeabilização e proteção elástica de alta performance.",
+      "produtos": ["Vedamax", "Tinta emborrachada", "Borracha líquida"]
+    },
+    {
+      "num": "04", "selo": "BASE ÁGUA", "icone": "💧", "cor": "#2B7A78", "cor_bg": "rgba(43,122,120,.12)",
+      "nome": "Esmaltes Base Água",
+      "tag": "Esmaltes ecológicos, sem odor agressivo, secagem rápida.",
+      "produtos": ["Esmalte fosco", "Esmalte semibrilho", "Esmalte acetinado", "Esmalte brilhante", "Verniz filtro solar brilhante", "Verniz filtro solar fosco", "Verniz filtro solar acetinado"]
+    },
+    {
+      "num": "05", "selo": "SOLVENTE", "icone": "🛢️", "cor": "#7A4E3A", "cor_bg": "rgba(122,78,58,.12)",
+      "nome": "Esmaltes Base Solvente",
+      "tag": "Máxima aderência e resistência em metais e madeiras.",
+      "produtos": ["Esmalte brilhante", "Esmalte semibrilho", "Esmalte fosco", "Fundo e acabamento", "Zarcão", "Fundo branco fosco"]
+    },
+    {
+      "num": "06", "selo": "DECORATIVO", "icone": "✨", "cor": "#B66D4C", "cor_bg": "rgba(182,109,76,.12)",
+      "nome": "Efeitos Decorativos",
+      "tag": "Acabamentos de design para ambientes com personalidade.",
+      "produtos": ["Efeito cimento queimado", "Cimento queimado perolizado", "Efeito pedras naturais"]
+    }
+  ]
+}
